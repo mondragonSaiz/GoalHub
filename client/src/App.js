@@ -1,6 +1,6 @@
 // import React from 'react';
 // import Head from './components/Head';
-// 
+//
 
 // function App() {
 //   return <Head />;
@@ -11,6 +11,7 @@
 import React from 'react';
 import Head from './pages/Head';
 import '../src/styles/globals.css';
+import Nav from './pages/navBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Uncomment import statement below after building queries and mutations

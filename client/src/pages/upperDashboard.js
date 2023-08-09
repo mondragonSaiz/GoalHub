@@ -2,6 +2,7 @@ import React from 'react';
 import memberOne from '../img/member1.png';
 import ProgressBar from '../pages/progressBar';
 import { Progress } from '../pages/progress';
+import Card from '../components/Card';
 
 export default function upperDashboard() {
   const memberImg = memberOne;
@@ -27,14 +28,14 @@ export default function upperDashboard() {
           </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
-          <div className="border-2 rounded-xl border-gray-500 py-5 px-7 h-full">
+          <Card>
             <h2 className="text-slate-200 font-bold text-xl mb-2">
               Achievements completed
             </h2>
             <h1 className="text-slate-200 font-bold text-4xl mb-2">25/45</h1>
             <p className="text-gray-500">We are almost there!</p>
-          </div>
-          <div className="border-2 rounded-xl border-gray-500 py-5 px-7 h-full lg:w-80">
+          </Card>
+          <Card>
             <h2 className="text-slate-200 font-bold text-xl">Media Team</h2>
             <p className="text-gray-500">overview</p>
             {/* <ProgressBar/> */}
@@ -43,8 +44,8 @@ export default function upperDashboard() {
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
-          </div>
-          <div className="border-2 rounded-xl border-gray-500 py-5 px-7 h-full lg:w-80">
+          </Card>
+          <Card>
             <h2 className="text-slate-200 font-bold text-xl">Art Team</h2>
             <p className="text-gray-500">overview</p>
             {/* <ProgressBar/> */}
@@ -53,7 +54,7 @@ export default function upperDashboard() {
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

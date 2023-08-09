@@ -9,7 +9,7 @@
 // export default App;
 
 import React from 'react';
-import Head from './pages/Head';
+import Home from './pages/HomePage';
 import '../src/styles/globals.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ function App() {
     <Router>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>
-          <Route path="/" element={<Head />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </Router>

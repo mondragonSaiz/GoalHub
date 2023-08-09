@@ -1,12 +1,11 @@
 import React from 'react';
-import Logo from '../img/logo.png';
 import {RxCalendar} from "react-icons/rx";
 
 export default function Nav() {
     const Date = ('Aug 08, 2023')
     return (
-        <nav className='pt-10 flex justify-between '>
-            <a href="/"><img src={Logo} width={50} height={50} alt="" /></a>
+        <nav className='pt-10 flex justify-end'>
+            {/* <a href="/"><img src={Logo} width={50} height={50} alt="" /></a> */}
             <ul className='flex items-center'>
                 <div className='flex flex-row justify-center items-center mr-5 border-2 rounded-lg border-gray-500 px-5 py-1.5'>
                     <RxCalendar className=' text-slate-200'/>

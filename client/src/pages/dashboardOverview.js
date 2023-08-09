@@ -1,16 +1,16 @@
 import React from 'react';
-import Nav from '../pages/navBar';
+import Nav from './navBar';
 import UpperDashboard from './upperDashboard';
 import MonthOverview from './monthOverview';
 import MembersOverview from './memberOverview';
 // import {useState} from 'react';
 
-export default function Head() {
+export default function dashboardOverview() {
   // const [darkMode, setDarkMode] = useState(false);
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>
-      <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
+      <main className="bg-neutral-950 px-10 md:px-20 lg:px-40">
         <section className="min-h-screen">
           <Nav />
           <UpperDashboard />

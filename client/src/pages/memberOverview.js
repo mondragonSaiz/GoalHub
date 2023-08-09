@@ -1,5 +1,5 @@
 import React from 'react';
-import memberOne from '../img/member1.png';
+import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 import { Progress } from '../pages/progress';
 
@@ -32,7 +32,7 @@ export default function membersOverview() {
           <div className="w-80">
             <Progress value={30} />
             {/* <ProgressBar/> */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
@@ -56,7 +56,7 @@ export default function membersOverview() {
           <div className="w-80">
             <Progress value={80} />
             {/* <ProgressBar/> */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
@@ -80,7 +80,7 @@ export default function membersOverview() {
           <div className="w-80">
             <Progress value={10} />
             {/* <ProgressBar/> */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
@@ -104,7 +104,7 @@ export default function membersOverview() {
           <div className="w-80">
             <Progress value={50} />
             {/* <ProgressBar/> */}
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>

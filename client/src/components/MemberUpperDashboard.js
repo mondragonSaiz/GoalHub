@@ -2,14 +2,13 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from '../components/progress';
 import Card from '../components/Card';
-
-export default function UpperDashboard() {
+export default function MemberUpperDashboard() {
   const memberImg = memberOne;
   const memberName = 'Eduardo P.';
   const memberTeam = 'art team';
   return (
     <section>
-      <div className="lg:flex-row-reverse lg:flex md:flex-col justify-between mt-5 mb-1">
+      <div className="lg:flex-row lg:flex md:flex-col justify-between mt-5 mb-1">
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
           <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
@@ -29,13 +28,13 @@ export default function UpperDashboard() {
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
           <Card>
             <h2 className="text-slate-200 font-bold text-xl mb-2">
-              Achievements completed
+              Personal Achievements completed
             </h2>
             <h1 className="text-slate-200 font-bold text-4xl mb-2">25/45</h1>
             <p className="text-gray-500">We are almost there!</p>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">Media Team</h2>
+            <h2 className="text-slate-200 font-bold text-xl">My progress</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
             <Progress value={50} />

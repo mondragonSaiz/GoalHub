@@ -1,6 +1,6 @@
 import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
-import { Progress } from '../pages/progress';
+import { Progress } from '../components/progress';
 import Card from '../components/Card';
 
 export default function upperDashboard() {
@@ -9,7 +9,7 @@ export default function upperDashboard() {
   const memberTeam = 'art team';
   return (
     <section>
-      <div className="lg:flex-row-reverse lg:flex justify-evenly mt-1 mb-1">
+      <div className="lg:flex-row-reverse lg:flex md:flex-col justify-between mt-5 mb-1">
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
           <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img

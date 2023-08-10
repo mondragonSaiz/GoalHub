@@ -1,8 +1,11 @@
 import React from 'react';
-
+import Nav from './navBar';
+import UpperDashboard from './UpperDashboard';
+import MonthOverview from './monthOverview';
+import MembersOverview from './memberOverview';
 // import {useState} from 'react';
 
-export default function Head() {
+export default function Dashboard() {
   // const [darkMode, setDarkMode] = useState(false);
   return (
     // <div className={darkMode ? 'dark' : ''}>

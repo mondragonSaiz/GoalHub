@@ -10,6 +10,8 @@
 
 import React from 'react';
 import Home from './pages/HomePage';
+import Dashboard from './pages/Dashboard';
+import MemberDashboard from './pages/MemberDashboard';
 import '../src/styles/globals.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ function App() {
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/member-dashboard" element={<MemberDashboard />} />
         </Routes>
       </div>
     </Router>

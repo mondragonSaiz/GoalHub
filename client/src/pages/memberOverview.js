@@ -3,7 +3,7 @@ import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 import { Progress } from '../components/progress';
 
-export default function membersOverview() {
+export default function MembersOverview() {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';

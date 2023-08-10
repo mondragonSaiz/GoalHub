@@ -1,7 +1,7 @@
 import React from 'react';
 import MonthBars from '../pages/monthBars';
 
-export default function monthOverview() {
+export default function MonthOverview() {
   return (
     <div className="w-full">
       <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8">

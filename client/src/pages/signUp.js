@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function signUp() {
     const typeUser = 'Employee';
@@ -8,7 +7,7 @@ export default function signUp() {
     }
 
     return (
-        <div>
+        <div className="font-poppins">
             <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
                 <section className="flex min-h-screen">
                     <div className="flex flex-col justify-center items-center lg:-mt-20">
@@ -24,9 +23,9 @@ export default function signUp() {
                                     <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">I’m an employer, looking to increase motivation and productivity</h1>
                                 </div>
                             </div>
-                            <Link href="/" className='flex bg-gray-500 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default'>Apply as an {typeUser}</Link>
+                            <a href="/sign-up-form" className='flex bg-gray-500 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default'>Apply as an {typeUser}</a>
                             <div className="flex flex-row gap-2 justify-center">
-                                <p className="text-slate-200 font-normal">Already have an account?</p><a href="/" className="text-slate-200 font-medium">Log In</a>
+                                <p className="text-slate-200 font-normal">Already have an account?</p><a href="/log-in" className="text-slate-200 font-bold">Log In</a>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ import Home from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import MemberDashboard from './pages/MemberDashboard';
 import SignUp from './pages/signUp';
+import LogIn from './pages/logIn';
 import '../src/styles/globals.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/member-dashboard" element={<MemberDashboard />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/log-in" element={<LogIn/>} />
         </Routes>
       </div>
     </Router>

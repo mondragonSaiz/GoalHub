@@ -19,14 +19,14 @@ export default function MemberDashboard() {
             {/* <MonthOverview />
             <MembersOverview /> */}
             <DashboardCard>
-              <h1 className=" font-bold text-slate-200">My dashboard</h1>
-              <p className=" font-thin text-gray-500">
+              <h1 className=" font-bold text-slate-200 font-poppins">My dashboard</h1>
+              <p className=" font-thin text-gray-500 font-poppins">
                 Kepp track of your achievements
               </p>
             </DashboardCard>
             <DashboardCard>
-              <h1 className=" font-bold text-slate-200">My team</h1>
-              <p className=" font-thin text-gray-500">
+              <h1 className=" font-bold text-slate-200 font-poppins">My team</h1>
+              <p className=" font-thin text-gray-500 font-poppins">
                 Check out other's achievements
               </p>
             </DashboardCard>

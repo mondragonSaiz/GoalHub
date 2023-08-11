@@ -4,10 +4,10 @@ import MonthBars from '../pages/monthBars';
 export default function MonthOverview() {
   return (
     <div className="w-full">
-      <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8">
+      <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8 font-poppins">
         Month overview
         <MonthBars />
-        <div className="flex flex-row justify-around">
+        <div className="flex flex-row justify-around font-poppins">
           <p className="text-slate-200 font-normal text-sm">Jan</p>
           <p className="text-slate-200 font-normal text-sm">Feb</p>
           <p className="text-slate-200 font-normal text-sm">Mar</p>

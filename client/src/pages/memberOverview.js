@@ -9,7 +9,7 @@ export default function MembersOverview() {
   const memberTeam = 'art team';
 
   return (
-    <div className="flex flex-col w-full font-visby-regular mb-10">
+    <div className="flex flex-col w-full font-poppins mb-10">
       <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl">
         <h1 className=" font-bold text-slate-200">Member</h1>
         <p className=" font-thin text-gray-500">Look at our progress!</p>

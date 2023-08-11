@@ -19,10 +19,10 @@ export default function UpperDashboard() {
               objectFit="cover"
             />
           </div>
-          <h2 className="flex justify-end text-slate-200 text-2xl font-bold font-visby-regular lg:text-center">
+          <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">
             {memberName}
           </h2>
-          <p className="flex justify-end text-gray-500 text-base font-visby-regular lg:text-right">
+          <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
             {memberTeam}
           </p>
         </div>

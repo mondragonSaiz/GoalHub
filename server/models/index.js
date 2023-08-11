@@ -1,3 +1,5 @@
-const Thought = require('./Thought');
+const User = require('./User');
+const Area = require('./Area');
+const Task = require('./Task');
 
-module.exports = { Thought };
+module.exports = { User, Area, Task };

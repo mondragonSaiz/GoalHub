@@ -4,6 +4,9 @@ import MonthOverview from '../components/monthOverview';
 import MembersOverview from '../components/memberOverview';
 import DashboardCard from '../components/DashboardCard';
 import MemberUpperDashboard from '../components/MemberUpperDashboard';
+import MyTeamOverview from '../components/MyTeamOverview';
+import MyDashboard from '../components/MyDashboard';
+
 // import {useState} from 'react';
 
 export default function MemberDashboard() {
@@ -16,20 +19,24 @@ export default function MemberDashboard() {
           <Nav />
           <MemberUpperDashboard />
           <div className="flex flex-col lg:flex-row gap-4">
-            {/* <MonthOverview />
-            <MembersOverview /> */}
-            <DashboardCard>
-              <h1 className=" font-bold text-slate-200 font-poppins">My dashboard</h1>
+            <MyDashboard />
+            <MyTeamOverview />
+            {/* <DashboardCard>
+              <h1 className=" font-bold text-slate-200 font-poppins">
+                My dashboard
+              </h1>
               <p className=" font-thin text-gray-500 font-poppins">
                 Kepp track of your achievements
               </p>
             </DashboardCard>
             <DashboardCard>
-              <h1 className=" font-bold text-slate-200 font-poppins">My team</h1>
+              <h1 className=" font-bold text-slate-200 font-poppins">
+                My team
+              </h1>
               <p className=" font-thin text-gray-500 font-poppins">
                 Check out other's achievements
               </p>
-            </DashboardCard>
+            </DashboardCard> */}
           </div>
         </section>
       </main>

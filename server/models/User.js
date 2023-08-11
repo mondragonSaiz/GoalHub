@@ -26,15 +26,18 @@ const userSchema = new Schema({
     minlength: 5,
   },
   type: {
-    type: String,
+    type: Boolean,
     required: true,
   },
-  area: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Area',
-    },
-  ],
+  progress: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
+  area: {
+    type: Schema.Types.ObjectId,
+    ref: 'Area',
+  },
 });
 
 // Set up pre-save middleware to create password

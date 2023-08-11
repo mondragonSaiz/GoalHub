@@ -1,8 +1,8 @@
 import React from 'react';
-import Nav from './navBar';
-import UpperDashboard from './upperDashboard';
-import MonthOverview from './monthOverview';
-import MembersOverview from './memberOverview';
+import Nav from '../components/navBar';
+import UpperDashboard from '../components/upperDashboard';
+import MonthOverview from '../components/monthOverview';
+import MembersOverview from '../components/memberOverview';
 // import {useState} from 'react';
 
 export default function Dashboard() {

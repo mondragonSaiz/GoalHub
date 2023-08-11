@@ -1,5 +1,5 @@
 import React from 'react';
-import MonthBars from '../pages/monthBars';
+import MonthBars from './monthBars';
 
 export default function MonthOverview() {
   return (

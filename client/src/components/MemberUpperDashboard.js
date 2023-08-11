@@ -1,6 +1,6 @@
 import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
-import { Progress } from '../components/progress';
+import { Progress } from './progress';
 import Card from '../components/Card';
 export default function MemberUpperDashboard() {
   const memberImg = memberOne;

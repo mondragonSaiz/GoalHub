@@ -21,18 +21,18 @@ export default function HomePage() {
             </div>
             <div className='mt-10 lg:w-1/3'>
               <p className='text-slate-200 font-normal mt-10 w-auto lg:text-lg font-poppins'>
-                Write, plan, collaborate and organize your goals.
+                Write, plan, collaborate and organize your <strong>goals</strong>.
               </p>
               <p className='text-slate-200 font-normal mt-2 w-4/6 lg:text-lg lg:w-11/12 font-poppins'>
-                GoalHub is all you need - in one space.
+                <strong>GoalHub</strong> is all you need - in one space.
               </p>
-              <div className='mt-10'>
+              <div className='mt-10 flex'>
                 <input 
                   placeholder='Enter your email.'
                   type="text"
-                  className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left pl-4 py-1 mr-4 lg:text-lg lg:w-3/5'
+                  className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left pl-4 py-1 mr-4 lg:text-lg w-1/2 lg:'
                 />
-                <a href="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-mediumfont-poppins rounded-lg lg:text-lg cursor-pointer'>Get Started</a>
+                <a href="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer'>Get Started</a>
               </div>
             </div>
           </div>

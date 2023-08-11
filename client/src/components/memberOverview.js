@@ -1,7 +1,7 @@
 import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
-import { Progress } from '../components/progress';
+import { Progress } from './progress';
 
 export default function MembersOverview() {
   const memberImg = memberOne;

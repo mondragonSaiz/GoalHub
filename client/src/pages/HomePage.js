@@ -1,5 +1,5 @@
 import React from 'react';
-import NavHome from './navHome';
+import NavHome from '../components/navHome';
 import avatar2 from '../img/avatar/avatar2.png';
 import avatar3 from '../img/avatar/avatar3.png';
 import avatar4 from '../img/avatar/avatar4.png';
@@ -37,20 +37,20 @@ export default function HomePage() {
             </div>
           </div>
           <div className='flex flex-row flex-wrap mt-10 justify-center gap-20 lg:flex-nowrap'>
-              <div className='flex flex-col'>
-                <img src={avatar3} alt="avatar3" className='w-64 h-auto -mb-5 lg:w-72 lg:hover:w-80'/>
+              <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
+                <img src={avatar3} alt="avatar3" className='w-64 h-auto -mb-5 lg:w-72'/>
                 <p className=' text-slate-200 font-normal text-center lg:text-base'>Keep tasks organized</p>
               </div>
-              <div>
-                <img src={avatar2} alt="avatar2" className='w-64 h-auto -mb-5 lg:w-72 lg:hover:w-80'/>
+              <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
+                <img src={avatar2} alt="avatar2" className='w-64 h-auto -mb-5 lg:w-72'/>
                 <p className='  text-slate-200 font-normal text-center lg:text-base'>Find out others goals</p>
               </div>
-              <div>
-                <img src={avatar4} alt="avatar4" className='w-64 h-auto -mb-5 lg:w-72 lg:hover:w-80'/>
+              <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
+                <img src={avatar4} alt="avatar4" className='w-64 h-auto -mb-5 lg:w-72'/>
                 <p className='  text-slate-200 font-normal text-center lg:text-base'>Increase productivity</p> 
               </div>
-              <div>
-                <img src={avatar5} alt="avatar5" className='w-64 h-auto -mb-5 lg:w-72 lg:hover:w-80'/>
+              <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
+                <img src={avatar5} alt="avatar5" className='w-64 h-auto -mb-5 lg:w-72'/>
                 <p className='  text-slate-200 font-normal text-center lg:text-base'>Motivate others</p>
               </div>
           </div>

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link , useLocation} from "react-router-dom"
-/*import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';*/
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 
 
 
@@ -13,7 +13,7 @@ export default function SignUpForm(){
     const [agreement, setAgreement] = useState(false)
     const [errorMessage, setErrorMessage] = useState('');
 
-   /* const[addUser, {error,data}] = useMutation(ADD_USER)*/
+   const[addUser, {error,data}] = useMutation(ADD_USER)
     
     let {state} = useLocation()
     
@@ -24,14 +24,19 @@ const handleInputChange=(e)=>{
     const inputName = e.target.name
     const inputValue = e.target.value
 
-    if(inputName==="firstName" && inputValue){
-        setFirstName(inputValue)
-    } else if( inputName==="lastName" && inputValue){
-        setLastName(inputValue)
-    } else if (inputName==="password" && validation(inputName,inputValue)){
-         setPassword(inputValue)
-    } else if (inputName==="email" && validation(inputName,inputValue)){
-        setEmail(inputValue)
+    switch (inputName){
+        case "firstName":
+            setFirstName(inputValue)
+            break;
+        case "lastName":
+            setLastName(inputValue)
+            break;
+        case "email":
+            setEmail(inputValue)
+            break;
+        case "password":
+            setPassword(inputValue)
+            break;
     }
 }
 
@@ -52,15 +57,27 @@ const validation =(name,value)=>{
 
 const handleFormSubmit = async (e)=>{
     e.preventDefault();
-    if(!/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(email) || !firstName || !password || !agreement || !lastName){
-        setErrorMessage('Invalid email or other input missing')
+
+    if(!email|| !firstName || !password || !lastName){
+        setErrorMessage('input missing')
         return;
     }
 
+    if(!validation('email',email)){
+        setErrorMessage('wrong email')
+        return;
+    }
+
+    if(!validation('password',password)){
+        setErrorMessage('Password Must have 1 capital letter, 1 low case, 1 number and at least 8 characters long')
+        return;
+    }
+
+
     try{
-        let data;/* = await addUser({
-            variables: {firstName, lastName,email, password, isEmployee: state.isEmployee},
-        })*/
+        const {data} = await addUser({
+            variables: {firstName, lastName, email, password, isEmployee: state.isEmployee},
+        })
     } catch(e){
         console.error(e)
     }
@@ -82,15 +99,15 @@ const handleFormSubmit = async (e)=>{
                 <section className="flex min-h-screen">
                     <div className="flex flex-col justify-center items-center lg:-mt-20">
                         <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
-                           {/* {data? (
+                           { data? (
                                 <p>
                                     Directing to your Dashboard{' '}
-                                    <Link to='/dashboard'> Moving</Link>
+                                    <Link to='/'> Moving</Link>
                                 </p>):(  
-                                <div> */}
+                            <div className="flex flex-col items-center w-auto rounded-2xl  gap-8">
                             <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">I want to keep track of my {state.isEmployee?'tasks':'team'}</h2>
                             <form action="" className="flex flex-col gap-6">
-                                <div> 
+                                <div > 
                                     <input 
                                     value={firstName}
                                     name="firstName"
@@ -108,17 +125,17 @@ const handleFormSubmit = async (e)=>{
                                     className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4'
                                 />
                                 </div>
-                                <input 
+                                <input
+                                    name="email" 
                                     value={email}
-                                    name="email"
                                     onChange={handleInputChange}
                                     placeholder='Email'
                                     type="text"
                                     className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4'
                                 />
                                 <input 
-                                    value={password}
                                     name="password"
+                                    value={password}
                                     onChange={handleInputChange}
                                     placeholder='Password (8 or more characters)'
                                     type="password"
@@ -141,9 +158,8 @@ const handleFormSubmit = async (e)=>{
                                     <p className="error-text text-white">{errorMessage} !</p>
                                 </div>
                             )}
-                        </div>
-                      { /* )}
-                        </div>*/} 
+                        </div>)}
+                        </div> 
                     </div>
                 </section>
             </main>

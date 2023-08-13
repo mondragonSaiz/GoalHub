@@ -10,6 +10,12 @@ const resolvers = {
     user: async (parent, { email }) => {
       return User.findOne({ email })
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 
   Mutation: {
@@ -35,7 +41,15 @@ const resolvers = {
 
       return { token, user };
     },
-  },
+    forgotPassword: async (parents, { email ,password })=>{
+      const user = await User.findOneAndUpdate(
+        {email: email},
+        {password: password},
+        {runValidators: true, new: true})
+        const token = signToken(user);
+        return {user, token}
+    }
+  }
 };
 
 module.exports = resolvers;

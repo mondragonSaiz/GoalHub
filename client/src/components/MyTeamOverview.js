@@ -10,7 +10,10 @@ export default function MyTeamOverview() {
 
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
-      <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl">
+      <div
+        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl"
+        style={{ height: '32rem' }}
+      >
         <h1 className=" font-bold text-slate-200">My Team</h1>
         <p className=" font-thin text-gray-500">Look at your team progress!</p>
 
@@ -103,7 +106,7 @@ export default function MyTeamOverview() {
 
           <div className="w-80">
             <Progress value={50} />
-            {/* <ProgressBar/> */}
+
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>

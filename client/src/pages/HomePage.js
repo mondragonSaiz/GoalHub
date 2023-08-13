@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavHome from '../components/navHome';
 import avatar2 from '../img/avatar/avatar2.png';
 import avatar3 from '../img/avatar/avatar3.png';
@@ -32,7 +33,7 @@ export default function HomePage() {
                   type="text"
                   className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left pl-4 py-1 mr-4 lg:text-lg w-1/2 lg:'
                 />
-                <a href="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer'>Get Started</a>
+                <Link to="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer'>Get Started</Link>
               </div>
             </div>
           </div>

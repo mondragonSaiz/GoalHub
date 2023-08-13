@@ -19,13 +19,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
   },
   password: {
     type: String,
     required: true,
-    minlength: 5,
+    match: /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/
   },
-  type: {
+  isEmployee: {
     type: Boolean,
     required: true,
   },
@@ -52,7 +53,7 @@ userSchema.pre('save', async function (next) {
 
 // Compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  await bcrypt.compare(password, this.password);
+  return bcrypt.compare(password, this.password);
 };
 
 const User = mongoose.model('User', userSchema);

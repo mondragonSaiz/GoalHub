@@ -4,7 +4,10 @@ import MonthBars from './monthBars';
 export default function MonthOverview() {
   return (
     <div className="w-full">
-      <div className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8 font-poppins">
+      <div
+        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8 font-poppins"
+        style={{ height: '32rem' }}
+      >
         Month overview
         <MonthBars />
         <div className="flex flex-row justify-around font-poppins">

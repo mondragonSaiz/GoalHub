@@ -11,7 +11,7 @@ export default function MyTeamOverview() {
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
       <div
-        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl"
+        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
         style={{ height: '32rem' }}
       >
         <h1 className=" font-bold text-slate-200">My Team</h1>
@@ -107,6 +107,78 @@ export default function MyTeamOverview() {
           <div className="w-80">
             <Progress value={50} />
 
+            <div className="flex justify-between mt-1">
+              <p className="text-gray-500">0%</p>
+              <p className="text-gray-500">100%</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center mt-5">
+          <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+            <img
+              src={memberImg}
+              alt="memberOne"
+              layout="fill"
+              bjectFit="cover"
+            />
+          </div>
+
+          <div>
+            <h2 className=" flex font-bold text-slate-200">{memberName}</h2>
+            <p className=" font-thin text-gray-500">{memberTeam}</p>
+          </div>
+
+          <div className="w-80">
+            <Progress value={30} />
+            {/* <ProgressBar/> */}
+            <div className="flex justify-between mt-1">
+              <p className="text-gray-500">0%</p>
+              <p className="text-gray-500">100%</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center mt-5">
+          <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+            <img
+              src={memberImg}
+              alt="memberOne"
+              layout="fill"
+              bjectFit="cover"
+            />
+          </div>
+
+          <div>
+            <h2 className=" flex font-bold text-slate-200">{memberName}</h2>
+            <p className=" font-thin text-gray-500">{memberTeam}</p>
+          </div>
+
+          <div className="w-80">
+            <Progress value={30} />
+            {/* <ProgressBar/> */}
+            <div className="flex justify-between mt-1">
+              <p className="text-gray-500">0%</p>
+              <p className="text-gray-500">100%</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row justify-between items-center mt-5">
+          <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+            <img
+              src={memberImg}
+              alt="memberOne"
+              layout="fill"
+              bjectFit="cover"
+            />
+          </div>
+
+          <div>
+            <h2 className=" flex font-bold text-slate-200">{memberName}</h2>
+            <p className=" font-thin text-gray-500">{memberTeam}</p>
+          </div>
+
+          <div className="w-80">
+            <Progress value={30} />
+            {/* <ProgressBar/> */}
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>

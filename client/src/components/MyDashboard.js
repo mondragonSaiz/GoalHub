@@ -3,16 +3,16 @@ import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 // import { Checkbox } from '@radix-ui/react-checkbox';
 import { Checkbox } from './checkbox';
-
+import '../styles/dash.css';
 export default function MyDashboard() {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
 
   return (
-    <div className="flex flex-col w-full font-poppins mb-10">
+    <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
       <div
-        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl"
+        className="dashContainer border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
         style={{ height: '32rem' }}
       >
         <h1 className=" font-bold text-slate-200">My dashboard</h1>
@@ -22,6 +22,15 @@ export default function MyDashboard() {
         <div className="flex flex-row justify-between items-center mt-5">
           <div className="flex flex-col justify-between items-center mt-5">
             <div style={{ visibility: 'hidden', paddingBottom: '0.8rem' }}>
+              <p>cb</p>
+            </div>
+            <div style={{ paddingBottom: '0.8rem' }}>
+              <Checkbox />
+            </div>
+            <div style={{ paddingBottom: '0.8rem' }}>
+              <Checkbox />
+            </div>
+            <div style={{ paddingBottom: '0.8rem' }}>
               <Checkbox />
             </div>
             <div style={{ paddingBottom: '0.8rem' }}>
@@ -104,6 +113,24 @@ export default function MyDashboard() {
             >
               Incomplete
             </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              done
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              In progress
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              done
+            </p>
           </div>
           <div className="flex flex-col justify-between items-center mt-5">
             <h2
@@ -160,6 +187,24 @@ export default function MyDashboard() {
             >
               achievement
             </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              achievement
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              achievement
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              achievement
+            </p>
           </div>
           <div className="flex flex-col justify-between items-center mt-5">
             <h2
@@ -168,6 +213,24 @@ export default function MyDashboard() {
             >
               Hours Spent
             </h2>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              0hrs
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              0hrs
+            </p>
+            <p
+              className=" font-thin text-gray-500"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              0hrs
+            </p>
             <p
               className=" font-thin text-gray-500"
               style={{ paddingBottom: '0.8rem' }}

@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isInteger } = require('tailwind-merge/dist/lib/validators');
+//const { isInteger } = require('tailwind-merge/dist/lib/validators');
 const dateFormat = require('../utils/dateFormat');
 
 const areaSchema = new Schema({

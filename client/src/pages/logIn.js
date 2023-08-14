@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function logIn() {
 
@@ -28,7 +29,7 @@ export default function logIn() {
                                 <p className=" text-gray-500 text-sm">Don't have a GoalHub account?</p>
                                 <p className=" rotate-90 text-gray-500">|</p>
                             </div>
-                            <a href="/sign-up" className='flex text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 font-bold font-poppins justify-center text-center py-2 px-48'>Signup</a>
+                            <Link to="/sign-up" className='flex text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 font-bold font-poppins justify-center text-center py-2 px-48'>Signup</Link>
                         </div>
                     </div>
                 </section>

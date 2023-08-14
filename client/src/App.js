@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client'
 import SignUpForm from './pages/SignUpForm';
+import NewTask from './pages/NewTask';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,6 +44,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/log-in" element={<LogIn/>} />
             <Route path='/sign-up-form' element={<SignUpForm />} />
+            <Route path="/new-task" element={<NewTask/>} />
           </Routes>
         </div>
       </Router>

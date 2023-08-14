@@ -1,0 +1,39 @@
+.dashContainer {
+  height: 32rem;
+}
+
+@media screen and (max-width: 430px) {
+  .dashContainer {
+    height: 32rem;
+  }
+  .dashContainer > h1 {
+    font-size: 0.6875rem;
+  }
+  .dashContainer > p {
+    font-size: 0.6875rem;
+  }
+  .dashContainer > div {
+    font-size: 0.6875rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .dashContainer {
+    height: 32rem;
+  }
+  .dashContainer > h1 {
+    font-size: 0.5875rem;
+  }
+  .dashContainer > p {
+    font-size: 0.5875rem;
+  }
+  .dashContainer > div {
+    font-size: 0.5875rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .mydash_main {
+    margin-top: 10%;
+  }
+}

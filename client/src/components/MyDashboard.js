@@ -3,16 +3,16 @@ import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 // import { Checkbox } from '@radix-ui/react-checkbox';
 import { Checkbox } from './checkbox';
-
+import '../styles/dash.css';
 export default function MyDashboard() {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
 
   return (
-    <div className="flex flex-col w-full font-poppins mb-10">
+    <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
       <div
-        className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
+        className="dashContainer border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
         style={{ height: '32rem' }}
       >
         <h1 className=" font-bold text-slate-200">My dashboard</h1>
@@ -22,7 +22,7 @@ export default function MyDashboard() {
         <div className="flex flex-row justify-between items-center mt-5">
           <div className="flex flex-col justify-between items-center mt-5">
             <div style={{ visibility: 'hidden', paddingBottom: '0.8rem' }}>
-              <Checkbox />
+              <p>cb</p>
             </div>
             <div style={{ paddingBottom: '0.8rem' }}>
               <Checkbox />

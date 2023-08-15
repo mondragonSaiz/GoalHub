@@ -1,5 +1,4 @@
 const { gql } = require('apollo-server-express');
-
 const typeDefs = gql`
   type User {
     _id: ID
@@ -12,7 +11,6 @@ const typeDefs = gql`
     area: Area
     tasks: [Task]
   }
-
   type Area {
     _id: ID
     name: String
@@ -20,7 +18,6 @@ const typeDefs = gql`
     progress: String
     users: [User]
   }
-
   type Task {
     _id: ID
     name: String
@@ -29,18 +26,15 @@ const typeDefs = gql`
     isCompleted: Boolean
     user: User
   }
-
   type Auth {
     token: ID!
     user: User
   }
-
   type Query {
     users: [User]
     user(email: String!): User
     me: User
   }
-
   type Mutation {
     addUser(
       firstName: String!
@@ -60,20 +54,15 @@ const typeDefs = gql`
     removeTask(taskId: ID!): User
   }
 `;
-
 module.exports = typeDefs;
-
-/* 
-
+/*
  saveTask(taskInfo: taskInput!): User
     removeTask(taskId: ID!): User
-
-
     input taskInput {
     # _id: ID
-    name: String 
+    name: String
     taskDesc: String
-    createdAt: String 
+    createdAt: String
     isCompleted: Boolean
   }
    */

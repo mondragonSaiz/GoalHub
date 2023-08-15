@@ -19,6 +19,7 @@ export default function LogIn() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log('submitted');
     console.log(formState);
     try {
       const { data } = await login({

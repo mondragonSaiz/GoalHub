@@ -11,18 +11,18 @@ export default function MonthOverview() {
         Month overview
         <MonthBars />
         <div className="flex flex-row justify-around font-poppins">
-          <p className="text-slate-200 font-normal text-sm">Jan</p>
-          <p className="text-slate-200 font-normal text-sm">Feb</p>
-          <p className="text-slate-200 font-normal text-sm">Mar</p>
-          <p className="text-slate-200 font-normal text-sm">Apr</p>
-          <p className="text-slate-200 font-normal text-sm">May</p>
-          <p className="text-slate-200 font-normal text-sm">Jun</p>
-          <p className="text-slate-200 font-normal text-sm">Jul</p>
-          <p className="text-slate-200 font-normal text-sm">Aug</p>
-          <p className="text-slate-200 font-normal text-sm">Sep</p>
-          <p className="text-slate-200 font-normal text-sm">Oct</p>
-          <p className="text-slate-200 font-normal text-sm">Nov</p>
-          <p className="text-slate-200 font-normal text-sm">Dec</p>
+          <p className="text-slate-200 font-normal text-xs">Jan</p>
+          <p className="text-slate-200 font-normal text-xs">Feb</p>
+          <p className="text-slate-200 font-normal text-xs">Mar</p>
+          <p className="text-slate-200 font-normal text-xs">Apr</p>
+          <p className="text-slate-200 font-normal text-xs">May</p>
+          <p className="text-slate-200 font-normal text-xs">Jun</p>
+          <p className="text-slate-200 font-normal text-xs">Jul</p>
+          <p className="text-slate-200 font-normal text-xs">Aug</p>
+          <p className="text-slate-200 font-normal text-xs">Sep</p>
+          <p className="text-slate-200 font-normal text-xs">Oct</p>
+          <p className="text-slate-200 font-normal text-xs">Nov</p>
+          <p className="text-slate-200 font-normal text-xs">Dec</p>
         </div>
       </div>
     </div>

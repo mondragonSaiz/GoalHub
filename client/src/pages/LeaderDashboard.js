@@ -3,9 +3,11 @@ import Nav from '../components/navBar';
 import MonthOverview from '../components/monthOverview';
 import MembersOverview from '../components/memberOverview';
 import DashboardCard from '../components/DashboardCard';
-import MemberUpperDashboard from '../components/MemberUpperDashboard';
+import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
 // import MyDashboard from '../components/MyDashboard';
+
+
 import LeadDashboard from '../components/LeadDashboard';
 
 // import {useState} from 'react';
@@ -19,7 +21,7 @@ export default function LeaderDashboard() {
         <section className="min-h-screen">
           <Nav />
           {/* Leader Upper Dashboard */}
-          <MemberUpperDashboard />
+          <LeaderUpperDashboard />
           <div className="flex flex-col lg:flex-row gap-4">
             <LeadDashboard />
             <MyTeamOverview />

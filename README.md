@@ -48,10 +48,10 @@ The following images demonstrate the functionality of the application.
 <!-- TODO: Add GitHub profiles -->
 - [Daniel Sanchez](https://github.com/Morkendi)
 - [Alejandro Salazar](https://github.com/Alexslzr)
-- [Carlos Castillo]()
+- [Carlos Castillo](https://github.com/carloscastilloflores)
 - [David Mondragon](https://github.com/mondragonSaiz)
 - [Eduardo Pineda](https://github.com/EduardoPinedaH)
-- [Hector Enrique Vazquez]()
+- [Hector Enrique Vazquez](https://github.com/Enrique-V06)
 - [Samuel Munguia]()
 
 ## License

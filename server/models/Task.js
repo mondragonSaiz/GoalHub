@@ -23,10 +23,6 @@ const taskSchema = new Schema({
     type: Boolean,
     default: 0,
   },
-  area: {
-    type: Schema.Types.ObjectId,
-    ref: 'Area',
-  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',

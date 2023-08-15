@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Task } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -8,7 +8,7 @@ const resolvers = {
       return User.find();
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email })
+      return User.findOne({ email }).populate('tasks')
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -50,7 +50,7 @@ const resolvers = {
 
       return { token, user };
     },
-    saveTask: async (parenttaskInfo, { taskDesk }, context) => {
+    saveTask: async (parenttaskInfo, { taskDesk , name}, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id }, 
@@ -62,6 +62,22 @@ const resolvers = {
       }
       throw new AuthenticationError("You must be logged in to assign tasks");
     },
+    saveTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
+      // if (context.user) {
+         const newTask = await Task.create( {
+           taskDesc, name, isCompleted, user} )
+         
+           console.log(newTask)
+           updatedUser = await User.findOneAndUpdate(
+             { _id: context.user._id }, 
+             { $addToSet: {tasks: newTask._id } },
+             { new: true}, 
+           )
+ 
+       return  newTask;
+       }
+      /* throw new AuthenticationError("You must be logged in to assign tasks")
+    }*/,
     removeTask: async (parent, { taskId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
@@ -85,5 +101,20 @@ const resolvers = {
 };
 
 module.exports = resolvers;
- /* 
-  */
+  
+/*
+ saveTask: async (parenttaskInfo, { taskDesk , name}, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $push: {tasks: taskDesk } },
+          { new: true}, 
+        )
+        .populate("tasks");
+      return  updatedUser;
+      }
+      throw new AuthenticationError("You must be logged in to assign tasks");
+    },
+
+    */
+ 

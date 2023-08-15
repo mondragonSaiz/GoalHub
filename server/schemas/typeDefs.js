@@ -27,16 +27,6 @@ const typeDefs = gql`
     taskDesc: String
     createdAt: String
     isCompleted: Boolean
-    area: Area
-    user: User
-  }
-
-  input taskInput {
-    # _id: ID
-    name: String 
-    taskDesc: String
-    createdAt: String 
-    isCompleted: Boolean
     user: User
   }
 
@@ -55,9 +45,8 @@ const typeDefs = gql`
     addUser(firstName: String!,lastName: String!,isEmployee: Boolean!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    saveTask(taskInfo: taskInput!): User
+    saveTask(taskDesc: String!, name: String!, isCompleted: Boolean!, user: ID!): Task
     removeTask(taskId: ID!): User
-
   }
 `;
 
@@ -75,6 +64,5 @@ module.exports = typeDefs;
     taskDesc: String
     createdAt: String 
     isCompleted: Boolean
-    user: User
   }
    */

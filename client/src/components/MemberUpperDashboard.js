@@ -2,6 +2,8 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from '../components/Card';
+import { Link } from 'react-router-dom';
+
 export default function MemberUpperDashboard() {
   const memberImg = memberOne;
   const memberName = 'Eduardo P.';
@@ -21,9 +23,16 @@ export default function MemberUpperDashboard() {
           <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">
             {memberName}
           </h2>
-          <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
+          {/* <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
             {memberTeam}
-          </p>
+          </p> */}
+          <Link
+            className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right"
+            to={`/settings`}
+          >
+            Settings
+          </Link>
+          ;
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
           <Card>

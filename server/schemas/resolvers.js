@@ -50,14 +50,14 @@ const resolvers = {
 
       return { token, user };
     },
-    saveTask: async (parent, { taskInfo }, context) => {
+    saveTask: async (parenttaskInfo, { taskDesk }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id }, 
-          { $push: {savedTasks: taskInfo } },
+          { $push: {tasks: taskDesk } },
           { new: true}, 
         )
-        .populate("savedTasks");
+        .populate("tasks");
       return  updatedUser;
       }
       throw new AuthenticationError("You must be logged in to assign tasks");
@@ -85,3 +85,5 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+ /* 
+  */

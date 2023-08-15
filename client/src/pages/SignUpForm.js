@@ -3,7 +3,8 @@ import {Link , useLocation} from "react-router-dom";
 import memberOne from '../img/avatar/avatar1.png';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER,} from '../utils/mutations';
+import Auth from '../utils/auth'
 
 
 
@@ -17,6 +18,7 @@ export default function SignUpForm(){
     const memberImg = memberOne;
 
    const[addUser, {error,data}] = useMutation(ADD_USER)
+   
     
     let {state} = useLocation()
     
@@ -81,9 +83,13 @@ const handleFormSubmit = async (e)=>{
         const {data} = await addUser({
             variables: {firstName, lastName, email, password, isEmployee: state.isEmployee},
         })
+
+        Auth.login(data.addUser.token);
     } catch(e){
         console.error(e)
     }
+
+
     console.log(firstName)
     console.log(lastName)
     console.log(password)
@@ -102,7 +108,7 @@ const handleFormSubmit = async (e)=>{
                 <section className="flex min-h-screen">
                     <div className="flex flex-col justify-center items-center lg:-mt-20">
                         <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
-                            {/* {data? (
+                            { data? (
                                 <p>
                                     Directing to your Dashboard{' '}
                                     <Link to='/'> Moving</Link>

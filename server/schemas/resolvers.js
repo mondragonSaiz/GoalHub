@@ -44,6 +44,29 @@ const resolvers = {
 
       return { token, user };
     },
+    saveTask: async (parent, { taskInfo }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $push: {savedTasks: taskInfo } },
+          { new: true}, 
+        )
+        .populate("savedTasks");
+      return  updatedUser;
+      }
+      throw new AuthenticationError("You must be logged in to assign tasks");
+    },
+    removeTask: async (parent, { taskId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: {savedBooks: { taskId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('Error when deleting task'); 
+    },
   },
 };
 

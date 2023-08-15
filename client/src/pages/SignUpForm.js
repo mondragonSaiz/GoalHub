@@ -1,5 +1,7 @@
 import React, {useState} from "react";
-import {Link , useLocation} from "react-router-dom"
+import {Link , useLocation} from "react-router-dom";
+import memberOne from '../img/avatar/avatar1.png';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 /*import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';*/
 
@@ -12,6 +14,7 @@ export default function SignUpForm(){
     const [password, setPassword] = useState('')
     const [agreement, setAgreement] = useState(false)
     const [errorMessage, setErrorMessage] = useState('');
+    const memberImg = memberOne;
 
    /* const[addUser, {error,data}] = useMutation(ADD_USER)*/
     
@@ -82,7 +85,7 @@ const handleFormSubmit = async (e)=>{
                 <section className="flex min-h-screen">
                     <div className="flex flex-col justify-center items-center lg:-mt-20">
                         <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
-                           {/* {data? (
+                            {/* {data? (
                                 <p>
                                     Directing to your Dashboard{' '}
                                     <Link to='/dashboard'> Moving</Link>
@@ -99,7 +102,7 @@ const handleFormSubmit = async (e)=>{
                                     type="text"
                                     className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4'
                                 />
-                                 <input 
+                                    <input 
                                     name="lastName"
                                     value={lastName}
                                     onChange={handleInputChange}
@@ -124,12 +127,52 @@ const handleFormSubmit = async (e)=>{
                                     type="password"
                                     className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4'
                                 />
+                                <h2 className=" text-slate-200 flex justify-center text-lg font-bold">Choose your avatar</h2>
+                                <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
+                                    
+                                    <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                                        <img
+                                        src={memberImg}
+                                        alt="memberOne"
+                                        layout="fill"
+                                        objectFit="cover"
+                                        />
+                                    </div>
+                                    <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                                        <img
+                                        src={memberImg}
+                                        alt="memberOne"
+                                        layout="fill"
+                                        objectFit="cover"
+                                        />
+                                    </div>
+                                    <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                                        <img
+                                        src={memberImg}
+                                        alt="memberOne"
+                                        layout="fill"
+                                        objectFit="cover"
+                                        />
+                                    </div>
+                                    <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                                        <img
+                                        src={memberImg}
+                                        alt="memberOne"
+                                        layout="fill"
+                                        objectFit="cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className=" flex flex-row justify-between">
+                                        <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer"/>
+                                        <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer"/>
+                                    </div>
                                 <div className="flex">
                                     <input type="checkbox" name="agreement" onClick={handleInputChange} className="mr-2"/>
                                     <p className="text-white">I understand and agree to the GoalHub Terms of Service, including the User Agreement and Privacy Policy</p>
                                 </div>
                                 
-                                <input type="submit" onClick={handleFormSubmit} name="loginSub" id="loginSub" value="Create my account" className=" bg-slate-200 text-neutral-950 rounded-lg py-2 px-36 cursor-pointer"/>
+                                <input type="submit" onClick={handleFormSubmit} name="loginSub" id="loginSub" value="Create my account" className=" bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold"/>
                             </form>
                             
                             <div className="flex flex-row gap-4 items-center">

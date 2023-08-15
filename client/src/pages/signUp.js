@@ -30,7 +30,7 @@ export default function SignUp() {
                                     <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">I’m an employer, looking to increase motivation and productivity</h1>
                                 </button>
                             </div>
-                            <Link to="/sign-up-form" state={{isEmployee: isEmployee}} className='flex bg-slate-200 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default'>Apply as {isEmployee? 'an Employee': 'an Employer'}</Link>
+                            <Link to="/sign-up-form" state={{isEmployee: isEmployee}} className='flex bg-slate-200 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-pointer'>Apply as {isEmployee? 'an Employee': 'an Employer'}</Link>
                             <div className="flex flex-row gap-2 justify-center">
                                 <p className="text-slate-200 font-normal">Already have an account?</p><a href="/log-in" className="text-slate-200 font-bold">Log In</a>
                             </div>

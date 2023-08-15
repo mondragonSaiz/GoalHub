@@ -5,16 +5,25 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find()
+      return User.find();
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email })
+      return User.findOne({ email });
     },
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, isEmployee, email, password }) => {
-      const user = await User.create({ firstName, lastName, isEmployee, email, password });
+    addUser: async (
+      parent,
+      { firstName, lastName, isEmployee, email, password }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        isEmployee,
+        email,
+        password,
+      });
       const token = signToken(user);
       return { token, user };
     },
@@ -34,6 +43,29 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveTask: async (parent, { taskInfo }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $push: {savedTasks: taskInfo } },
+          { new: true}, 
+        )
+        .populate("savedTasks");
+      return  updatedUser;
+      }
+      throw new AuthenticationError("You must be logged in to assign tasks");
+    },
+    removeTask: async (parent, { taskId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: {savedBooks: { taskId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('Error when deleting task'); 
     },
   },
 };

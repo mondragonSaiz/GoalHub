@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function SignUp() {
     const [isEmployee, setIsEmployee] = useState(true)
 
+
+ 
     const handleClick = (e) => {
         if(e.target.id==='employee'){
             setIsEmployee(true)

@@ -8,7 +8,13 @@ const resolvers = {
       return User.find();
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email });
+      return User.findOne({ email })
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
@@ -44,14 +50,14 @@ const resolvers = {
 
       return { token, user };
     },
-    saveTask: async (parent, { taskInfo }, context) => {
+    saveTask: async (parenttaskInfo, { taskDesk }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id }, 
-          { $push: {savedTasks: taskInfo } },
+          { $push: {tasks: taskDesk } },
           { new: true}, 
         )
-        .populate("savedTasks");
+        .populate("tasks");
       return  updatedUser;
       }
       throw new AuthenticationError("You must be logged in to assign tasks");
@@ -67,7 +73,17 @@ const resolvers = {
       }
       throw new AuthenticationError('Error when deleting task'); 
     },
-  },
+    forgotPassword: async (parents, { email ,password })=>{
+      const user = await User.findOneAndUpdate(
+        {email: email},
+        {password: password},
+        {runValidators: true, new: true})
+        const token = signToken(user);
+        return {user, token}
+    }
+  }
 };
 
 module.exports = resolvers;
+ /* 
+  */

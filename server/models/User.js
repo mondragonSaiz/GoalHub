@@ -39,6 +39,11 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Area',
   },
+  tasks: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: 'Task',
+  }]
 });
 
 // Set up pre-save middleware to create password

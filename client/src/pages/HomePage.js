@@ -40,19 +40,19 @@ export default function HomePage() {
           <div className='flex flex-row flex-wrap mt-10 justify-center gap-20 lg:flex-nowrap'>
               <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
                 <img src={avatar3} alt="avatar3" className='w-64 h-auto -mb-5 lg:w-72'/>
-                <p className=' text-slate-200 font-normal text-center lg:text-base'>Keep tasks organized</p>
+                <p className=' text-slate-200 font-thin text-center lg:text-base'>Keep tasks <strong className=' font-bold'>organized</strong>.</p>
               </div>
               <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
                 <img src={avatar2} alt="avatar2" className='w-64 h-auto -mb-5 lg:w-72'/>
-                <p className='  text-slate-200 font-normal text-center lg:text-base'>Find out others goals</p>
+                <p className='  text-slate-200 font-thin text-center lg:text-base'>Find out others <strong className=' font-bold'>goals</strong>.</p>
               </div>
               <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
                 <img src={avatar4} alt="avatar4" className='w-64 h-auto -mb-5 lg:w-72'/>
-                <p className='  text-slate-200 font-normal text-center lg:text-base'>Increase productivity</p> 
+                <p className='  text-slate-200 font-thin text-center lg:text-base'>Increase <strong className=' font-bold'>productivity</strong>.</p> 
               </div>
               <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
                 <img src={avatar5} alt="avatar5" className='w-64 h-auto -mb-5 lg:w-72'/>
-                <p className='  text-slate-200 font-normal text-center lg:text-base'>Motivate others</p>
+                <p className='  text-slate-200 font-thin text-center lg:text-base'>Motivate <strong className=' font-bold'>others</strong>.</p>
               </div>
           </div>
         </section>

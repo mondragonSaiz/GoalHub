@@ -9,9 +9,15 @@ import LogIn from './pages/logIn';
 import '../src/styles/globals.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import SignUpForm from './pages/SignUpForm';
 import NewTask from './pages/NewTask';
+import ProfileSettings from './pages/ProfileSettings';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,12 +37,12 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-})
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    <ApolloProvider client={client} >
+    <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Routes>
@@ -45,9 +51,10 @@ function App() {
             <Route path="/member-dashboard" element={<MemberDashboard />} />
             <Route path="/leader-dashboard" element={<LeaderDashboard />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/log-in" element={<LogIn/>} />
-            <Route path='/sign-up-form' element={<SignUpForm />} />
-            <Route path="/new-task" element={<NewTask/>} />
+            <Route path="/log-in" element={<LogIn />} />
+            <Route path="/sign-up-form" element={<SignUpForm />} />
+            <Route path="/new-task" element={<NewTask />} />
+            <Route path="/settings" element={<ProfileSettings />} />
           </Routes>
         </div>
       </Router>

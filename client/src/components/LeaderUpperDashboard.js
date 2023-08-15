@@ -2,12 +2,12 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from '../components/Card';
-import { Link } from 'react-router-dom';
+import MonthLeader from '../components/MonthLeaderOverview.js'
 
 export default function MemberUpperDashboard() {
   const memberImg = memberOne;
   const memberName = 'Eduardo P.';
-  const memberTeam = 'art team';
+  const memberTeam = 'Team Manager';
   return (
     <section className=" font-poppins">
       <div className="lg:flex-row lg:flex md:flex-col justify-between mt-5 mb-1">
@@ -23,27 +23,20 @@ export default function MemberUpperDashboard() {
           <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">
             {memberName}
           </h2>
-          {/* <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
+          <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
             {memberTeam}
-          </p> */}
-          <Link
-            className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right"
-            to={`/settings`}
-          >
-            Settings
-          </Link>
-          ;
+          </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
           <Card>
             <h2 className="text-slate-200 font-bold text-xl mb-2">
-              Personal Achievements completed
+              Total Achievements 
             </h2>
-            <h1 className="text-slate-200 font-bold text-4xl mb-2">25/45</h1>
+            <h1 className="text-slate-200 font-bold text-4xl mb-2">24/63</h1>
             <p className="text-gray-500">We are almost there!</p>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">My progress</h2>
+            <h2 className="text-slate-200 font-bold text-xl">Team progress</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
             <Progress value={50} />
@@ -53,14 +46,10 @@ export default function MemberUpperDashboard() {
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">Art Team</h2>
-            <p className="text-gray-500 mb-4">overview</p>
+            <h2 className="text-slate-200 font-bold text-xl">Week's Progress</h2>
+            {/* <p className="text-gray-500 mb-4">overview</p> */}
             {/* <ProgressBar/> */}
-            <Progress value={30} />
-            <div className="flex justify-between mt-1">
-              <p className="text-gray-500">0%</p>
-              <p className="text-gray-500">100%</p>
-            </div>
+            <MonthLeader />
           </Card>
         </div>
       </div>

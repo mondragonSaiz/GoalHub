@@ -1,41 +1,71 @@
-const { Thought } = require('../models');
+const { User } = require('../models');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find();
+    users: async () => {
+      return User.find();
     },
-
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    user: async (parent, { email }) => {
+      return User.findOne({ email });
     },
   },
 
   Mutation: {
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
+    addUser: async (
+      parent,
+      { firstName, lastName, isEmployee, email, password }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        isEmployee,
+        email,
+        password,
+      });
+      const token = signToken(user);
+      return { token, user };
     },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
+    saveTask: async (parent, { taskInfo }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $push: {savedTasks: taskInfo } },
+          { new: true}, 
+        )
+        .populate("savedTasks");
+      return  updatedUser;
+      }
+      throw new AuthenticationError("You must be logged in to assign tasks");
     },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
+    removeTask: async (parent, { taskId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: {savedBooks: { taskId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('Error when deleting task'); 
     },
   },
 };

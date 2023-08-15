@@ -2,12 +2,16 @@ import React from 'react';
 import Home from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import MemberDashboard from './pages/MemberDashboard';
+import LeaderDashboard from './pages/LeaderDashboard';
+
 import SignUp from './pages/signUp';
 import LogIn from './pages/logIn';
 import '../src/styles/globals.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client'
+import SignUpForm from './pages/SignUpForm';
+import NewTask from './pages/NewTask';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -39,8 +43,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/member-dashboard" element={<MemberDashboard />} />
+            <Route path="/leader-dashboard" element={<LeaderDashboard />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/log-in" element={<LogIn/>} />
+            <Route path='/sign-up-form' element={<SignUpForm />} />
+            <Route path="/new-task" element={<NewTask/>} />
           </Routes>
         </div>
       </Router>

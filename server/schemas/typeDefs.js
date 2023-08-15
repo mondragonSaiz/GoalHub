@@ -30,14 +30,14 @@ const typeDefs = gql`
     user: User
   }
 
-  input taskInput {
-    # _id: ID
-    name: String 
-    taskDesc: String
-    createdAt: String 
-    isCompleted: Boolean
-    user: User
-  }
+  # input taskInput {
+  #   # _id: ID
+  #   name: String
+  #   taskDesc: String
+  #   createdAt: String
+  #   isCompleted: Boolean
+  #   user: User
+  # }
 
   type Auth {
     token: ID!
@@ -50,10 +50,16 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!,lastName: String!,isEmployee: Boolean!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      isEmployee: Boolean!
+      email: String!
+      password: String!
+    ): Auth
     login(email: String!, password: String!): Auth
-    saveTask(taskInfo: TaskInput!): User
-    removeTask(taskId: ID!): User
+    # saveTask(taskInfo: TaskInput!): User
+    # removeTask(taskId: ID!): User
   }
 `;
 

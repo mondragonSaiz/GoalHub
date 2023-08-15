@@ -5,7 +5,7 @@ import MemberDashboard from './pages/MemberDashboard';
 import LeaderDashboard from './pages/LeaderDashboard';
 
 import SignUp from './pages/signUp';
-import LogIn from './pages/logIn';
+import LogIn from './pages/LogIn';
 import '../src/styles/globals.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

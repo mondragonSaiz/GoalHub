@@ -8,11 +8,11 @@ const resolvers = {
       return User.find().populate('tasks');
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email }).populate('tasks')
+      return User.findOne({ email }).populate('tasks');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -68,32 +68,33 @@ const resolvers = {
  
        return  populatedTask;
        }
-      /* throw new AuthenticationError("You must be logged in to assign tasks")
-    }*/,
-    removeTask: async (parent, { taskId }, context) => {
+
+    /* throw new AuthenticationError("You must be logged in to assign tasks")
+    }*/ removeTask: async (parent, { taskId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: {savedBooks: { taskId } } },
+          { $pull: { savedBooks: { taskId } } },
           { new: true }
         );
         return updatedUser;
       }
-      throw new AuthenticationError('Error when deleting task'); 
+      throw new AuthenticationError('Error when deleting task');
     },
-    forgotPassword: async (parents, { email ,password })=>{
+    forgotPassword: async (parents, { email, password }) => {
       const user = await User.findOneAndUpdate(
-        {email: email},
-        {password: password},
-        {runValidators: true, new: true})
-        const token = signToken(user);
-        return {user, token}
-    }
-  }
+        { email: email },
+        { password: password },
+        { runValidators: true, new: true }
+      );
+      const token = signToken(user);
+      return { user, token };
+    },
+  },
 };
 
 module.exports = resolvers;
-  
+
 /*
  saveTask: async (parenttaskInfo, { taskDesk , name}, context) => {
       if (context.user) {
@@ -109,4 +110,3 @@ module.exports = resolvers;
     },
 
     */
- 

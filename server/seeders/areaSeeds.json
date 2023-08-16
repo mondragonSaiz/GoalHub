@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Design team",
+    "supervisor": "64dcfc7b8fe53f51bd638828",
+    "users": ["64dcfc7b8fe53f51bd638826"]
+  },
+  {
+    "name": "Dev team",
+    "supervisor": "64dcfc7b8fe53f51bd638829",
+    "users": ["64dcfc7b8fe53f51bd638824"]
+  },
+  {
+    "name": "Sales team",
+    "supervisor": "64dcfc7b8fe53f51bd638827",
+    "users": ["64dcfc7b8fe53f51bd638825"]
+  }
+]

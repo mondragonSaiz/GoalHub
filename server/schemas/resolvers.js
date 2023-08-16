@@ -59,22 +59,22 @@ const resolvers = {
     },
     saveTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
      // if (context.user) {
-         const newTask = await Task.create( {
-           taskDesc, name, isCompleted, user})
+        const newTask = await Task.create( {
+          taskDesc, name, isCompleted, user})
 
 
-           const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
+          const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
 
-           console.log(newTask._id.toString())
+          console.log(newTask._id.toString())
 
-           updatedUser = await User.findOneAndUpdate(
-             { _id: user}, 
-             { $addToSet: {tasks: newTask._id } },
-             { new: true}, 
-           )
- 
-       return  populatedTask;
-       }
+          updatedUser = await User.findOneAndUpdate(
+            { _id: user}, 
+            { $addToSet: {tasks: newTask._id } },
+            { new: true}, 
+          )
+
+      return  populatedTask;
+      },
 
     /* throw new AuthenticationError("You must be logged in to assign tasks")
     }*/ removeTask: async (parent, { taskId }, context) => {
@@ -99,21 +99,5 @@ const resolvers = {
     },
   },
 };
-
-module.exports = resolvers;
-
-/*
- saveTask: async (parenttaskInfo, { taskDesk , name}, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id }, 
-          { $push: {tasks: taskDesk } },
-          { new: true}, 
-        )
-        .populate("tasks");
-      return  updatedUser;
-      }
-      throw new AuthenticationError("You must be logged in to assign tasks");
-    },
 
 module.exports = resolvers;

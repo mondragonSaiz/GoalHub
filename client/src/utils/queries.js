@@ -14,8 +14,10 @@ export const QUERY_SINGLE_PROFILE = gql`
   query singleUser($email: String!) {
     user(email: $email) {
       _id
-      name
-      skills
+      firstName
+      lastName
+      email
+      area
     }
   }
 `;

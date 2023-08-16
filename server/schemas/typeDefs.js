@@ -17,7 +17,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     supervisor: String
-    progress: String
+    progress: Int
     users: [User]
   }
 
@@ -32,12 +32,10 @@ const typeDefs = gql`
   }
 
   input taskInput {
-    # _id: ID
     name: String 
     taskDesc: String
     createdAt: String 
     isCompleted: Boolean
-    user: User
   }
 
   type Auth {
@@ -49,15 +47,22 @@ const typeDefs = gql`
     users: [User]
     user(email: String!): User
     me: User
+    areas: [Area]
+    area(_id: ID): Area
+    tasks: [Task]
+    task(_id: ID): Task
   }
 
   type Mutation {
     addUser(firstName: String!,lastName: String!,isEmployee: Boolean!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    saveTask(taskInfo: taskInput!): User
-    removeTask(taskId: ID!): User
-
+    addArea(name: String!, supervisor: String!, progress: Int!): Area
+    addTask(name: String!, taskDesc: String!, isCompleted: Boolean!, userId: ID!): Task
+    # Check if this is needed
+    removeArea(areaId: ID!): Area
+    removeUser(userId: ID!): User
+    removeTask(taskId: ID!): Task
   }
 `;
 

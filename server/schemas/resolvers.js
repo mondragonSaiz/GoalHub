@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Area, Task } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -16,6 +16,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    areas: async () => {
+      return Area.find();
+    },
+    area: async (parent, { _id }) => {
+      return Area.findOne({ _id })
+    },
+    tasks: async () => {
+      return Task.find();
+    },
+    task: async (parent, { _id }) => {
+      return Task.findOne({ _id })
+    }
   },
 
   Mutation: {
@@ -35,32 +47,15 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
-    },
-    saveTask: async (parenttaskInfo, { taskDesk }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id }, 
-          { $push: {tasks: taskDesk } },
-          { new: true}, 
-        )
-        .populate("tasks");
-      return  updatedUser;
-      }
-      throw new AuthenticationError("You must be logged in to assign tasks");
     },
     removeTask: async (parent, { taskId }, context) => {
       if (context.user) {
@@ -80,10 +75,16 @@ const resolvers = {
         {runValidators: true, new: true})
         const token = signToken(user);
         return {user, token}
-    }
+    },
+    addArea: async (parent, { name, supervisor, progress }) => {
+      const newArea = await Area.create({
+        name,
+        supervisor,
+        progress
+      });
+      return newArea;
+    },
   }
 };
 
 module.exports = resolvers;
- /* 
-  */

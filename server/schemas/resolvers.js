@@ -29,7 +29,6 @@ const resolvers = {
       return Task.findById(_id);
     },
   },
-
   Mutation: {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -96,7 +95,7 @@ const resolvers = {
         { $addToSet: { tasks: newTask._id } },
         { new: true }
       ).populate('tasks');
-      return updatedUser;
+      return populatedTask;
     },
     removeTask: async (parent, { taskId }, context) => {
       const deleteTask = await Task.findOneAndDelete({
@@ -117,5 +116,77 @@ const resolvers = {
     },
   },
 };
+ 
 
 module.exports = resolvers;
+
+
+/*
+
+Mutation: {
+  addUser: async (
+    parent,
+    { firstName, lastName, isEmployee, email, password }
+  ) => {
+    const user = await User.create({
+      firstName,
+      lastName,
+      isEmployee,
+      email,
+      password,
+    });
+    const token = signToken(user);
+    return { token, user };
+  },
+  login: async (parent, { email, password }) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new AuthenticationError('No user found with this email address');
+    }
+    const correctPw = await user.isCorrectPassword(password);
+    if (!correctPw) {
+      throw new AuthenticationError('Incorrect credentials');
+    }
+    const token = signToken(user);
+    return { token, user };
+  },
+  saveTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
+   // if (context.user) {
+      const newTask = await Task.create( {
+        taskDesc, name, isCompleted, user})
+
+
+        const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
+
+        updatedUser = await User.findOneAndUpdate(
+          { _id: user}, 
+          { $addToSet: {tasks: newTask._id } },
+          { new: true}, 
+        )
+
+    return  populatedTask;
+    },
+
+  throw new AuthenticationError("You must be logged in to assign tasks")
+  } removeTask: async (parent, { taskId }, context) => {
+    if (context.user) {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { savedBooks: { taskId } } },
+        { new: true }
+      );
+      return updatedUser;
+    }
+    throw new AuthenticationError('Error when deleting task');
+  },
+  forgotPassword: async (parents, { email, password }) => {
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      { password: password },
+      { runValidators: true, new: true }
+    );
+    const token = signToken(user);
+    return { user, token };
+  },
+},
+};*/

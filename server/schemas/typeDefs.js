@@ -1,24 +1,24 @@
 const { gql } = require('apollo-server-express');
 const typeDefs = gql`
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    isEmployee: Boolean
-    progress: Int
-    userIcon: String
-    area: Area
-    tasks: [Task]
-  }
+type User {
+  _id: ID
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  isEmployee: Boolean
+  userIcon: String
+  area: Area
+  tasks: [Task]
+}
+
   type Area {
     _id: ID
     name: String
-    supervisor: User
-    progress: Int
+    supervisor: String
     users: [User]
   }
+
   type Task {
     _id: ID
     name: String
@@ -27,6 +27,7 @@ const typeDefs = gql`
     isCompleted: Boolean
     user: User
   }
+
   type Auth {
     token: ID!
     user: User
@@ -40,9 +41,8 @@ const typeDefs = gql`
     tasks: [Task]
     task(_id: ID): Task
   }
+
   type Mutation {
-    login(email: String!, password: String!): Auth
-    forgotPassword(email: String!, password: String!): Auth
     addUser(
       firstName: String!
       lastName: String!
@@ -50,12 +50,9 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addTask(
-      name: String!
-      taskDesc: String!
-      isCompleted: Boolean!
-      user: ID!
-    ): User
+    login(email: String!, password: String!): Auth
+    forgotPassword(email: String!, password: String!): Auth
+    addTask(taskDesc: String! , name: String!, isCompleted: Boolean!,  user:ID!): Task
     addArea(name: String!, supervisorID: String!): Area
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User
@@ -63,3 +60,4 @@ const typeDefs = gql`
   }
 `;
 module.exports = typeDefs;
+

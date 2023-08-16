@@ -1,16 +1,17 @@
 const { gql } = require('apollo-server-express');
 const typeDefs = gql`
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    isEmployee: Boolean
-    progress: Int
-    area: Area
-    tasks: [Task]
-  }
+type User {
+  _id: ID
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  isEmployee: Boolean
+  progress: Int
+  userIcon: String
+  area: Area
+  tasks: [Task]
+}
 
   type Area {
     _id: ID
@@ -42,6 +43,7 @@ const typeDefs = gql`
     tasks: [Task]
     task(_id: ID): Task
   }
+
   type Mutation {
     addUser(
       firstName: String!
@@ -52,9 +54,11 @@ const typeDefs = gql`
     ): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    saveTask(taskDesc: String! , name: String!, isCompleted: Boolean!,  user:ID!): Task
+    addTask(taskDesc: String! , name: String!, isCompleted: Boolean!,  user:ID!): Task
+    addArea(name: String!, supervisorID: String!): Area
     removeTask(taskId: ID!): User
-
+    removeUser(userId: ID!): User
+    removeArea(areaId: ID!): Area
   }
 `;
 module.exports = typeDefs;

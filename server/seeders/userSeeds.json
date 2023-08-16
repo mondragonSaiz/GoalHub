@@ -1,23 +1,44 @@
 [
   {
-    "firstName": "Brian ",
-    "lastName": "Kernighan",
-    "email": "bkernighan@techfriends.dev",
+    "firstName": "David",
+    "lastName": "Mondragon",
+    "email": "dragon18saiz@gmail.com",
     "password": "password01",
     "isEmployee": true
   },
   {
-    "firstName": "Max",
-    "lastName": "Kanat-Alexander",
-    "email": "mkanatalexander@techfriends.dev",
+    "firstName": "Daniel",
+    "lastName": "Sanchez",
+    "email": "danisanchez@gmail.com",
     "password": "password02",
     "isEmployee": true
   },
   {
-    "firstName": "Amiko",
-    "lastName": "Amiko",
-    "email": "amiko@techfriends.dev",
+    "firstName": "Eduardo",
+    "lastName": "Pineda",
+    "email": "edward@gmail.com",
     "password": "password03",
     "isEmployee": true
+  },
+  {
+    "firstName": "Miguel",
+    "lastName": "Angelo",
+    "email": "miguel@gmail.com",
+    "password": "password04",
+    "isEmployee": false
+  },
+  {
+    "firstName": "Leonardo",
+    "lastName": "Di Caprio",
+    "email": "leonard@gmail.com",
+    "password": "password05",
+    "isEmployee": false
+  },
+  {
+    "firstName": "Rafael",
+    "lastName": "Lopez",
+    "email": "raf88@gmail.com",
+    "password": "password06",
+    "isEmployee": false
   }
 ]

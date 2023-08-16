@@ -17,17 +17,17 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     areas: async () => {
-      return Area.find().populate('users');
+      return Area.find().populate('users').populate('supervisor');
     },
     area: async (parent, { _id }) => {
-      return Area.findById( _id ).populate('users');
+      return Area.findById(_id).populate('users');
     },
     tasks: async () => {
       return Task.find();
     },
     task: async (parent, { _id }) => {
-      return Task.findById( _id )
-    }
+      return Task.findById(_id);
+    },
   },
 
   Mutation: {
@@ -53,17 +53,18 @@ const resolvers = {
       return { user, token };
     },
     addArea: async (parent, { name, supervisorID }) => {
-    console.log('supervisor', supervisorID)
-      try{
+      console.log('supervisor', supervisorID);
+      try {
         const newArea = await Area.create({
           name,
           supervisor: supervisorID,
         });
-        const populatedArea = await Area.findById(newArea._id)
-        .populate('supervisor');
+        const populatedArea = await Area.findById(newArea._id).populate(
+          'supervisor'
+        );
         return populatedArea;
-      }catch(err){
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
     },
     addUser: async (
@@ -80,17 +81,23 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
-        const newTask = await Task.create( {
-          taskDesc, name, isCompleted, user})
-          const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
-          updatedUser = await User.findOneAndUpdate(
-            { _id: user}, 
-            { $addToSet: {tasks: newTask._id } },
-            { new: true}, 
-          ).populate('tasks');
+    addTask: async (parent, { taskDesc, name, isCompleted, user }, context) => {
+      const newTask = await Task.create({
+        taskDesc,
+        name,
+        isCompleted,
+        user,
+      });
+      const populatedTask = await Task.findOne({ _id: newTask._id }).populate(
+        'user'
+      );
+      updatedUser = await User.findOneAndUpdate(
+        { _id: user },
+        { $addToSet: { tasks: newTask._id } },
+        { new: true }
+      ).populate('tasks');
       return updatedUser;
-      },
+    },
     removeTask: async (parent, { taskId }, context) => {
       const deleteTask = await Task.findOneAndDelete({
         _id: taskId,

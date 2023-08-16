@@ -25,6 +25,7 @@ const typeDefs = gql`
     taskDesc: String
     createdAt: String
     isCompleted: Boolean
+    user: User
   }
   type Auth {
     token: ID!
@@ -42,8 +43,19 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    addUser(firstName: String!, lastName: String!, isEmployee: Boolean!, email: String!, password: String!): Auth
-    addTask(name: String!, taskDesc: String!, isCompleted: Boolean!, user: ID!): User
+    addUser(
+      firstName: String!
+      lastName: String!
+      isEmployee: Boolean!
+      email: String!
+      password: String!
+    ): Auth
+    addTask(
+      name: String!
+      taskDesc: String!
+      isCompleted: Boolean!
+      user: ID!
+    ): User
     addArea(name: String!, supervisorID: String!): Area
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User

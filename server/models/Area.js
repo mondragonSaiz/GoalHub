@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-//const { isInteger } = require('tailwind-merge/dist/lib/validators');
 const dateFormat = require('../utils/dateFormat');
 
 const areaSchema = new Schema({
@@ -11,14 +10,9 @@ const areaSchema = new Schema({
     trim: true,
   },
   supervisor: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
-    trim: true,
-  },
-  progress: {
-    type: Number,
-    min: 0,
-    default: 0,
+    ref: 'User',
   },
   users: [
     {

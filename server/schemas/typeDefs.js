@@ -7,7 +7,6 @@ type User {
   email: String
   password: String
   isEmployee: Boolean
-  progress: Int
   userIcon: String
   area: Area
   tasks: [Task]
@@ -17,7 +16,6 @@ type User {
     _id: ID
     name: String
     supervisor: String
-    progress: Int
     users: [User]
   }
 

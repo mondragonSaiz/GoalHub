@@ -4,7 +4,7 @@ import memberOne from '../img/avatar/avatar1.png';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useMutation } from '@apollo/client';
 import { ADD_USER,} from '../utils/mutations';
-import Auth from '../utils/auth'
+import Auth from '../utils/auth';
 
 
 
@@ -17,8 +17,8 @@ export default function SignUpForm(){
     const [errorMessage, setErrorMessage] = useState('');
     const memberImg = memberOne;
 
-   const[addUser, {error,data}] = useMutation(ADD_USER)
-   
+    const[addUser, {error,data}] = useMutation(ADD_USER)
+
     
     let {state} = useLocation()
     

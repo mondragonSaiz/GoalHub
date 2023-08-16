@@ -5,7 +5,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find();
+      return User.find().populate('tasks');
     },
     user: async (parent, { email }) => {
       return User.findOne({ email }).populate('tasks')
@@ -50,31 +50,23 @@ const resolvers = {
 
       return { token, user };
     },
-    saveTask: async (parenttaskInfo, { taskDesk , name}, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id }, 
-          { $push: {tasks: taskDesk } },
-          { new: true}, 
-        )
-        .populate("tasks");
-      return  updatedUser;
-      }
-      throw new AuthenticationError("You must be logged in to assign tasks");
-    },
     saveTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
-      // if (context.user) {
+     // if (context.user) {
          const newTask = await Task.create( {
-           taskDesc, name, isCompleted, user} )
-         
-           console.log(newTask)
+           taskDesc, name, isCompleted, user})
+
+
+           const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
+
+           console.log(newTask._id.toString())
+
            updatedUser = await User.findOneAndUpdate(
-             { _id: context.user._id }, 
+             { _id: user}, 
              { $addToSet: {tasks: newTask._id } },
              { new: true}, 
            )
  
-       return  newTask;
+       return  populatedTask;
        }
       /* throw new AuthenticationError("You must be logged in to assign tasks")
     }*/,

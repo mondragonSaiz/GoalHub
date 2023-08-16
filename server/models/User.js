@@ -35,15 +35,20 @@ const userSchema = new Schema({
     min: 0,
     default: 0,
   },
+  userIcon: {
+    type: String,
+    match: /\.(jpeg|png|svg)$/,
+  },
   area: {
     type: Schema.Types.ObjectId,
     ref: 'Area',
   },
   tasks: [
     {
-    type: Schema.Types.ObjectId,
-    ref: 'Task',
-  }]
+      type: Schema.Types.ObjectId,
+      ref: 'Task',
+    },
+  ],
 });
 
 // Set up pre-save middleware to create password

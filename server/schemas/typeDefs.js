@@ -8,13 +8,14 @@ const typeDefs = gql`
     password: String
     isEmployee: Boolean
     progress: Int
+    userIcon: String
     area: Area
     tasks: [Task]
   }
   type Area {
     _id: ID
     name: String
-    supervisor: String
+    supervisor: User
     progress: Int
     users: [User]
   }
@@ -39,29 +40,14 @@ const typeDefs = gql`
     task(_id: ID): Task
   }
   type Mutation {
-    addUser(
-      firstName: String!
-      lastName: String!
-      isEmployee: Boolean!
-      email: String!
-      password: String!
-    ): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    saveTask(taskInfo: taskInput!): User
+    addUser(firstName: String!, lastName: String!, isEmployee: Boolean!, email: String!, password: String!): Auth
+    addTask(name: String!, taskDesc: String!, isCompleted: Boolean!, user: ID!): User
+    addArea(name: String!, supervisorID: String!): Area
     removeTask(taskId: ID!): User
-
+    removeUser(userId: ID!): User
+    removeArea(areaId: ID!): Area
   }
 `;
 module.exports = typeDefs;
-/*
- saveTask(taskInfo: taskInput!): User
-    removeTask(taskId: ID!): User
-    input taskInput {
-    # _id: ID
-    name: String
-    taskDesc: String
-    createdAt: String
-    isCompleted: Boolean
-  }
-   */

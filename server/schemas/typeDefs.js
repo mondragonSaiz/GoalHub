@@ -11,6 +11,7 @@ const typeDefs = gql`
     area: Area
     tasks: [Task]
   }
+
   type Area {
     _id: ID
     name: String
@@ -18,13 +19,16 @@ const typeDefs = gql`
     progress: Int
     users: [User]
   }
+
   type Task {
     _id: ID
     name: String
     taskDesc: String
     createdAt: String
     isCompleted: Boolean
+    user: User
   }
+
   type Auth {
     token: ID!
     user: User
@@ -48,20 +52,10 @@ const typeDefs = gql`
     ): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
-    saveTask(taskInfo: taskInput!): User
+    saveTask(taskDesc: String! , name: String!, isCompleted: Boolean!,  user:ID!): Task
     removeTask(taskId: ID!): User
 
   }
 `;
 module.exports = typeDefs;
-/*
- saveTask(taskInfo: taskInput!): User
-    removeTask(taskId: ID!): User
-    input taskInput {
-    # _id: ID
-    name: String
-    taskDesc: String
-    createdAt: String
-    isCompleted: Boolean
-  }
-   */
+

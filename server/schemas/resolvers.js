@@ -65,8 +65,6 @@ const resolvers = {
 
           const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
 
-          console.log(newTask._id.toString())
-
           updatedUser = await User.findOneAndUpdate(
             { _id: user}, 
             { $addToSet: {tasks: newTask._id } },

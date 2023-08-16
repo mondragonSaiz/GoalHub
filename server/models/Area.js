@@ -11,9 +11,9 @@ const areaSchema = new Schema({
     trim: true,
   },
   supervisor: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
-    trim: true,
+    ref: 'User',
   },
   progress: {
     type: Number,

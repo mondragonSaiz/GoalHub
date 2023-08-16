@@ -5,10 +5,10 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('tasks');
+      return User.find().populate('tasks').populate('area');
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email }).populate('tasks');
+    user: async (parent, { _id }) => {
+      return User.findById(_id).populate('tasks').populate('area');
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -17,20 +17,55 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     areas: async () => {
-      return Area.find();
+      return Area.find().populate('users');
     },
     area: async (parent, { _id }) => {
-      return Area.findOne({ _id })
+      return Area.findById( _id ).populate('users');
     },
     tasks: async () => {
       return Task.find();
     },
     task: async (parent, { _id }) => {
-      return Task.findOne({ _id })
+      return Task.findById( _id )
     }
   },
 
   Mutation: {
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
+    forgotPassword: async (parents, { email, password }) => {
+      const user = await User.findOneAndUpdate(
+        { email: email },
+        { password: password },
+        { runValidators: true, new: true }
+      );
+      const token = signToken(user);
+      return { user, token };
+    },
+    addArea: async (parent, { name, supervisorID }) => {
+    console.log('supervisor', supervisorID)
+      try{
+        const newArea = await Area.create({
+          name,
+          supervisor: supervisorID,
+        });
+        const populatedArea = await Area.findById(newArea._id)
+        .populate('supervisor');
+        return populatedArea;
+      }catch(err){
+        console.log(err)
+      }
+    },
     addUser: async (
       parent,
       { firstName, lastName, isEmployee, email, password }
@@ -45,57 +80,33 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-      if (!user) {
-        throw new AuthenticationError('No user found with this email address');
-      }
-      const correctPw = await user.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-      const token = signToken(user);
-      return { token, user };
-    },
-    saveTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
-     // if (context.user) {
+    addTask: async (parent, { taskDesc , name, isCompleted,  user}, context) => {
         const newTask = await Task.create( {
           taskDesc, name, isCompleted, user})
-
-
           const populatedTask = await Task.findOne({ _id: newTask._id }).populate('user')
-
-          console.log(newTask._id.toString())
-
           updatedUser = await User.findOneAndUpdate(
             { _id: user}, 
             { $addToSet: {tasks: newTask._id } },
             { new: true}, 
-          )
-
-      return  populatedTask;
+          ).populate('tasks');
+      return updatedUser;
       },
-
-    /* throw new AuthenticationError("You must be logged in to assign tasks")
-    }*/ removeTask: async (parent, { taskId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedBooks: { taskId } } },
-          { new: true }
-        );
-        return updatedUser;
-      }
-      throw new AuthenticationError('Error when deleting task');
+    removeTask: async (parent, { taskId }, context) => {
+      const deleteTask = await Task.findOneAndDelete({
+        _id: taskId,
+      });
+      return deleteTask;
     },
-    forgotPassword: async (parents, { email, password }) => {
-      const user = await User.findOneAndUpdate(
-        { email: email },
-        { password: password },
-        { runValidators: true, new: true }
-      );
-      const token = signToken(user);
-      return { user, token };
+    removeUser: async (parent, { userId }, context) => {
+      const deleteUser = await User.findOneAndDelete({
+        _id: userId,
+      });
+      return deleteUser;
+    },
+    removeArea: async (parent, { areaId }, context) => {
+      const deleteArea = await Area.findOneAndDelete({
+        _id: areaId,
+      });
     },
   },
 };

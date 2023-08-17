@@ -2,8 +2,14 @@ import React from 'react';
 import { RxCalendar } from 'react-icons/rx';
 import Logo from '../img/logo.svg';
 import { Link } from 'react-router-dom';
-export default function Nav() {
+export default function Nav({ firstName, lastName }) {
   const Date = 'Aug 08, 2023';
+  const location = window.location;
+  console.log('location', location);
+  console.log(
+    'islocation',
+    location === 'http://localhost:3000/member-dashboard'
+  );
   return (
     <nav className="flex justify-between">
       <a href="/dashboard">
@@ -22,6 +28,7 @@ export default function Nav() {
           <Link
             className=" bg-slate-200 py-2 px-3 font-normal font-poppins rounded-lg"
             to="/member-dashboard"
+            state={{ firstName: firstName, lastName: lastName }}
           >
             Profile
           </Link>

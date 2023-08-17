@@ -21,3 +21,35 @@ export const QUERY_SINGLE_PROFILE = gql`
     }
   }
 `;
+
+export const QUERY_ME = gql`
+query me{
+      me {
+        area {
+          name
+          _id
+        }
+        userIcon
+        isEmployee
+        firstName 
+        lastName
+        tasks {
+          isCompleted
+          name
+          taskDesc
+          createdAt
+        }
+      }
+    }
+`;
+
+export const QUERY_AREA = gql`
+query Area($id: ID!){
+  area(_id: $id) {
+    name
+    users {
+      firstName
+      lastName
+    }
+  }
+  }`

@@ -143,8 +143,8 @@ export default function SignUpForm() {
     <div className=" font-poppins">
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
-          <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-2 gap-8">
               {data ? (
                 <p>
                   Directing to your Dashboard <Link to="/"> Moving</Link>
@@ -156,14 +156,14 @@ export default function SignUpForm() {
                     {state.isEmployee ? 'tasks' : 'team'}
                   </h2>
                   <form action="" className="flex flex-col gap-6">
-                    <div>
+                    <div className="flex flex-col lg:flex-row gap-5 justify-between">
                       <input
                         value={firstName}
                         name="firstName"
                         onChange={handleInputChange}
                         placeholder="First name"
                         type="text"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                       />
                       <input
                         name="lastName"
@@ -171,7 +171,7 @@ export default function SignUpForm() {
                         onChange={handleInputChange}
                         placeholder="Last name"
                         type="text"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                       />
                     </div>
                     <input
@@ -180,7 +180,7 @@ export default function SignUpForm() {
                       onChange={handleInputChange}
                       placeholder="Email"
                       type="text"
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
+                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                     />
                     <input
                       name="password"
@@ -188,7 +188,7 @@ export default function SignUpForm() {
                       onChange={handleInputChange}
                       placeholder="Password (8 or more characters)"
                       type="password"
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
+                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                     />
                     <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
                       Choose your avatar

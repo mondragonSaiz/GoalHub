@@ -1,13 +1,16 @@
-const db = require('../config/connection');
-// const { Thought } = require('../models');
-// const thoughtSeeds = require('./thoughtSeeds.json');
-const { User } = require('../models');
-const userSeeds = require('./userSeeds.json');
+const areaSeeds = require('./areaSeeds.json');
+
 db.once('open', async () => {
-  // await Thought.deleteMany({});
-  // await Thought.create(thoughtSeeds);
   await User.deleteMany({});
   await User.create(userSeeds);
+  // await User.deleteMany({});
+  // await User.create(userSeeds);
+
+  await Task.deleteMany({});
+  await Task.create(taskSeeds);
+  await Area.deleteMany({});
+  await Area.create(areaSeeds);
+
   console.log('all done!');
   process.exit(0);
 });

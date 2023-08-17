@@ -8,6 +8,7 @@ const areaSchema = new Schema({
     minlength: 1,
     maxlength: 280,
     trim: true,
+    unique: true,
   },
   supervisor: {
     type: Schema.Types.ObjectId,

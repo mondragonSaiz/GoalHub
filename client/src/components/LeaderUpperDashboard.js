@@ -4,9 +4,9 @@ import { Progress } from './progress';
 import Card from '../components/Card';
 import MonthLeader from '../components/MonthLeaderOverview.js'
 
-export default function MemberUpperDashboard() {
+export default function MemberUpperDashboard({firstName, lastName}) {
   const memberImg = memberOne;
-  const memberName = 'Eduardo P.';
+  const memberName = `${firstName.slice(0,1).toUpperCase()+firstName.slice(1).toLowerCase()} ${lastName.slice(0,1).toUpperCase()}.`
   const memberTeam = 'Team Manager';
   return (
     <section className=" font-poppins">

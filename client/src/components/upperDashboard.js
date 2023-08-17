@@ -3,10 +3,10 @@ import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
 
-export default function UpperDashboard() {
+export default function UpperDashboard({firstName, lastName}) {
   const memberImg = memberOne;
-  const memberName = 'Eduardo P.';
-  const memberTeam = 'art team';
+  const memberName = `${firstName.slice(0,1).toUpperCase()+firstName.slice(1).toLowerCase()} ${lastName.slice(0,1).toUpperCase()}.`;
+  const memberTeam = ' Team';
   return (
     <section>
       <div className="lg:flex-row-reverse lg:flex md:flex-col justify-between mt-5 mb-1">

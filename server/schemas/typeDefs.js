@@ -15,7 +15,7 @@ type User {
   type Area {
     _id: ID
     name: String
-    supervisor: String
+    supervisor: User
     users: [User]
   }
 
@@ -34,12 +34,12 @@ type User {
   }
   type Query {
     users: [User]
-    user(email: String!): User
+    user(id: ID!): User
     me: User
     areas: [Area]
-    area(_id: ID): Area
+    area(_id: ID!): Area
     tasks: [Task]
-    task(_id: ID): Task
+    task(_id: ID!): Task
   }
 
   type Mutation {
@@ -49,11 +49,13 @@ type User {
       isEmployee: Boolean!
       email: String!
       password: String!
+      area: ID!
     ): Auth
     login(email: String!, password: String!): Auth
     forgotPassword(email: String!, password: String!): Auth
     addTask(taskDesc: String! , name: String!, isCompleted: Boolean!,  user:ID!): Task
-    addArea(name: String!, supervisorID: String!): Area
+    addArea(name: String!, supervisorID: ID!): Area
+    AddUserArea(area: ID! user: ID!): User
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User
     removeArea(areaId: ID!): Area

@@ -4,10 +4,14 @@ import memberOne from '../img/avatar/avatar1.png';
 // import { Checkbox } from '@radix-ui/react-checkbox';
 import { Checkbox } from './checkbox';
 import '../styles/dash.css';
-export default function MyDashboard() {
+export default function MyDashboard({tasks}) {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
+  
+  console.log(tasks)
+
+ 
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
@@ -20,7 +24,31 @@ export default function MyDashboard() {
           Keep track of your achievements!
         </p>
         <div className="flex flex-row justify-between items-center mt-5">
-          <div className="flex flex-col justify-between items-center mt-5">
+       {tasks.map(task=>{
+          return (
+            <div>
+              <div className="flex flex-col justify-between items-center mt-5">
+                  <div style={{ paddingBottom: '0.8rem' }}>
+                    <Checkbox />
+                  </div>
+                  <h2
+                    className=" flex font-bold text-slate-200"
+                    style={{ paddingBottom: '0.8rem' }}
+                  >
+                    {task.name}
+                  </h2>
+                  <p
+                    className=" font-thin text-gray-500"
+                    style={{ paddingBottom: '0.8rem' }}
+                  >
+                    {task.isCompleted ? "Completed" : 'Pending'}
+                  </p>
+                  <p className=" font-thin text-gray-500">{task.createdAt}</p>
+              </div>
+            </div>
+          )
+        }) }
+       {/*  <div className="flex flex-col justify-between items-center mt-5">
             <div style={{ visibility: 'hidden', paddingBottom: '0.8rem' }}>
               <p>cb</p>
             </div>
@@ -295,8 +323,9 @@ export default function MyDashboard() {
           <div>Status</div>
           <div>achievement</div>
           <div> Hours</div>
-        </div> */}
+          */} 
+        </div> 
       </div>
-    </div>
+    </div> 
   );
 }

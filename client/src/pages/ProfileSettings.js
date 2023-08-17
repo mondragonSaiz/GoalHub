@@ -20,7 +20,7 @@ export default function ProfileSettings() {
     user.firstName.slice(1).toLowerCase()
   } ${user.lastName.slice(0, 1).toUpperCase()}.`;
   const memberTeam = user.isEmployee
-    ? `${user.area.name} Team`
+    ? `${user.area.name} Member`
     : `${user.area.name} Manager`;
   return (
     <div className=" font-poppins">

@@ -3,12 +3,17 @@ import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
 
-export default function UpperDashboard({ firstName, lastName, area }) {
+export default function UpperDashboard({
+  firstName,
+  lastName,
+  isEmployee,
+  area,
+}) {
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;
-  const memberTeam = ' Team';
+
   return (
     <section>
       <div className="lg:flex-row-reverse lg:flex md:flex-col justify-between mt-5 mb-1">
@@ -24,8 +29,9 @@ export default function UpperDashboard({ firstName, lastName, area }) {
           <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">
             {memberName}
           </h2>
+
           <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
-            {memberTeam}
+            {area}
           </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">

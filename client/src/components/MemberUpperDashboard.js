@@ -50,7 +50,6 @@ export default function MemberUpperDashboard({
           >
             Settings
           </Link>
-          ;
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
           <Card>

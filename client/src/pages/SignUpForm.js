@@ -207,7 +207,7 @@ export default function SignUpForm() {
                     />
                     <Select>
                       <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select a fruit" />
+                        <SelectValue placeholder="Select your Area" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>

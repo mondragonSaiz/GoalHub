@@ -15,7 +15,7 @@ type User {
   type Area {
     _id: ID
     name: String
-    supervisor: String
+    supervisor: User
     users: [User]
   }
 

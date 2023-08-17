@@ -21,7 +21,7 @@ export default function ProfileSettings() {
   } ${user.lastName.slice(0, 1).toUpperCase()}.`;
   const memberTeam = user.isEmployee
     ? `${user.area.name} Team`
-    : `${user.area.name} Team Manager`;
+    : `${user.area.name} Manager`;
   return (
     <div className=" font-poppins">
       <main className="flex justify-center bg-neutral-950">

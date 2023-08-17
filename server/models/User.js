@@ -30,11 +30,6 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  progress: {
-    type: Number,
-    min: 0,
-    default: 0,
-  },
   userIcon: {
     type: String,
     match: /\.(jpeg|png|svg)$/,

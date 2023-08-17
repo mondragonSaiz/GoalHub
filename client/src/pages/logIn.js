@@ -54,7 +54,7 @@ export default function LogIn() {
                   <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">
                     Log in to GoalHub
                   </h2>
-                  <form action="" className="flex flex-col gap-6">
+                  <form className="flex flex-col gap-6">
                     <input
                       onChange={handleChange}
                       placeholder="Email"

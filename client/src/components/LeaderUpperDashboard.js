@@ -2,11 +2,13 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from '../components/Card';
-import MonthLeader from '../components/MonthLeaderOverview.js'
-
-export default function MemberUpperDashboard() {
+import MonthLeader from '../components/MonthLeaderOverview.js';
+import { Link } from 'react-router-dom';
+export default function MemberUpperDashboard({ firstName, lastName }) {
   const memberImg = memberOne;
-  const memberName = 'Eduardo P.';
+  const memberName = `${
+    firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
+  } ${lastName.slice(0, 1).toUpperCase()}.`;
   const memberTeam = 'Team Manager';
   return (
     <section className=" font-poppins">
@@ -23,14 +25,18 @@ export default function MemberUpperDashboard() {
           <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">
             {memberName}
           </h2>
-          <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
-            {memberTeam}
-          </p>
+          <Link
+            className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right"
+            to={`/settings`}
+            state={{ firstName: firstName, lastName: lastName }}
+          >
+            Settings
+          </Link>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
           <Card>
             <h2 className="text-slate-200 font-bold text-xl mb-2">
-              Total Achievements 
+              Total Achievements
             </h2>
             <h1 className="text-slate-200 font-bold text-4xl mb-2">24/63</h1>
             <p className="text-gray-500">We are almost there!</p>
@@ -46,7 +52,9 @@ export default function MemberUpperDashboard() {
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">Week's Progress</h2>
+            <h2 className="text-slate-200 font-bold text-xl">
+              Week's Progress
+            </h2>
             {/* <p className="text-gray-500 mb-4">overview</p> */}
             {/* <ProgressBar/> */}
             <MonthLeader />

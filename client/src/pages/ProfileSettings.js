@@ -2,10 +2,26 @@ import React from 'react';
 import SettingsModal from '../components/SettingsModal';
 import { Link } from 'react-router-dom';
 import memberOne from '../img/avatar/avatar3.png';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME, QUERY_AREA } from '../utils/queries';
+import Auth from '../utils/auth';
+
 export default function ProfileSettings() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+  const { loading, data } = useQuery(QUERY_ME);
+  const user = data?.me;
+
   const memberImg = memberOne;
-  const memberName = 'David M.';
-  const memberTeam = 'dev team';
+  const memberName = `${
+    user.firstName.slice(0, 1).toUpperCase() +
+    user.firstName.slice(1).toLowerCase()
+  } ${user.lastName.slice(0, 1).toUpperCase()}.`;
+  const memberTeam = user.isEmployee
+    ? `${user.area.name} Member`
+    : `${user.area.name} Manager`;
   return (
     <div className=" font-poppins">
       <main className="flex justify-center bg-neutral-950">
@@ -17,6 +33,7 @@ export default function ProfileSettings() {
             >
               <div className="flex flex-row justify-end text-right">
                 <button
+                  onClick={logout}
                   to="/"
                   style={{
                     backgroundColor: '#202020',

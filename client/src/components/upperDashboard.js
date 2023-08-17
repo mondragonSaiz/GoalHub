@@ -3,9 +3,11 @@ import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
 
-export default function UpperDashboard({firstName, lastName}) {
+export default function UpperDashboard({ firstName, lastName, area }) {
   const memberImg = memberOne;
-  const memberName = `${firstName.slice(0,1).toUpperCase()+firstName.slice(1).toLowerCase()} ${lastName.slice(0,1).toUpperCase()}.`;
+  const memberName = `${
+    firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
+  } ${lastName.slice(0, 1).toUpperCase()}.`;
   const memberTeam = ' Team';
   return (
     <section>
@@ -45,7 +47,7 @@ export default function UpperDashboard({firstName, lastName}) {
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">Art Team</h2>
+            <h2 className="text-slate-200 font-bold text-xl">{area}</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
             <Progress value={30} />

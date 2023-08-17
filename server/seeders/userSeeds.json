@@ -1,44 +1,50 @@
 [
-    {
-      "firstName": "David",
-      "lastName": "Mondragon",
-      "email": "dragon18saiz@gmail.com",
-      "password": "password01",
-      "isEmployee": true
-    },
-    {
-      "firstName": "Daniel",
-      "lastName": "Sanchez",
-      "email": "danisanchez@gmail.com",
-      "password": "password02",
-      "isEmployee": true
-    },
-    {
-      "firstName": "Eduardo",
-      "lastName": "Pineda",
-      "email": "edward@gmail.com",
-      "password": "password03",
-      "isEmployee": true
-    },
-    {
-      "firstName": "Miguel",
-      "lastName": "Angelo",
-      "email": "miguel@gmail.com",
-      "password": "password04",
-      "isEmployee": false
-    },
-    {
-      "firstName": "Alejandro",
-      "lastName": "Salazar",
-      "email": "alex@gmail.com",
-      "password": "Alejandro",
-      "isEmployee": false
-    },
-    {
-      "firstName": "Rafael",
-      "lastName": "Lopez",
-      "email": "raf88@gmail.com",
-      "password": "password06",
-      "isEmployee": false
-    }
-  ]
+  {
+    "firstName": "David",
+    "lastName": "Mondragon",
+    "email": "dragon18saiz@gmail.com",
+    "password": "password01",
+    "isEmployee": true,
+    "area": "64de4b0ec1ac2328af68007a"
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Sanchez",
+    "email": "danisanchez@gmail.com",
+    "password": "password02",
+    "isEmployee": true,
+    "area": "64de4b0ec1ac2328af68007a"
+  },
+  {
+    "firstName": "Eduardo",
+    "lastName": "Pineda",
+    "email": "edward@gmail.com",
+    "password": "password03",
+    "isEmployee": true,
+    "area": "64de4b0ec1ac2328af680079"
+  },
+  {
+    "firstName": "Miguel",
+    "lastName": "Angelo",
+    "email": "miguel@gmail.com",
+    "password": "password04",
+    "isEmployee": false,
+    "area": "64de4b0ec1ac2328af680079"
+  },
+  {
+    "firstName": "Alejandro",
+    "lastName": "Salazar",
+    "email": "alex@gmail.com",
+    "password": "Alejandro",
+    "isEmployee": false,
+    "area": "64de4b0ec1ac2328af68007b"
+  },
+  {
+    "firstName": "Rafael",
+    "lastName": "Lopez",
+    "email": "raf88@gmail.com",
+    "password": "password06",
+    "isEmployee": false,
+    "area": "64de4b0ec1ac2328af68007b"
+  }
+]

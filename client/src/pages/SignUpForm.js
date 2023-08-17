@@ -18,7 +18,6 @@ import {
   SelectContent,
   SelectLabel,
   SelectItem,
-  SelectSeparator,
 } from '../components/select';
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
@@ -30,6 +29,7 @@ export default function SignUpForm() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [area, setArea] = useState('');
   const [agreement, setAgreement] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedImageSrc, setSelectedImageSrc] = useState('');
@@ -69,7 +69,7 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
-  console.log(state.isEmployee);
+  console.log('isEmployee', state.isEmployee);
 
   const handleInputChange = (e) => {
     const inputName = e.target.name;
@@ -90,6 +90,11 @@ export default function SignUpForm() {
         break;
     }
   };
+  const handleInput = (event) => {
+    const selectedValue = event.target.value;
+    setArea(selectedValue);
+    console.log('area selected', area);
+  };
 
   const validation = (name, value) => {
     let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
@@ -109,7 +114,7 @@ export default function SignUpForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !firstName || !password || !lastName) {
+    if (!email || !firstName || !password || !lastName || area) {
       setErrorMessage('input missing');
       return;
     }
@@ -134,6 +139,7 @@ export default function SignUpForm() {
           email,
           password,
           isEmployee: state.isEmployee,
+          area,
         },
       });
 
@@ -216,16 +222,15 @@ export default function SignUpForm() {
                             <SelectItem value="loading"></SelectItem>
                           ) : (
                             areas.map((area) => (
-                              <SelectItem key={area.name} value={area.name}>
+                              <SelectItem
+                                key={area.name}
+                                value={area._id}
+                                onClick={handleInput}
+                              >
                                 {area.name}
                               </SelectItem>
                             ))
                           )}
-                          {/* <SelectItem value="apple"></SelectItem>
-                          <SelectItem value="banana">Banana</SelectItem>
-                          <SelectItem value="blueberry">Blueberry</SelectItem>
-                          <SelectItem value="grapes">Grapes</SelectItem>
-                          <SelectItem value="pineapple">Pineapple</SelectItem> */}
                         </SelectGroup>
                       </SelectContent>
                     </Select>

@@ -6,11 +6,26 @@ import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { QUERY_AREAS } from '../utils/queries';
 import Auth from '../utils/auth';
-
+import {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+} from '../components/select';
 export default function SignUpForm() {
+  const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
+  const areas = queryData?.areas;
+
+  console.log('AREAS', areas);
+  // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -190,6 +205,30 @@ export default function SignUpForm() {
                       type="password"
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                     />
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Select a fruit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Areas</SelectLabel>
+                          {queryLoading ? (
+                            <SelectItem value="loading"></SelectItem>
+                          ) : (
+                            areas.map((area) => (
+                              <SelectItem key={area.name} value={area.name}>
+                                {area.name}
+                              </SelectItem>
+                            ))
+                          )}
+                          {/* <SelectItem value="apple"></SelectItem>
+                          <SelectItem value="banana">Banana</SelectItem>
+                          <SelectItem value="blueberry">Blueberry</SelectItem>
+                          <SelectItem value="grapes">Grapes</SelectItem>
+                          <SelectItem value="pineapple">Pineapple</SelectItem> */}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                     <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
                       Choose your avatar
                     </h2>

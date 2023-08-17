@@ -8,11 +8,13 @@ const resolvers = {
       return User.find().populate('tasks').populate('area');
     },
     user: async (parent, { id }) => {
-      return User.findById(id).populate('tasks').populate('area')
+      return User.findById(id).populate('tasks').populate('area');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('tasks').populate('area');
+        return User.findOne({ _id: context.user._id })
+          .populate('tasks')
+          .populate('area');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -23,7 +25,7 @@ const resolvers = {
       return Area.findById(_id).populate('users');
     },
     tasks: async () => {
-      return Task.find();
+      return Task.find().poplate('user');
     },
     task: async (parent, { _id }) => {
       return Task.findById(_id);
@@ -31,7 +33,7 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate('area');
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
       }
@@ -39,6 +41,7 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
+
       const token = signToken(user);
       return { token, user };
     },
@@ -58,7 +61,9 @@ const resolvers = {
           name,
           supervisor: supervisorID,
         });
-        const populatedArea = await Area.findById(newArea._id).populate('supervisor').populate('users');
+        const populatedArea = await Area.findById(newArea._id)
+          .populate('supervisor')
+          .populate('users');
 
         return populatedArea;
       } catch (err) {
@@ -67,7 +72,7 @@ const resolvers = {
     },
     addUser: async (
       parent,
-      { firstName, lastName, isEmployee, email, password , area}
+      { firstName, lastName, isEmployee, email, password, area }
     ) => {
       const user = await User.create({
         firstName,
@@ -75,26 +80,28 @@ const resolvers = {
         isEmployee,
         email,
         password,
-        area
+        area,
       });
       const token = signToken(user);
-     const updatedArea = await Area.findOneAndUpdate(
+      const updatedArea = await Area.findOneAndUpdate(
         { _id: area },
         { $addToSet: { users: user._id } },
-        { new: true })
+        { new: true }
+      );
 
-      console.log(updatedArea)
+      console.log(updatedArea);
 
-      const userArea = await User.findOne({_id: user._id}).populate('area')
+      const userArea = await User.findOne({ _id: user._id }).populate('area');
       return { token, user };
     },
-    AddUserArea: async (parent, {user , area}) =>{
+    AddUserArea: async (parent, { user, area }) => {
       const userAreaUpdated = await User.findByIdAndUpdate(
-        {_id: user},
-        {$set: {area: area}},
-        {new: true}).populate('area')
+        { _id: user },
+        { $set: { area: area } },
+        { new: true }
+      ).populate('area');
 
-      return userAreaUpdated
+      return userAreaUpdated;
     },
     addTask: async (parent, { taskDesc, name, isCompleted, user }, context) => {
       const newTask = await Task.create({
@@ -132,10 +139,8 @@ const resolvers = {
     },
   },
 };
- 
 
 module.exports = resolvers;
-
 
 /*
 

@@ -143,8 +143,8 @@ export default function SignUpForm() {
     <div className=" font-poppins">
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
-          <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-2 gap-8">
               {data ? (
                 <p>
                   Directing to your Dashboard <Link to="/"> Moving</Link>

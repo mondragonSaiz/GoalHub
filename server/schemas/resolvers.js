@@ -7,12 +7,12 @@ const resolvers = {
     users: async () => {
       return User.find().populate('tasks').populate('area');
     },
-    user: async (parent, { _id }) => {
-      return User.findById(_id).populate('tasks').populate('area');
+    user: async (parent, { id }) => {
+      return User.findById(id).populate('tasks').populate('area')
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate('tasks').populate('area');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -58,9 +58,8 @@ const resolvers = {
           name,
           supervisor: supervisorID,
         });
-        const populatedArea = await Area.findById(newArea._id).populate(
-          'supervisor'
-        );
+        const populatedArea = await Area.findById(newArea._id).populate('supervisor').populate('users');
+
         return populatedArea;
       } catch (err) {
         console.log(err);
@@ -68,7 +67,7 @@ const resolvers = {
     },
     addUser: async (
       parent,
-      { firstName, lastName, isEmployee, email, password }
+      { firstName, lastName, isEmployee, email, password , area}
     ) => {
       const user = await User.create({
         firstName,
@@ -76,9 +75,26 @@ const resolvers = {
         isEmployee,
         email,
         password,
+        area
       });
       const token = signToken(user);
+     const updatedArea = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: user._id } },
+        { new: true })
+
+      console.log(updatedArea)
+
+      const userArea = await User.findOne({_id: user._id}).populate('area')
       return { token, user };
+    },
+    AddUserArea: async (parent, {user , area}) =>{
+      const userAreaUpdated = await User.findByIdAndUpdate(
+        {_id: user},
+        {$set: {area: area}},
+        {new: true}).populate('area')
+
+      return userAreaUpdated
     },
     addTask: async (parent, { taskDesc, name, isCompleted, user }, context) => {
       const newTask = await Task.create({

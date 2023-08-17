@@ -2,8 +2,15 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 import { Progress } from './progress';
+import { useQuery } from '@apollo/client';
+import { QUERY_AREA } from '../utils/queries';
 
-export default function MembersOverview() {
+export default function MembersOverview({_id}) {
+  console.log(_id)
+  const { loading, data} = useQuery(QUERY_AREA, {
+    variables: { _id: _id },
+  })
+  console.log(data)
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';

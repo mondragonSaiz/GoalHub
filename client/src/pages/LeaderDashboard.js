@@ -5,6 +5,8 @@ import MembersOverview from '../components/memberOverview';
 import DashboardCard from '../components/DashboardCard';
 import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 // import MyDashboard from '../components/MyDashboard';
 
 
@@ -14,6 +16,11 @@ import LeadDashboard from '../components/LeadDashboard';
 
 export default function LeaderDashboard() {
   // const [darkMode, setDarkMode] = useState(false);
+
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/" />;
+  }
+
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>

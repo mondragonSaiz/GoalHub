@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 // import { Checkbox } from '@radix-ui/react-checkbox';
@@ -6,8 +6,10 @@ import { Checkbox } from './checkbox';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
+import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {
+  const [openModal, setOpenModal] = useState(false);
   const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;
@@ -19,9 +21,15 @@ export default function MyDashboard({_id}) {
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
 
+  
+
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
-      <Link to="/new-task">
+      <button  
+      className="openModalBtn" 
+      onClick={() => {
+      setOpenModal(true)
+         }} > 
         <div className="flex flex-row justify-between border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl">
           <div className="flex flex-col items-">
             <h1 className="font-bold text-slate-200">Create New Task</h1>
@@ -33,7 +41,8 @@ export default function MyDashboard({_id}) {
             <h2 className="font-bold text-6xl text-slate-200"> + </h2>
           </div>
         </div>
-      </Link>
+      </button>
+      {openModal && <NewTask closeModal={setOpenModal} />}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">
       <div className='flex justify-between items-center'>
            <h2

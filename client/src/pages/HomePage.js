@@ -17,7 +17,7 @@ export default function HomePage() {
         <section className="min-h-screen">
           <NavHome/>
           <div className='flex flex-col mt-10 lg:flex-row lg:justify-around gap-3'>
-            <div className='text-slate-200 font-bold text-6xl w-5/6 lg:text-8xl lg:w-3/5'>
+            <div className='text-slate-200 font-bold text-6xl w-5/6 lg:text-7xl lg:w-3/5 '>
               <h1 className='font-poppins'>All-in-one goal manager.</h1>
             </div>
             <div className='mt-10 lg:w-1/3'>
@@ -28,12 +28,7 @@ export default function HomePage() {
                 <strong>GoalHub</strong> is all you need - in one space.
               </p>
               <div className='mt-10 flex'>
-                <input 
-                  placeholder='Enter your email.'
-                  type="text"
-                  className=' focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left pl-4 py-1 mr-4 lg:text-lg w-1/2 lg:'
-                />
-                <Link to="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer'>Get Started</Link>
+                <Link to="/sign-up" className=' bg-slate-200 text-neutral-950 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out'>Get Started</Link>
               </div>
             </div>
           </div>

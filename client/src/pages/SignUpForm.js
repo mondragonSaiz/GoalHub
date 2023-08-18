@@ -185,7 +185,7 @@ export default function SignUpForm() {
                     </h2>
                   </div>
                   <form action="" className="flex flex-col gap-6">
-                    <div className="flex flex-col lg:flex-row gap-5 justify-between">
+                    <fieldset className="flex flex-col lg:flex-row gap-5 justify-between">
                       <input
                         value={firstName}
                         name="firstName"
@@ -202,23 +202,25 @@ export default function SignUpForm() {
                         type="text"
                         className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                       />
-                    </div>
-                    <input
-                      name="email"
-                      value={email}
-                      onChange={handleInputChange}
-                      placeholder="Email"
-                      type="text"
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
-                    />
-                    <input
-                      name="password"
-                      value={password}
-                      onChange={handleInputChange}
-                      placeholder="Password (8 or more characters)"
-                      type="password"
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
-                    />
+                    </fieldset>
+                    <fieldset>
+                      <input
+                        name="email"
+                        value={email}
+                        onChange={handleInputChange}
+                        placeholder="Email"
+                        type="text"
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
+                      />
+                      <input
+                        name="password"
+                        value={password}
+                        onChange={handleInputChange}
+                        placeholder="Password (8 or more characters)"
+                        type="password"
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
+                      />
+                    </fieldset>
                     <Select
                       onValueChange={(something) => handleInput(something)}
                     >

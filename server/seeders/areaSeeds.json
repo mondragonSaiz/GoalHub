@@ -1,17 +1,17 @@
 [
   {
     "name": "Design team",
-    "supervisor": "64de4a8dbbee4d1b8bb2dfdd",
-    "users": ["64de4a8dbbee4d1b8bb2dfdc"]
+    "supervisor": "64deaa1b839f4a13f7572f74",
+    "users": ["64deaa1b839f4a13f7572f73"]
   },
   {
     "name": "Dev team",
-    "supervisor": "64de4a8dbbee4d1b8bb2dfda",
-    "users": ["64de4a8dbbee4d1b8bb2dfdb"]
+    "supervisor": "64deaa1b839f4a13f7572f76",
+    "users": ["64deaa1b839f4a13f7572f72"]
   },
   {
     "name": "Sales team",
-    "supervisor": "64de4a8dbbee4d1b8bb2dfdf",
-    "users": ["64de4a8dbbee4d1b8bb2dfde"]
+    "supervisor": "64deaa1b839f4a13f7572f75",
+    "users": ["64deaa1b839f4a13f7572f71"]
   }
 ]

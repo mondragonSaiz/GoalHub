@@ -90,9 +90,11 @@ export default function SignUpForm() {
         break;
     }
   };
-  const handleInput = (event) => {
-    const selectedValue = event.target.value;
-    setArea(selectedValue);
+  const handleInput = (something) => {
+    // console.log('handle input triggered');
+    // console.log('target', event.target);
+    // const selectedValue = event.target.value;
+    setArea(something);
     console.log('area selected', area);
   };
 
@@ -113,8 +115,9 @@ export default function SignUpForm() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    if (!email || !firstName || !password || !lastName || area) {
+    console.log('SUbmited');
+    console.log('AREA', area);
+    if (!email || !firstName || !password || !lastName || !area) {
       setErrorMessage('input missing');
       return;
     }
@@ -211,7 +214,9 @@ export default function SignUpForm() {
                       type="password"
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                     />
-                    <Select>
+                    <Select
+                      onValueChange={(something) => handleInput(something)}
+                    >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select your Area" />
                       </SelectTrigger>
@@ -222,11 +227,7 @@ export default function SignUpForm() {
                             <SelectItem value="loading"></SelectItem>
                           ) : (
                             areas.map((area) => (
-                              <SelectItem
-                                key={area.name}
-                                value={area._id}
-                                onClick={handleInput}
-                              >
+                              <SelectItem key={area.name} value={area._id}>
                                 {area.name}
                               </SelectItem>
                             ))

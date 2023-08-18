@@ -248,7 +248,7 @@ export default function SignUpForm() {
                       </h2>
                     </div>
 
-                    <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
+                    <div id='avatarContainer' className="flex flex-wrap justify-center items-center lg:flex-row lg:gap-6">
                       {userIcons.map((icon, index) => (
                         <div
                           key={index}

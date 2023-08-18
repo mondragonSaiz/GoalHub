@@ -311,14 +311,15 @@ export default function SignUpForm() {
                         including the User Agreement and Privacy Policy
                       </p>
                     </div>
-                    <input
+                    <button
                       type="submit"
                       onClick={handleFormSubmit}
                       name="loginSub"
                       id="loginSub"
-                      value="Create my account"
-                      className=" bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold"
-                    />
+                      className="bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold"
+                      >
+                      Create my account
+                    </button>
                   </form>
 
                   <div className="flex flex-row gap-4 items-center">

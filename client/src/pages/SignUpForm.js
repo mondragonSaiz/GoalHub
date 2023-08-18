@@ -242,9 +242,11 @@ export default function SignUpForm() {
                         </SelectGroup>
                       </SelectContent>
                     </Select>
-                    <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
-                      Choose your avatar
-                    </h2>
+                    <div id='avatarHeader'>
+                      <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
+                        Choose your avatar
+                      </h2>
+                    </div>
 
                     <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
                       {userIcons.map((icon, index) => (

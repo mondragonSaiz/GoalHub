@@ -16,13 +16,7 @@ export default function MyDashboard({_id}) {
   }
   let index =1;
   const area = data.area
-  console.log(area.users)
-  const memberImg = memberOne;
-  const memberName = 'Lalo P' + '.';
-  const memberTeam = 'art team';
-
   
-
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
       <button  

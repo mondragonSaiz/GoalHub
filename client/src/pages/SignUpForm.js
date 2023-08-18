@@ -6,15 +6,30 @@ import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { QUERY_AREAS } from '../utils/queries';
 import Auth from '../utils/auth';
-
+import {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+} from '../components/select';
 export default function SignUpForm() {
+  const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
+  const areas = queryData?.areas;
+
+  console.log('AREAS', areas);
+  // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [area, setArea] = useState('');
   const [agreement, setAgreement] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedImageSrc, setSelectedImageSrc] = useState('');
@@ -54,7 +69,7 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
-  console.log(state.isEmployee);
+  console.log('isEmployee', state.isEmployee);
 
   const handleInputChange = (e) => {
     const inputName = e.target.name;
@@ -75,6 +90,11 @@ export default function SignUpForm() {
         break;
     }
   };
+  const handleInput = (event) => {
+    const selectedValue = event.target.value;
+    setArea(selectedValue);
+    console.log('area selected', area);
+  };
 
   const validation = (name, value) => {
     let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
@@ -94,7 +114,7 @@ export default function SignUpForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !firstName || !password || !lastName) {
+    if (!email || !firstName || !password || !lastName || area) {
       setErrorMessage('input missing');
       return;
     }
@@ -119,6 +139,7 @@ export default function SignUpForm() {
           email,
           password,
           isEmployee: state.isEmployee,
+          area,
         },
       });
 
@@ -190,6 +211,29 @@ export default function SignUpForm() {
                       type="password"
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full"
                     />
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Select your Area" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Areas</SelectLabel>
+                          {queryLoading ? (
+                            <SelectItem value="loading"></SelectItem>
+                          ) : (
+                            areas.map((area) => (
+                              <SelectItem
+                                key={area.name}
+                                value={area._id}
+                                onClick={handleInput}
+                              >
+                                {area.name}
+                              </SelectItem>
+                            ))
+                          )}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                     <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
                       Choose your avatar
                     </h2>

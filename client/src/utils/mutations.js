@@ -6,6 +6,7 @@ export const ADD_USER = gql`
     $isEmployee: Boolean!
     $email: String!
     $password: String!
+    $area: String!
   ) {
     addUser(
       firstName: $firstName
@@ -13,6 +14,7 @@ export const ADD_USER = gql`
       isEmployee: $isEmployee
       email: $email
       password: $password
+      area: $area
     ) {
       token
       user {

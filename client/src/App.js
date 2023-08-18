@@ -44,7 +44,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -56,7 +55,6 @@ function App() {
             {/* <Route path="/new-task" element={<NewTask />} /> */}
             <Route path="/settings" element={<ProfileSettings />} />
           </Routes>
-        </div>
       </Router>
     </ApolloProvider>
   );

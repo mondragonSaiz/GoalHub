@@ -1,16 +1,18 @@
 import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 
-export default function NewTask() {
+export default function NewTask({ closeModal }) {
   const memberImg = memberOne;
   return (
-    <div className="font-poppins">
+    <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">
       <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
         <section className="flex pt-24 min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20 mt-10 mb-10">
-            <h1 className="text-slate-200 text-2xl font-bold lg:text-4xl mb-5 text-center">
-              New Task +
+            <div className="flex flex-row justify-between" >
+            <h1 className="  text-slate-200 text-2xl font-bold lg:text-4xl mb-5 text-center">
+              New Task 
             </h1>
+            </div>
             <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
               {/* Title */}
               <div className="flex flex-row lg:flex-col gap-16">
@@ -110,6 +112,15 @@ export default function NewTask() {
                 </div>
               </div>
             </div>
+            <div className="flex flex-row ">
+            <div className="flex p-6">
+              <a
+                onClick= {() => closeModal(false)}
+                className="flex bg-red-800 text-gray-100 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
+              >
+                Cancel
+              </a>
+            </div>
             <div className="flex p-6">
               <a
                 href="/sign-up-form"
@@ -118,6 +129,8 @@ export default function NewTask() {
                 Assign{' '}
               </a>
             </div>
+            </div>
+    
           </div>
         </section>
       </main>

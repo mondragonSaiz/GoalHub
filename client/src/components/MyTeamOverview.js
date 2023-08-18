@@ -23,7 +23,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -47,7 +47,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -71,7 +71,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -95,7 +95,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -119,7 +119,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -143,7 +143,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 
@@ -167,7 +167,7 @@ export default function MyTeamOverview() {
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              bjectFit="cover"
+              objectFit="cover"
             />
           </div>
 

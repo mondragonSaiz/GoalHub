@@ -6,9 +6,10 @@ import MonthLeader from '../components/MonthLeaderOverview.js';
 import { Link } from 'react-router-dom';
 export default function MemberUpperDashboard({ firstName, lastName }) {
   const memberImg = memberOne;
-  const memberName = `${
-    firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
-  } ${lastName.slice(0, 1).toUpperCase()}.`;
+  // const memberName = `${
+  //   firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
+  // } ${lastName.slice(0, 1).toUpperCase()}.`;
+  const memberName = `Carlos Castillo `;
   const memberTeam = 'Team Manager';
   return (
     <section className=" font-poppins">

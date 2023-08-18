@@ -170,7 +170,7 @@ export default function SignUpForm() {
     <div className=" font-poppins">
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
-          <div className="flex flex-col justify-center items-center">
+          <article className="flex flex-col justify-center items-center">
             <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-2 gap-8">
               {data ? (
                 <p>
@@ -331,7 +331,7 @@ export default function SignUpForm() {
                 </div>
               )}
             </div>
-          </div>
+          </article>
         </section>
       </main>
     </div>

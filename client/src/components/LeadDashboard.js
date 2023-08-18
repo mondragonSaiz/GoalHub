@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_TASK } from '../utils/mutations'
 import memberOne from '../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 // import { Checkbox } from '@radix-ui/react-checkbox';
@@ -16,6 +18,28 @@ export default function MyDashboard({_id}) {
   }
   let index =1;
   const area = data.area
+  
+  const [formData, setFormData] = useState({
+    name: " ",
+    taskDesc: " ", 
+    isCompleted: false,
+  });
+  const [addTask, { error, data }] = useMutation(ADD_TASK);
+
+  const { name, taskDesc } = formData;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const createTask = async (e) => {
+    e.preventDefault()
+    console.log(formData)
+    if (name === ""){
+      return console.error("Input field cannot be empty")
+    }
+  };
   
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
@@ -36,7 +60,8 @@ export default function MyDashboard({_id}) {
           </div>
         </div>
       </button>
-      {openModal && <NewTask closeModal={setOpenModal} />}
+      {/* Here i have to add props to make the state work  */}
+      {openModal && <NewTask name={name} handleInputChange={handleInputChange} createTask={createTask} closeModal={setOpenModal} />}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">
       <div className='flex justify-between items-center'>
            <h2

@@ -115,9 +115,12 @@ export default function SignUpForm() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+
     console.log('SUbmited');
     console.log('AREA', area);
     if (!email || !firstName || !password || !lastName || !area) {
+
       setErrorMessage('input missing');
       return;
     }

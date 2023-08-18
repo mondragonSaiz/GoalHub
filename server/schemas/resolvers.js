@@ -5,7 +5,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('tasks').populate('area');
+      return User.find().populate('tasks').populate('area').populate({path: "area", populate: "users"})
     },
     user: async (parent, { id }) => {
       return User.findById(id).populate('tasks').populate('area');
@@ -19,7 +19,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     areas: async () => {
-      return Area.find().populate('users').populate('supervisor');
+      return Area.find().populate('users').populate('supervisor').populate({path: "users", populate: "tasks"});
     },
     area: async (parent, { _id }) => {
       return Area.findById(_id).populate('users');

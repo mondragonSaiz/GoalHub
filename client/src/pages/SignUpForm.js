@@ -114,7 +114,7 @@ export default function SignUpForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !firstName || !password || !lastName || area) {
+    if (!email || !firstName || !password || !lastName || area ) {
       setErrorMessage('input missing');
       return;
     }

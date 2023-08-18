@@ -171,173 +171,175 @@ export default function SignUpForm() {
       <main className="flex justify-center items-center min-h-screen">
         <section className="min-h-screen">
           <article className="min-h-screen">
-            <div id='marginBorder' className="flex items-center justify-center sm:border-2 sm:rounded-2xl sm:border-slate-200 min-h-screen">
-              {data ? (
-                <p>
-                  Directing to your Dashboard <Link to="/"> Moving</Link>
-                </p>
-              ) : (
-                <div id='mainContainer' className="flex flex-col justify-center items-center min-h-screen px-4">
-                  <div id='signUpFormHeader' className='mb-8'>
-                    <h2 className="text-slate-200 font-bold text-3xl text-center">
-                      I want to keep track of my{' '}
-                      {state.isEmployee ? 'tasks' : 'team'}
-                    </h2>
-                  </div>
-                  <form action="" className="flex flex-col">
-                    <fieldset className="flex flex-col sm:flex-row">
-                      <input
-                        value={firstName}
-                        name="firstName"
-                        onChange={handleInputChange}
-                        placeholder="First name"
-                        type="text"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
-                      />
-                      <input
-                        name="lastName"
-                        value={lastName}
-                        onChange={handleInputChange}
-                        placeholder="Last name"
-                        type="text"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
-                      />
-                    </fieldset>
-                    <fieldset className='flex flex-col'>
-                      <input
-                        name="email"
-                        value={email}
-                        onChange={handleInputChange}
-                        placeholder="Email"
-                        type="text"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
-                      />
-                      <input
-                        name="password"
-                        value={password}
-                        onChange={handleInputChange}
-                        placeholder="Password (8 or more characters)"
-                        type="password"
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-6"
-                      />
-                    </fieldset>
-                    <div id='areaBtn' className='flex justify-center mb-4'>
-                      <Select
-                        onValueChange={(something) => handleInput(something)}
-                      >
-                        <SelectTrigger className="w-[180px]">
-                          <SelectValue placeholder="Select your Area" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Areas</SelectLabel>
-                            {queryLoading ? (
-                              <SelectItem value="loading"></SelectItem>
-                            ) : (
-                              areas.map((area) => (
-                                <SelectItem key={area.name} value={area._id}>
-                                  {area.name}
-                                </SelectItem>
-                              ))
-                            )}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {/* <div id='avatarHeader'>
-                      <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
-                        Choose your avatar
+            <div id='marginBorder' className="flex items-center justify-center min-h-screen">
+              <div className="sm:border-2 sm:rounded-2xl sm:border-slate-200 sm:mx-8">
+                {data ? (
+                  <p>
+                    Directing to your Dashboard <Link to="/"> Moving</Link>
+                  </p>
+                ) : (
+                  <div id='mainContainer' className="flex flex-col justify-center items-center px-4 sm:px-16">
+                    <div id='signUpFormHeader' className='mb-8'>
+                      <h2 className="text-slate-200 font-bold text-3xl text-center sm:mt-16">
+                        I want to keep track of my{' '}
+                        {state.isEmployee ? 'tasks' : 'team'}
                       </h2>
-                    </div> */}
-
-                    {/* <div id='avatarContainer' className="flex flex-wrap justify-center items-center lg:flex-row lg:gap-6">
-                      {userIcons.map((icon, index) => (
-                        <div
-                          key={index}
-                          className={`bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10
-                          overflow-hidden hover:transition hover:scale-110 transition
-                          duration-300 ease-in-out cursor-pointer${
-                          icon.src === selectedImageSrc ? ' selected' : ''
-                          }`}
-                          onClick={() => handleImageClick(icon.src)}
+                    </div>
+                    <form action="" className="flex flex-col">
+                      <fieldset className="flex flex-col sm:flex-row sm:gap-4">
+                        <input
+                          value={firstName}
+                          name="firstName"
+                          onChange={handleInputChange}
+                          placeholder="First name"
+                          type="text"
+                          className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
+                        />
+                        <input
+                          name="lastName"
+                          value={lastName}
+                          onChange={handleInputChange}
+                          placeholder="Last name"
+                          type="text"
+                          className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
+                        />
+                      </fieldset>
+                      <fieldset className='flex flex-col'>
+                        <input
+                          name="email"
+                          value={email}
+                          onChange={handleInputChange}
+                          placeholder="Email"
+                          type="text"
+                          className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-4"
+                        />
+                        <input
+                          name="password"
+                          value={password}
+                          onChange={handleInputChange}
+                          placeholder="Password (8 or more characters)"
+                          type="password"
+                          className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left py-2 pl-4 w-full mb-6"
+                        />
+                      </fieldset>
+                      <div id='areaBtn' className='flex justify-center sm:justify-start mb-4'>
+                        <Select
+                          onValueChange={(something) => handleInput(something)}
                         >
-                          <img src={icon.src} alt={icon.name} />
-                        </div>
-                      ))}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
+                          <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="Select your Area" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Areas</SelectLabel>
+                              {queryLoading ? (
+                                <SelectItem value="loading"></SelectItem>
+                              ) : (
+                                areas.map((area) => (
+                                  <SelectItem key={area.name} value={area._id}>
+                                    {area.name}
+                                  </SelectItem>
+                                ))
+                              )}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      {/* <div id='avatarHeader'>
+                        <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
+                          Choose your avatar
+                        </h2>
                       </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                    {/* <div className=" flex flex-row justify-between">
-                      <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />
-                      <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer" />
-                    </div> */}
-                    <div id='termsOfService' className="flex flex-col-reverse justify-center mb-4">
-                      <input
-                        type="checkbox"
-                        name="agreement"
-                        onClick={handleInputChange}
-                        className="mt-2"
-                      />
-                      <p className="text-white text-sm text-center mt-2">
-                        I understand and agree to the GoalHub Terms of Service,
-                        including the User Agreement and Privacy Policy
-                      </p>
-                    </div>
-                    <button
-                      type="submit"
-                      onClick={handleFormSubmit}
-                      name="loginSub"
-                      id="loginSub"
-                      className="bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold mb-8"
-                      >
-                      Create my account
-                    </button>
-                  </form>
 
-                  <div className="flex flex-row gap-4 items-center">
-                    <p className=" text-gray-500 text-sm">
-                      Already have an account?
-                    </p>
-                    <Link to="/log-in" className="text-white">
-                      Log In
-                    </Link>
-                  </div>
-                  {errorMessage && (
-                    <div>
-                      <p className="error-text text-white">{errorMessage} !</p>
+                      {/* <div id='avatarContainer' className="flex flex-wrap justify-center items-center lg:flex-row lg:gap-6">
+                        {userIcons.map((icon, index) => (
+                          <div
+                            key={index}
+                            className={`bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10
+                            overflow-hidden hover:transition hover:scale-110 transition
+                            duration-300 ease-in-out cursor-pointer${
+                            icon.src === selectedImageSrc ? ' selected' : ''
+                            }`}
+                            onClick={() => handleImageClick(icon.src)}
+                          >
+                            <img src={icon.src} alt={icon.name} />
+                          </div>
+                        ))}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                      {/* <div className=" flex flex-row justify-between">
+                        <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />
+                        <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer" />
+                      </div> */}
+                      <div id='termsOfService' className="flex flex-col-reverse sm:flex-row justify-center mb-4">
+                        <input
+                          type="checkbox"
+                          name="agreement"
+                          onClick={handleInputChange}
+                          className="mt-2"
+                        />
+                        <p className="text-white text-sm text-center sm:text-left sm:pl-4 mt-2 sm:m-0">
+                          I understand and agree to the GoalHub Terms of Service,
+                          including the User Agreement and Privacy Policy
+                        </p>
+                      </div>
+                      <button
+                        type="submit"
+                        onClick={handleFormSubmit}
+                        name="loginSub"
+                        id="loginSub"
+                        className="bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold mb-8"
+                        >
+                        Create my account
+                      </button>
+                    </form>
+
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-4 items-center sm:mb-16">
+                      <p className=" text-gray-500 text-sm">
+                        Already have an account?
+                      </p>
+                      <Link to="/log-in" className="text-white">
+                        Log In
+                      </Link>
                     </div>
-                  )}
-                </div>
-              )}
+                    {errorMessage && (
+                      <div>
+                        <p className="error-text text-white">{errorMessage} !</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </article>
         </section>

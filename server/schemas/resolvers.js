@@ -5,10 +5,18 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('tasks').populate('area');
+      try{
+        return User.find().populate('area').populate('tasks');
+      }catch(err){
+        console.log(err)
+      }
     },
     user: async (parent, { id }) => {
-      return User.findById(id).populate('tasks').populate('area');
+      try{
+        return User.findById(id).populate('tasks').populate('area');
+      }catch(err){
+        console.log(err)
+      }
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -19,30 +27,50 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     areas: async () => {
-      return Area.find().populate('users').populate('supervisor');
+      try{
+        return Area.find().populate('users').populate('supervisor');
+      }catch(err){
+        console.log(err)
+      }
     },
     area: async (parent, { _id }) => {
-      return Area.findById(_id).populate('users');
+      try{
+        return Area.findById(_id).populate('users').populate('supervisor');
+      }catch(err){
+        console.log(err)
+      }
     },
     tasks: async () => {
-      return Task.find().poplate('user');
+      try{
+        return Task.find().populate('user');
+      }catch(err){
+        console.log(err)
+      }
     },
     task: async (parent, { _id }) => {
-      return Task.findById(_id);
+      try{
+        return Task.findById(_id).populate('user');
+      }catch(err){
+        console.log(err)
+      }
     },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-      if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+      try{
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new AuthenticationError('No user found with this email address');
+        }
+        const correctPw = await user.isCorrectPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
+        const token = signToken(user);
+        return { token, user };
+      }catch(err){
+        console.log(err)
       }
-      const correctPw = await user.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-      const token = signToken(user);
-      return { token, user };
     },
     forgotPassword: async (parents, { email, password }) => {
       try{
@@ -111,7 +139,8 @@ const resolvers = {
         { $addToSet: { tasks: newTask._id } },
         { new: true }
       ).populate('tasks');
-      return populatedTask;}catch(err){
+      return populatedTask;
+    }catch(err){
         console.log(err)
       }
     },

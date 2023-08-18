@@ -12,19 +12,19 @@ import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {
   const [openModal, setOpenModal] = useState(false);
-  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  const { loading, data: queryData} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;
   }
   let index =1;
-  const area = data.area
+  const area = queryData.area
   
   const [formData, setFormData] = useState({
     name: " ",
     taskDesc: " ", 
     isCompleted: false,
   });
-  const [addTask, { error, data }] = useMutation(ADD_TASK);
+  const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
 
   const { name, taskDesc } = formData;
 
@@ -33,13 +33,55 @@ export default function MyDashboard({_id}) {
     setFormData({ ...formData, [name]: value });
   };
 
-  const createTask = async (e) => {
+  const createTask = async (e, closeModal) => {
     e.preventDefault()
+    try {
+      await addTask ({
+        variables: {
+          name: formData.name,
+          taskDesc: formData.taskDesc, 
+          isCompleted: false,
+        },
+      });
+      if (name === "" | taskDesc === ""){
+        return console.error("Input field cannot be empty")
+      }
+      closeModal(false);
+    } catch (error) {
+      console.error('Error adding task:', error);
+    };
+
     console.log(formData)
-    if (name === ""){
-      return console.error("Input field cannot be empty")
-    }
   };
+
+  const handleSubmit = async (e, closeModal ) => {
+    e.preventDefault()
+    
+    if (!formData.name || !formData.taskDesc) {
+      return; 
+    }
+    try { 
+      const { data } = await addTask({
+        variables: {
+          name: formData.name, 
+          taskDesc: formData.taskDesc, 
+          isCompleted: false, 
+          // user: _id 
+          // Im not sure how to call for the user id's, by retrieving the id from the avatas 
+        },
+      });
+      console.log(data)
+      
+      setFormData({
+        name: ' ', 
+        taskDesc: ' ',
+        isCompleted: false, 
+      });
+      closeModal(false);
+    } catch (error) {
+      console.error(error);
+    }
+   };
   
   return (
     <div className="flex flex-col w-full font-poppins mb-10">
@@ -61,7 +103,7 @@ export default function MyDashboard({_id}) {
         </div>
       </button>
       {/* Here i have to add props to make the state work  */}
-      {openModal && <NewTask name={name} handleInputChange={handleInputChange} createTask={createTask} closeModal={setOpenModal} />}
+      {openModal && <NewTask handleSubmit={handleSubmit} formData={formData} handleInputChange={handleInputChange} createTask={createTask} closeModal={setOpenModal} />}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">
       <div className='flex justify-between items-center'>
            <h2

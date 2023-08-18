@@ -39,13 +39,14 @@ export const LOGIN_USER = gql`
   }
 `;
 export const ADD_TASK = gql`
-  mutation addTask($name: String!, $taskDesc: String!) {
-    addTask (name: $name, taskDesc: $taskDesc) {
+  mutation addTask($name: String!, $taskDesc: String!, $isCompleted: Boolean!) {
+    addTask (name: $name, taskDesc: $taskDesc, isCompleted: $isCompleted) {
       name 
       taskDesc
       createdAt
       isCompleted
       user {
+        _id
         firstName
         lastName
         email 

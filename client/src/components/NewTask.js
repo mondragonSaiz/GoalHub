@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import memberOne from '../img/avatar/avatar1.png';
 import { Form } from 'react-bootstrap';
+import memberOne from '../img/avatar/avatar1.png';
+import memberTwo from '../img/avatar/avatar2.png';
+import memberThree from '../img/avatar/avatar3.png';
+import memberFour from '../img/avatar/avatar4.png';
+import memberFive from '../img/avatar/avatar5.png';
 
-export default function NewTask({ createTask, name, handleInputChange, closeModal }) {
-  const memberImg = memberOne;
-  // const [formData, setFormData] = useState({
-  //   title: " ", 
-  //   taskdesc: " ",
-  //   completed: false
-  // })
-  // const { title } = formData;
-
-
+export default function NewTask({ formData, handleInputChange, handleSubmit, closeModal }) {
+const [SelectedUser, setSelectedUser] = useState(null);
+// Query for Images, 
   return (
     <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">
       <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
@@ -32,7 +29,11 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
                 </label>
                 <input
                   type="text"
-                  id="large-input"
+                  id="taskName"
+                  placeholder="Title for your task"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="block w-full p-4 focus:text-slate-200 text-slate-200 border border-gray-500 rounded-lg bg-neutral-950 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
@@ -61,7 +62,11 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
                 </label>
                 <input
                   type="text"
-                  id="large-input"
+                  id="taskDescription"
+                  name="taskDesc"
+                  value={formData.taskDesc}
+                  placeholder="Write your task"
+                  onChange={handleInputChange}
                   className="block w-full p-4 focus:text-slate-200 text-slate-200 border border-gray-500 rounded-lg bg-neutral-950 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
@@ -85,13 +90,18 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
               </div>
 
               <div className="flex lg:flex-row flex-wrap w-full justify-center ">
-                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4">
-                  <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4" 
+                style={{ cursor: 'pointer' }} 
+                >
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberOneId' ? 'selected' : ''
+                }`}
+                onClick={() => setSelectedUser('memberOneId')}>
                     <img
-                      src={memberImg}
+                      src={memberOne}
                       alt="memberOne"
+                      value="memberOneId"
                       layout="fill"
-                      bjectFit="cover"
+                      objectfit="cover"
                     />
                   </div>
                   <div className="flex justify-center pt-2">
@@ -99,12 +109,15 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberTwoId' ? 'selected' : ''
+                  }`}
+                  onClick={() => setSelectedUser('memberTwoId')}>
                     <img
-                      src={memberImg}
-                      alt="memberOne"
+                      src={memberTwo}
+                      value="memberTwoId"
+                      alt="memberTwo"
                       layout="fill"
-                      bjectFit="cover"
+                      objectfit="cover"
                     />
                   </div>
                   <div className="flex justify-center pt-2">
@@ -112,12 +125,14 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberThreeId' ? 'selected' : '' }`}
+                  onClick={() => setSelectedUser('memberThreeId')}>
                     <img
-                      src={memberImg}
-                      alt="memberOne"
+                      src={memberThree}
+                      alt="memberThree"
+                      value="memberThreeId"
                       layout="fill"
-                      bjectFit="cover"
+                      objectfit="cover"
                     />
                   </div>
                   <div className="flex justify-center pt-2">
@@ -125,12 +140,14 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
+                <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberFourId' ? 'selected' : '' }`}
+                  onClick={() => setSelectedUser('memberFourId')}>
                     <img
-                      src={memberImg}
-                      alt="memberOne"
+                      src={memberFour}
+                      alt="memberFour"
+                      value="memberFourId"
                       layout="fill"
-                      bjectFit="cover"
+                      objectfit="cover"
                     />
                   </div>
                   <div className="flex justify-center pt-2">
@@ -150,10 +167,10 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
             </div>
             <div className="flex p-6">
               <a
-                href="/sign-up-form"
+                onClick={handleSubmit}
                 className="flex bg-gray-100 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
               >
-                Assign{' '}
+                Assign
               </a>
             </div>
             </div>
@@ -161,6 +178,16 @@ export default function NewTask({ createTask, name, handleInputChange, closeModa
           </div>
         </section>
       </main>
+      <style>
+        {`
+          .selected {
+            outline: 4px solid green;
+          }
+          .selectedImage {
+            border: 2px solid green;
+          }
+          `}
+      </style>
     </div>
   );
 }

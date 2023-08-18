@@ -35,7 +35,7 @@ export default function MembersOverview({_id}) {
                   src={memberImg}
                   alt="memberOne"
                   layout="fill"
-                  bjectFit="cover"
+                  objectfit="cover"
                 />
            </div>
 

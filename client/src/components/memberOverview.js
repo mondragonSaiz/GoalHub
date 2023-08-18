@@ -7,9 +7,7 @@ import { QUERY_AREA } from '../utils/queries';
 
 export default function MembersOverview({_id}) {
   console.log(_id)
-  const { loading, data} = useQuery(QUERY_AREA, {
-    variables: { _id: _id },
-  })
+  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
   console.log(data)
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';

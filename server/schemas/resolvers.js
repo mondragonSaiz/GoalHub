@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     users: async () => {
       try{
-        return User.find().populate('area').populate('tasks');
+        return User.find().populate('area').populate('tasks').populate({path: "area", populate: "users"})
       }catch(err){
         console.log(err)
       }
@@ -22,7 +22,8 @@ const resolvers = {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
           .populate('tasks')
-          .populate('area');
+          .populate('area')
+          .populate({path: "area", populate: "users"});
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -76,7 +77,7 @@ const resolvers = {
       try{
         const user = await User.findOneAndUpdate(
           { email: email },
-          { password: password },
+          {password: password },
           { runValidators: true, new: true }
         );
         const token = signToken(user);

@@ -171,17 +171,19 @@ export default function SignUpForm() {
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <article className="flex items-center">
-            <div className="flex border-2 rounded-2xl border-slate-200 px-14 py-2">
+            <div id='marginBorder' className="flex border-2 rounded-2xl border-slate-200 px-14 py-2">
               {data ? (
                 <p>
                   Directing to your Dashboard <Link to="/"> Moving</Link>
                 </p>
               ) : (
-                <div className="flex flex-col items-center w-auto rounded-2xl  gap-8">
-                  <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">
-                    I want to keep track of my{' '}
-                    {state.isEmployee ? 'tasks' : 'team'}
-                  </h2>
+                <div id='mainContainer' className="flex flex-col items-center gap-8">
+                  <div id='signUpFormHeader'>
+                    <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">
+                      I want to keep track of my{' '}
+                      {state.isEmployee ? 'tasks' : 'team'}
+                    </h2>
+                  </div>
                   <form action="" className="flex flex-col gap-6">
                     <div className="flex flex-col lg:flex-row gap-5 justify-between">
                       <input

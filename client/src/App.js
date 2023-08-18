@@ -16,7 +16,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import SignUpForm from './pages/SignUpForm';
-import NewTask from './pages/NewTask';
+// import NewTask from './components/NewTask';
 import ProfileSettings from './pages/ProfileSettings';
 
 const httpLink = createHttpLink({
@@ -53,7 +53,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up-form" element={<SignUpForm />} />
-            <Route path="/new-task" element={<NewTask />} />
+            {/* <Route path="/new-task" element={<NewTask />} /> */}
             <Route path="/settings" element={<ProfileSettings />} />
           </Routes>
         </div>

@@ -17,11 +17,9 @@ export default function Dashboard() {
   //
 
   const userData = Auth.getProfile();
-  console.log('USERRR DATA', userData);
 
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;
-  console.log('???', user);
 
   /*
   if (!Auth.loggedIn()) {
@@ -51,8 +49,9 @@ export default function Dashboard() {
             <UpperDashboard
               firstName={user.firstName}
               lastName={user.lastName}
-              area={user.area.name}
+              areaName={user.area.name}
               isEmployee={user.isEmployee}
+              _id={user.area._id} 
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MonthOverview />

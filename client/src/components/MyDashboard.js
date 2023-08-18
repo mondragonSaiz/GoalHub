@@ -23,11 +23,38 @@ export default function MyDashboard({tasks}) {
         <p className=" font-thin text-gray-500">
           Keep track of your achievements!
         </p>
-        <div className="flex flex-row justify-between items-center mt-5">
-       {tasks.map(task=>{
+        
+      {tasks.length!==0 ? (
+        <div>
+          <div className='flex justify-between items-center'>
+           <h2
+              className=" flex font-bold text-slate-200"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              Check
+            </h2>
+            <h2
+              className=" flex font-bold text-slate-200"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              Task
+            </h2>
+            <h2
+              className=" flex font-bold text-slate-200"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              Status
+            </h2>
+            <h2
+              className=" flex font-bold text-slate-200"
+              style={{ paddingBottom: '0.8rem' }}
+            >
+              Assigned on
+            </h2>
+      </div>
+        {tasks.map(task=>{
           return (
-            <div>
-              <div className="flex flex-col justify-between items-center mt-5">
+              <div className=" flex justify-between items-center"> {/*flex justify-between items-center  OR flex flex-row justify-between items-center mt-5*/ }
                   <div style={{ paddingBottom: '0.8rem' }}>
                     <Checkbox />
                   </div>
@@ -45,9 +72,13 @@ export default function MyDashboard({tasks}) {
                   </p>
                   <p className=" font-thin text-gray-500">{task.createdAt}</p>
               </div>
-            </div>
-          )
-        }) }
+            )})}
+        </div>):(
+<div>
+  <p className='text-white'>Free Of Tasks :{')'}</p>
+</div>
+        )}
+       
        {/*  <div className="flex flex-col justify-between items-center mt-5">
             <div style={{ visibility: 'hidden', paddingBottom: '0.8rem' }}>
               <p>cb</p>
@@ -324,7 +355,7 @@ export default function MyDashboard({tasks}) {
           <div>achievement</div>
           <div> Hours</div>
           */} 
-        </div> 
+        
       </div>
     </div> 
   );

@@ -36,7 +36,7 @@ const resolvers = {
     },
     area: async (parent, { _id }) => {
       try{
-        return Area.findById(_id).populate('users').populate('supervisor');
+        return Area.findById(_id).populate('users').populate('supervisor').populate({path: "users", populate: "tasks"});
       }catch(err){
         console.log(err)
       }

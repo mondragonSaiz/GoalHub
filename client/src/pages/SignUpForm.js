@@ -171,7 +171,7 @@ export default function SignUpForm() {
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <article className="flex items-center">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-2 gap-8">
+            <div className="flex border-2 rounded-2xl border-slate-200 px-14 py-2">
               {data ? (
                 <p>
                   Directing to your Dashboard <Link to="/"> Moving</Link>

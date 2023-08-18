@@ -1,12 +1,12 @@
 import React from 'react';
 import Nav from '../components/navBar';
-import { Navigate } from 'react-router-dom';
 import UpperDashboard from '../components/upperDashboard';
 import MonthOverview from '../components/monthOverview';
 import MembersOverview from '../components/memberOverview';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
 import LeadDashboard from '../components/LeadDashboard';
@@ -21,11 +21,11 @@ export default function Dashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;
 
-  /*
+  
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-*/
+
   if (loading) {
     return <div>Loading...</div>;
   }

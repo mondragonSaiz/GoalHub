@@ -8,6 +8,10 @@ export default function MyDashboard({tasks}) {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
+  let objectDate = new Date()
+  let month = objectDate.getMonth();
+  console.log(month + 1)
+  let date;
   
   console.log(tasks)
 

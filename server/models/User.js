@@ -32,7 +32,6 @@ const userSchema = new Schema({
   },
   userIcon: {
     type: String,
-    match: /\.(jpeg|png|svg)$/,
   },
   area: {
     type: Schema.Types.ObjectId,

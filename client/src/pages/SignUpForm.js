@@ -32,15 +32,15 @@ export default function SignUpForm() {
   const [area, setArea] = useState('');
   const [agreement, setAgreement] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [selectedImageSrc, setSelectedImageSrc] = useState('');
+  const [userIcon, setUserIcon] = useState('');
 
   const handleImageClick = (src) => {
-    setSelectedImageSrc(src);
-    // console.log('SELECTED', selectedImageSrc);
+    setUserIcon(src);
   };
   useEffect(() => {
-    console.log('SELECTED', selectedImageSrc);
-  }, [selectedImageSrc]);
+    console.log('SELECTED 1', userIcon);
+    console.log('SELECTED 2', area);
+  }, [userIcon, area]);
 
   const userIcons = [
     {
@@ -69,8 +69,6 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
-  console.log('isEmployee', state.isEmployee);
-
   const handleInputChange = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
@@ -95,7 +93,7 @@ export default function SignUpForm() {
     // console.log('target', event.target);
     // const selectedValue = event.target.value;
     setArea(something);
-    console.log('area selected', area);
+    // console.log('area selected', area);
   };
 
   const validation = (name, value) => {
@@ -146,6 +144,7 @@ export default function SignUpForm() {
           password,
           isEmployee: state.isEmployee,
           area,
+          userIcon,
         },
       });
 
@@ -249,7 +248,7 @@ export default function SignUpForm() {
                           className={`bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10
                     overflow-hidden hover:transition hover:scale-110 transition
                     duration-300 ease-in-out cursor-pointer${
-                      icon.src === selectedImageSrc ? ' selected' : ''
+                      icon.src === userIcon ? ' selected' : ''
                     }`}
                           onClick={() => handleImageClick(icon.src)}
                         >

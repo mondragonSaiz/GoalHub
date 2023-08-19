@@ -4,30 +4,14 @@ import { Progress } from './progress';
 import Card from './Card';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
-<<<<<<< HEAD
-
-=======
->>>>>>> 67b331f66fd73233c28cbd914b7d9f20fb868437
 export default function UpperDashboard({
   firstName,
   lastName,
   isEmployee,
   areaName,
   userIcon,
-<<<<<<< HEAD
-  _id
-
-=======
   id,
->>>>>>> 67b331f66fd73233c28cbd914b7d9f20fb868437
 }) {
-  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  
-  const area = data?.area
-  console.log(area)
   /*let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
@@ -38,9 +22,6 @@ export default function UpperDashboard({
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;
 
-<<<<<<< HEAD
-  
-=======
   const { loading, data } = useQuery(QUERY_AREA, { variables: { id: id } });
   if (loading) {
     return <div>Loading...</div>;
@@ -53,7 +34,6 @@ export default function UpperDashboard({
   let completedTask = area.users
     .map((user) => user.tasks.filter((comp) => comp.isCompleted))
     .reduce((acum, task) => acum + task.length, 0);
->>>>>>> 67b331f66fd73233c28cbd914b7d9f20fb868437
 
   return (
     <section>
@@ -72,11 +52,7 @@ export default function UpperDashboard({
           </h2>
 
           <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
-<<<<<<< HEAD
-            {/* areaName+' Team'*/ }
-=======
             {areaName}
->>>>>>> 67b331f66fd73233c28cbd914b7d9f20fb868437
           </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
@@ -98,14 +74,10 @@ export default function UpperDashboard({
             </div>
           </Card>
           <Card>
-<<<<<<< HEAD
-            <h2 className="text-slate-200 font-bold text-xl">{/* area */}</h2>
-=======
             <h2 className="text-slate-200 font-bold text-xl">{areaName}</h2>
->>>>>>> 67b331f66fd73233c28cbd914b7d9f20fb868437
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
-            <Progress value={30} />
+            <Progress value={completedTask/allTask*100} />
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>

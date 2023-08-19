@@ -44,20 +44,14 @@ export default function MembersOverview({_id}) {
             <p className=" font-thin text-gray-500">{memberTeam}</p>
           </div>
 
-          {user.tasks.length!==0 ? (<div className="w-80">
+        <div className="w-80">
             <Progress value={(user.tasks.filter(task=>task.isCompleted).length/user.tasks.length)*100} />
             {/* <ProgressBar/> */}
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
             </div>
-          </div>  ):(
-            <div>
-              <p className='text-white'>Currently no tasks assigned / Free Of Tasks :{')'}</p>
-            </div>
-          )}
-          
-
+          </div>  
         </div>
           )
       })}

@@ -5,13 +5,22 @@ import memberOne from '../img/avatar/avatar3.png';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 export default function ProfileSettings() {
+  const { loading, data } = useQuery(QUERY_ME);
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/" />;
+  }
+  
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
-  const { loading, data } = useQuery(QUERY_ME);
+ 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   const user = data?.me;
 
   const memberImg = memberOne;
@@ -55,7 +64,7 @@ export default function ProfileSettings() {
                       src={memberImg}
                       alt="memberOne"
                       layout="fill"
-                      objectFit="cover"
+                      oobjectfit="cover"
                     />
                   </div>
                   <h2 className="flex justify-end text-slate-200 text-md font-boldfont-poppins lg:text-center">

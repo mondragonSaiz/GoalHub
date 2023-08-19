@@ -7,8 +7,8 @@ const taskSeeds = require('./taskSeeds.json');
 
 //TODO: Automate seeding process
 db.once('open', async () => {
-  // await User.deleteMany({});
-  // await User.create(userSeeds);
+  await User.deleteMany({});
+  await User.create(userSeeds);
 
   await Task.deleteMany({});
   await Task.create(taskSeeds);

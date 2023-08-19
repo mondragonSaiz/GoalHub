@@ -6,8 +6,9 @@ import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
 
-export default function NewTask({ formData, handleInputChange, handleSubmit, closeModal }) {
+export default function NewTask({ selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
 const [SelectedUser, setSelectedUser] = useState(null);
+
 // Query for Images, 
   return (
     <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">
@@ -93,13 +94,16 @@ const [SelectedUser, setSelectedUser] = useState(null);
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4" 
                 style={{ cursor: 'pointer' }} 
                 >
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberOneId' ? 'selected' : ''
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d0b' ? 'selected' : ''
                 }`}
-                onClick={() => setSelectedUser('memberOneId')}>
+                onClick={() => {
+                setSelectedUser('64dff40853ea9507f1d85d0b');
+                setSelectedUserId('64dff40853ea9507f1d85d0b');
+                }}>
                     <img
                       src={memberOne}
                       alt="memberOne"
-                      value="memberOneId"
+                      value="64dff40853ea9507f1d85d0b"
                       layout="fill"
                       objectfit="cover"
                     />
@@ -109,12 +113,15 @@ const [SelectedUser, setSelectedUser] = useState(null);
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberTwoId' ? 'selected' : ''
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d09' ? 'selected' : ''
                   }`}
-                  onClick={() => setSelectedUser('memberTwoId')}>
+                  onClick={() => {
+                    setSelectedUser('64dff40853ea9507f1d85d09');
+                    setSelectedUserId('64dff40853ea9507f1d85d09');
+                  }}>
                     <img
                       src={memberTwo}
-                      value="memberTwoId"
+                      value="64dff40853ea9507f1d85d09"
                       alt="memberTwo"
                       layout="fill"
                       objectfit="cover"
@@ -125,12 +132,15 @@ const [SelectedUser, setSelectedUser] = useState(null);
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberThreeId' ? 'selected' : '' }`}
-                  onClick={() => setSelectedUser('memberThreeId')}>
+                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d0a' ? 'selected' : '' }`}
+                  onClick={() => {
+                    setSelectedUser('64dff40853ea9507f1d85d0a')
+                    setSelectedUserId('64dff40853ea9507f1d85d0a');
+                  }}>
                     <img
                       src={memberThree}
                       alt="memberThree"
-                      value="memberThreeId"
+                      value="64dff40853ea9507f1d85d0a"
                       layout="fill"
                       objectfit="cover"
                     />
@@ -140,12 +150,15 @@ const [SelectedUser, setSelectedUser] = useState(null);
                   </div>
                 </div>
                 <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === 'memberFourId' ? 'selected' : '' }`}
-                  onClick={() => setSelectedUser('memberFourId')}>
+                <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d08' ? 'selected' : '' }`}
+                  onClick={() => {
+                    setSelectedUser('64dff40853ea9507f1d85d08');
+                    setSelectedUserId('64dff40853ea9507f1d85d08')
+                  }}>
                     <img
                       src={memberFour}
                       alt="memberFour"
-                      value="memberFourId"
+                      value="64dff40853ea9507f1d85d08"
                       layout="fill"
                       objectfit="cover"
                     />
@@ -167,7 +180,7 @@ const [SelectedUser, setSelectedUser] = useState(null);
             </div>
             <div className="flex p-6">
               <a
-                onClick={handleSubmit}
+                onClick={(e) => handleSubmit(e, closeModal)}
                 className="flex bg-gray-100 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
               >
                 Assign

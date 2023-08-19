@@ -19,14 +19,16 @@ export default function MyDashboard({_id}) {
   let index =1;
   const area = queryData.area
   
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [formData, setFormData] = useState({
     name: " ",
     taskDesc: " ", 
     isCompleted: false,
+    user: null
   });
   const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
 
-  const { name, taskDesc } = formData;
+  const { name, taskDesc, user } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,22 +43,30 @@ export default function MyDashboard({_id}) {
           name: formData.name,
           taskDesc: formData.taskDesc, 
           isCompleted: false,
+          user: selectedUserId,
         },
       });
       if (name === "" | taskDesc === ""){
         return console.error("Input field cannot be empty")
       }
-      closeModal(false);
+      if (!selectedUserId) {
+        console.error("Please select a user.");
+        return;
+      }
+   
     } catch (error) {
       console.error('Error adding task:', error);
     };
 
-    console.log(formData)
   };
 
   const handleSubmit = async (e, closeModal ) => {
     e.preventDefault()
-    
+
+    console.log(formData.name)
+    console.log(formData.taskDesc)
+    console.log(selectedUserId)
+
     if (!formData.name || !formData.taskDesc) {
       return; 
     }
@@ -66,8 +76,7 @@ export default function MyDashboard({_id}) {
           name: formData.name, 
           taskDesc: formData.taskDesc, 
           isCompleted: false, 
-          // user: _id 
-          // Im not sure how to call for the user id's, by retrieving the id from the avatas 
+          user: selectedUserId,
         },
       });
       console.log(data)
@@ -76,6 +85,7 @@ export default function MyDashboard({_id}) {
         name: ' ', 
         taskDesc: ' ',
         isCompleted: false, 
+        user: ' ',
       });
       closeModal(false);
     } catch (error) {
@@ -103,7 +113,14 @@ export default function MyDashboard({_id}) {
         </div>
       </button>
       {/* Here i have to add props to make the state work  */}
-      {openModal && <NewTask handleSubmit={handleSubmit} formData={formData} handleInputChange={handleInputChange} createTask={createTask} closeModal={setOpenModal} />}
+      {openModal && <NewTask 
+      selectedUserId={selectedUserId}
+      setSelectedUserId={setSelectedUserId} 
+      handleSubmit={handleSubmit}
+      formData={formData} 
+      handleInputChange={handleInputChange} 
+      createTask={createTask} 
+      closeModal={setOpenModal} />}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">
       <div className='flex justify-between items-center'>
            <h2

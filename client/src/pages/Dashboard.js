@@ -11,8 +11,6 @@ import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
 import LeadDashboard from '../components/LeadDashboard';
 
-
-
 export default function Dashboard() {
   //
 
@@ -53,6 +51,7 @@ export default function Dashboard() {
               lastName={user.lastName}
               area={user.area.name}
               isEmployee={user.isEmployee}
+              userIcon={user.userIcon}
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MonthOverview />

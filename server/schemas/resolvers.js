@@ -72,7 +72,7 @@ const resolvers = {
     },
     addUser: async (
       parent,
-      { firstName, lastName, isEmployee, email, password, area }
+      { firstName, lastName, isEmployee, email, password, area, userIcon }
     ) => {
       const user = await User.create({
         firstName,
@@ -81,6 +81,7 @@ const resolvers = {
         email,
         password,
         area,
+        userIcon,
       });
       const token = signToken(user);
       const updatedArea = await Area.findOneAndUpdate(

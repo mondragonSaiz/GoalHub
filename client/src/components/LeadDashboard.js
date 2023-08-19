@@ -11,14 +11,6 @@ import { QUERY_AREA } from '../utils/queries';
 import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {
-  const [openModal, setOpenModal] = useState(false);
-  const { loading, data: queryData} = useQuery(QUERY_AREA, {variables: { id: _id },})
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  let index =1;
-  const area = queryData.area
-  
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [formData, setFormData] = useState({
     name: " ",
@@ -26,7 +18,17 @@ export default function MyDashboard({_id}) {
     isCompleted: false,
     user: null
   });
+  
+  const [openModal, setOpenModal] = useState(false);
   const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
+  const { loading, data: queryData} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  let index =1;
+  const area = queryData.area
+  
+
 
   const { name, taskDesc, user } = formData;
 

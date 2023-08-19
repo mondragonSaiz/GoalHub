@@ -321,7 +321,7 @@ export default function SignUpForm() {
                         Create my account
                       </button>
                     </form>
-
+                
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-4 items-center sm:mb-16">
                       <p className=" text-gray-500 text-sm">
                         Already have an account?
@@ -346,7 +346,7 @@ export default function SignUpForm() {
                       }`}
                       disabled={!agreement}                    />
                   </form>
-
+                  </div>
                   <div className="flex flex-row gap-4 items-center">
                     <p className=" text-gray-500 text-sm">
                       Already have an account?

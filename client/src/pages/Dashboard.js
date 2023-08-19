@@ -49,6 +49,7 @@ export default function Dashboard() {
               areaName={user.area.name}
               isEmployee={user.isEmployee}
               userIcon={user.userIcon}
+              id={user.area._id}
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MonthOverview />

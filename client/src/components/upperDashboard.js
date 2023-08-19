@@ -2,18 +2,33 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
-
+import { useQuery } from '@apollo/client';
+import { QUERY_AREA } from '../utils/queries';
 export default function UpperDashboard({
   firstName,
   lastName,
   isEmployee,
-  area,
+  areaName,
   userIcon,
+  id,
 }) {
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;
+
+  const { loading, data } = useQuery(QUERY_AREA, { variables: { id: id } });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  console.log('DATAAA', data);
+  const area = data?.area;
+  let allTask = area.users.reduce((acum, task) => {
+    return acum + task.tasks.length;
+  }, 0);
+  let completedTask = area.users
+    .map((user) => user.tasks.filter((comp) => comp.isCompleted))
+    .reduce((acum, task) => acum + task.length, 0);
 
   return (
     <section>
@@ -32,7 +47,7 @@ export default function UpperDashboard({
           </h2>
 
           <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
-            {area}
+            {areaName}
           </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
@@ -40,7 +55,7 @@ export default function UpperDashboard({
             <h2 className="text-slate-200 font-bold text-xl mb-2">
               Achievements completed
             </h2>
-            <h1 className="text-slate-200 font-bold text-4xl mb-2">25/45</h1>
+            <h1 className="text-slate-200 font-bold text-4xl mb-2">{`${completedTask}/${allTask}`}</h1>
             <p className="text-gray-500">We are almost there!</p>
           </Card>
           <Card>
@@ -54,7 +69,7 @@ export default function UpperDashboard({
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">{area}</h2>
+            <h2 className="text-slate-200 font-bold text-xl">{areaName}</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
             <Progress value={30} />

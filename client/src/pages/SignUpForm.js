@@ -86,6 +86,12 @@ export default function SignUpForm() {
       case 'password':
         setPassword(inputValue);
         break;
+      case 'agreement':
+        setAgreement(!agreement);
+        break;
+
+      default:
+        console.log('No input found');
     }
   };
   const handleInput = (something) => {
@@ -98,7 +104,7 @@ export default function SignUpForm() {
 
   const validation = (name, value) => {
     let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
-    let regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    let regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
 
     if (name === 'password') {
       return regPassword.test(value);
@@ -115,7 +121,7 @@ export default function SignUpForm() {
     e.preventDefault();
 
 
-    console.log('SUbmited');
+    console.log('Submited');
     console.log('AREA', area);
     if (!email || !firstName || !password || !lastName || !area) {
 
@@ -134,6 +140,12 @@ export default function SignUpForm() {
       );
       return;
     }
+
+    // ? Check if necessary
+    // if (!agreement) {
+    //   setErrorMessage('You must agree to the terms and conditions');
+    //   return;
+    // }
 
     try {
       const { data } = await addUser({
@@ -278,8 +290,10 @@ export default function SignUpForm() {
                       name="loginSub"
                       id="loginSub"
                       value="Create my account"
-                      className=" bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold"
-                    />
+                      className={`bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold ${
+                        !agreement && 'opacity-50 cursor-not-allowed'
+                      }`}
+                      disabled={!agreement}                    />
                   </form>
 
                   <div className="flex flex-row gap-4 items-center">

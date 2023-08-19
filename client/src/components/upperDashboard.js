@@ -12,6 +12,11 @@ export default function UpperDashboard({
   userIcon,
   id,
 }) {
+  /*let allTask=area.users.reduce((acum, task)=>{
+    return acum+task.tasks.length},0 )
+  let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
+  
+
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
@@ -72,7 +77,7 @@ export default function UpperDashboard({
             <h2 className="text-slate-200 font-bold text-xl">{areaName}</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
-            <Progress value={30} />
+            <Progress value={completedTask/allTask*100} />
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>
@@ -83,3 +88,4 @@ export default function UpperDashboard({
     </section>
   );
 }
+

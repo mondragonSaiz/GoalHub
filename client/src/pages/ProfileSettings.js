@@ -7,6 +7,8 @@ import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 
+
+// ! TODO: Remove console logs
 export default function ProfileSettings() {
   const { loading, data } = useQuery(QUERY_ME);
   if (!Auth.loggedIn()) {

@@ -4,7 +4,6 @@ import memberOne from '../img/avatar/avatar1.png';
 import memberTwo from '../img/avatar/avatar2.png';
 import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
-import memberFive from '../img/avatar/avatar5.png';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
@@ -24,6 +23,7 @@ import {
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
   const areas = queryData?.areas;
+  const memberImg = memberOne
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -58,10 +58,6 @@ export default function SignUpForm() {
     {
       name: 'memberFour',
       src: memberFour,
-    },
-    {
-      name: 'memberFive',
-      src: memberFive,
     },
   ];
 
@@ -248,12 +244,12 @@ export default function SignUpForm() {
                         <Select
                           onValueChange={(something) => handleInput(something)}
                         >
-                          <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Select your Area" />
+                          <SelectTrigger className="w-[180px] font-bold bg-slate-200">
+                            <SelectValue className=' font-poppins font-bold bg-slate-200' placeholder="Select your Area" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectGroup>
-                              <SelectLabel>Areas</SelectLabel>
+                              <SelectLabel className="font-poppins font-bold">Areas</SelectLabel>
                               {queryLoading ? (
                                 <SelectItem value="loading"></SelectItem>
                               ) : (
@@ -267,17 +263,17 @@ export default function SignUpForm() {
                           </SelectContent>
                         </Select>
                       </div>
-                      {/* <div id='avatarHeader'>
+                      <div id='avatarHeader'>
                         <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
                           Choose your avatar
                         </h2>
-                      </div> */}
+                      </div>
 
-                      {/* <div id='avatarContainer' className="flex flex-wrap justify-center items-center lg:flex-row lg:gap-6">
+                      <div id='avatarContainer' className="flex flex-wrap gap-3 justify-center items-center lg:flex-row lg:gap-6 mb-2">
                         {userIcons.map((icon, index) => (
                           <div
                             key={index}
-                            className={`bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10
+                            className={`bg-slate-200 rounded-full lg:w-40 lg:h-40 w-48 h-48 mt-10
                             overflow-hidden hover:transition hover:scale-110 transition
                             duration-300 ease-in-out cursor-pointer${
                             icon.src === selectedImageSrc ? ' selected' : ''
@@ -287,43 +283,12 @@ export default function SignUpForm() {
                             <img src={icon.src} alt={icon.name} />
                           </div>
                         ))}
-                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                          <img
-                            src={memberImg}
-                            alt="memberOne"
-                            layout="fill"
-                            objectFit="cover"
-                          />
-                        </div> */}
-                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                          <img
-                            src={memberImg}
-                            alt="memberOne"
-                            layout="fill"
-                            objectFit="cover"
-                          />
-                        </div> */}
-                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                          <img
-                            src={memberImg}
-                            alt="memberOne"
-                            layout="fill"
-                            objectFit="cover"
-                          />
-                        </div> */}
-                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                          <img
-                            src={memberImg}
-                            alt="memberOne"
-                            layout="fill"
-                            objectFit="cover"
-                          />
-                        </div> */}
-                      {/* <div className=" flex flex-row justify-between">
+                      </div>
+                      <div className=" flex flex-row justify-between">
                         <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />
                         <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer" />
-                      </div> */}
-                      <div id='termsOfService' className="flex flex-col-reverse sm:flex-row justify-center mb-4">
+                      </div>
+                      <div id='termsOfService' className="flex flex-col-reverse sm:flex-row justify-center mb-4 items-center">
                         <input
                           type="checkbox"
                           name="agreement"

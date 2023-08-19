@@ -2,18 +2,36 @@ import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
+import { useQuery } from '@apollo/client';
+import { QUERY_AREA } from '../utils/queries';
 
 export default function UpperDashboard({
   firstName,
   lastName,
   isEmployee,
-  area,
+  areaName,
   userIcon,
+  _id
+
 }) {
+  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
+  const area = data?.area
+  console.log(area)
+  /*let allTask=area.users.reduce((acum, task)=>{
+    return acum+task.tasks.length},0 )
+  let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
+  
+
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;
+
+  
 
   return (
     <section>
@@ -32,7 +50,7 @@ export default function UpperDashboard({
           </h2>
 
           <p className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right">
-            {area}
+            {/* areaName+' Team'*/ }
           </p>
         </div>
         <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
@@ -54,7 +72,7 @@ export default function UpperDashboard({
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">{area}</h2>
+            <h2 className="text-slate-200 font-bold text-xl">{/* area */}</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
             <Progress value={30} />
@@ -68,3 +86,4 @@ export default function UpperDashboard({
     </section>
   );
 }
+

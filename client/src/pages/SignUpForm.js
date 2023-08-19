@@ -323,7 +323,7 @@ export default function SignUpForm() {
                         Create my account
                       </button>
                     </form>
-                
+
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-4 items-center sm:mb-16">
                       <p className=" text-gray-500 text-sm">
                         Already have an account?
@@ -337,25 +337,6 @@ export default function SignUpForm() {
                         <p className="error-text text-white">{errorMessage} !</p>
                       </div>
                     )}
-                    <input
-                      type="submit"
-                      onClick={handleFormSubmit}
-                      name="loginSub"
-                      id="loginSub"
-                      value="Create my account"
-                      className={`bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold ${
-                        !agreement && 'opacity-50 cursor-not-allowed'
-                      }`}
-                      disabled={!agreement}                    />
-                  </form>
-                  </div>
-                  <div className="flex flex-row gap-4 items-center">
-                    <p className=" text-gray-500 text-sm">
-                      Already have an account?
-                    </p>
-                    <Link to="/log-in" className="text-white">
-                      Log In
-                    </Link>
                   </div>
                 )}
               </div>

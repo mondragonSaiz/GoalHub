@@ -19,12 +19,13 @@ import {
   SelectLabel,
   SelectItem,
 } from '../components/select';
+
+// ! TODO: Remove console logs
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
   const areas = queryData?.areas;
 
   console.log('AREAS', areas);
-  // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -95,10 +96,12 @@ export default function SignUpForm() {
     }
   };
   const handleInput = (something) => {
+    // TODO: Remove console logs
     // console.log('handle input triggered');
     // console.log('target', event.target);
     // const selectedValue = event.target.value;
     setArea(something);
+    // TODO: Remove console logs
     // console.log('area selected', area);
   };
 
@@ -120,17 +123,36 @@ export default function SignUpForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // TODO: Remove console logs
+    // console.log('Submited');
+    // console.log('AREA', area);
 
-    console.log('Submited');
-    console.log('AREA', area);
-    if (!email || !firstName || !password || !lastName || !area) {
+    if (!firstName) {
 
-      setErrorMessage('input missing');
+      setErrorMessage('Please add your first name');
+      return;
+    }
+
+    if (!lastName) {
+
+      setErrorMessage('Please add your last name');
+      return;
+    }
+
+    if (!email) {
+
+      setErrorMessage('Please enter your email');
       return;
     }
 
     if (!validation('email', email)) {
-      setErrorMessage('wrong email');
+      setErrorMessage('Please enter a valid email');
+      return;
+    }
+
+    if (!password) {
+
+      setErrorMessage('Please create a password');
       return;
     }
 
@@ -140,12 +162,12 @@ export default function SignUpForm() {
       );
       return;
     }
+    
+    if (!area) {
 
-    // ? Check if necessary
-    // if (!agreement) {
-    //   setErrorMessage('You must agree to the terms and conditions');
-    //   return;
-    // }
+      setErrorMessage('Please select your area');
+      return;
+    }
 
     try {
       const { data } = await addUser({

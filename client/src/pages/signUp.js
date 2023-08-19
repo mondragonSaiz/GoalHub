@@ -12,6 +12,7 @@ export default function SignUp() {
     }
   };
 
+  // ! TODO: Remove this console.log
   console.log(isEmployee);
   return (
     <div className="font-poppins">

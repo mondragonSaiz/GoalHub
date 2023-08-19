@@ -7,6 +7,7 @@ import avatar4 from '../img/avatar/avatar4.png';
 import avatar5 from '../img/avatar/avatar5.png';
 
 // import {useState} from 'react';
+// ! TODO: Remove console logs
 
 export default function HomePage() {
   // const [darkMode, setDarkMode] = useState(false);

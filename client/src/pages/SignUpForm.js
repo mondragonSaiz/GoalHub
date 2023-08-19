@@ -21,6 +21,7 @@ import {
 } from '../components/select';
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
+  console.log(queryData);
   const areas = queryData?.areas;
 
   console.log('AREAS', areas);

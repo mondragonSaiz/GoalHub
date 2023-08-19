@@ -18,11 +18,11 @@ import { Navigate } from 'react-router-dom';
 export default function MemberDashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;
-  
+
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -30,7 +30,7 @@ export default function MemberDashboard() {
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>
-      {!user.isEmployee ? (
+      {user.isEmployee ? (
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
           <section className="min-h-screen">
             <Nav />
@@ -75,7 +75,7 @@ export default function MemberDashboard() {
                 _id={user.area._id}
               />
               <div className="flex flex-col lg:flex-row gap-4">
-                <LeadDashboard  _id={user.area._id}/>
+                <LeadDashboard _id={user.area._id} />
                 {/* <MembersOverview _id={user.area._id} /> */}
                 {/* <DashboardCard>
             <h1 className=" font-bold text-slate-200 font-poppins">

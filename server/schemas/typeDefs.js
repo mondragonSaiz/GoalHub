@@ -66,7 +66,7 @@ const typeDefs = gql`
     removeUser(userId: ID!): User
     removeArea(areaId: ID!): Area
     # Testing
-    AddUserArea(area: ID!, user: ID!): User
+    # AddUserArea(area: ID!, user: ID!): User
   }
 `;
 module.exports = typeDefs;

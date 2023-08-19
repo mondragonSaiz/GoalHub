@@ -1,9 +1,9 @@
 import React from 'react';
-import memberOne from '../img/avatar/avatar1.png';
+import memberOne from '../../img/avatar/avatar1.png';
 // import ProgressBar from '../components/progressBar';
 // import { Checkbox } from '@radix-ui/react-checkbox';
-import { Checkbox } from './checkbox';
-import '../styles/dash.css';
+import { Checkbox } from '../checkbox';
+import '../../styles/dash.css';
 
 export default function MyDashboard({tasks}) {
   const memberImg = memberOne;

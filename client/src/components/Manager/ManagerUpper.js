@@ -1,14 +1,14 @@
 import React from 'react';
-import memberOne from '../img/avatar/avatar1.png';
-import { Progress } from './progress';
-import Card from '../components/Card';
-import MonthLeader from '../components/MonthLeaderOverview.js';
+import memberOne from '../../img/avatar/avatar1.png';
+import { Progress } from '../progress';
+import Card from '../Card';
+import MonthLeader from '../MonthLeaderOverview.js';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_AREA } from '../utils/queries';
+import { QUERY_AREA } from '../../utils/queries';
 
 
-export default function MemberUpperDashboard({ firstName, lastName, _id }) {
+export default function MemberUpper({ firstName, lastName, _id }) {
   const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;

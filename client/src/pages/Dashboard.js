@@ -1,15 +1,14 @@
 import React from 'react';
 import Nav from '../components/navBar';
-import UpperDashboard from '../components/upperDashboard';
+import EmployeeUpper from '../components/Employee/EmployeeUpper';
 import MonthOverview from '../components/monthOverview';
 import MembersOverview from '../components/memberOverview';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
-import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
-import MemberAddTask from '../components/ManagerAddTask';
+import MemberAddTask from '../components/Manager/ManagerAddTask';
 
 // ! TODO: Remove console logs
 
@@ -45,7 +44,7 @@ export default function Dashboard() {
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
           <section className="min-h-screen">
             <Nav firstName={user.firstName} lastName={user.lastName} />
-            <UpperDashboard
+            <EmployeeUpper
               firstName={user.firstName}
               lastName={user.lastName}
               areaName={user.area.name}

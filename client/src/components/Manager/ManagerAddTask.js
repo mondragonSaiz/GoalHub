@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../utils/mutations'
-import memberOne from '../img/avatar/avatar1.png';
+import { ADD_TASK } from '../../utils/mutations'
+import memberOne from '../../img/avatar/avatar1.png';
 import { useQuery } from '@apollo/client';
-import { QUERY_AREA } from '../utils/queries';
+import { QUERY_AREA } from '../../utils/queries';
 import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {

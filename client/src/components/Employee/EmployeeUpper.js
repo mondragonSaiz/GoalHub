@@ -1,9 +1,9 @@
 import React from 'react';
-import memberOne from '../img/avatar/avatar1.png';
-import { Progress } from './progress';
-import Card from './Card';
+import memberOne from '../../img/avatar/avatar1.png';
+import { Progress } from '../progress';
+import Card from '../Card';
 import { useQuery } from '@apollo/client';
-import { QUERY_AREA } from '../utils/queries';
+import { QUERY_AREA } from '../../utils/queries';
 
 export default function UpperDashboard({
   firstName,

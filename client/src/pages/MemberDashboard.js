@@ -4,10 +4,10 @@ import MembersOverview from '../components/memberOverview';
 import MonthOverview from '../components/monthOverview';
 import DashboardCard from '../components/DashboardCard';
 import MyTeamOverview from '../components/MyTeamOverview';
-import EmployeeDashboard from '../components/EmployeeDashboard';
-import MemberAddTask from '../components/ManagerAddTask';
-import MemberUpper from '../components/MemberUpper';
-import UpperDashboard from '../components/upperDashboard';
+import EmployeeDashboard from '../components/Employee/EmployeeDashboard';
+import MemberAddTask from '../components/Manager/ManagerAddTask';
+import MemberUpper from '../components/Manager/ManagerUpper';
+import EmployeeUpper from '../components/Employee/EmployeeUpper';
 
 // import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import { useQuery } from '@apollo/client';
@@ -41,7 +41,7 @@ export default function MemberDashboard() {
           <section className="min-h-screen">
             <Nav />
             {/* Employee Dashboard */}
-            <UpperDashboard
+            <EmployeeUpper
               firstName={user.firstName}
               lastName={user.lastName}
               tasks={user.tasks}

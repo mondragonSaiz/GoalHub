@@ -19,13 +19,12 @@ import {
   SelectLabel,
   SelectItem,
 } from '../components/select';
-
-// ! TODO: Remove console logs
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
   const areas = queryData?.areas;
 
   console.log('AREAS', areas);
+  // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,15 +32,15 @@ export default function SignUpForm() {
   const [area, setArea] = useState('');
   const [agreement, setAgreement] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [userIcon, setUserIcon] = useState('');
+  const [selectedImageSrc, setSelectedImageSrc] = useState('');
 
   const handleImageClick = (src) => {
-    setUserIcon(src);
+    setSelectedImageSrc(src);
+    // console.log('SELECTED', selectedImageSrc);
   };
   useEffect(() => {
-    console.log('SELECTED 1', userIcon);
-    console.log('SELECTED 2', area);
-  }, [userIcon, area]);
+    console.log('SELECTED', selectedImageSrc);
+  }, [selectedImageSrc]);
 
   const userIcons = [
     {
@@ -70,6 +69,8 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
+  console.log('isEmployee', state.isEmployee);
+
   const handleInputChange = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
@@ -87,27 +88,19 @@ export default function SignUpForm() {
       case 'password':
         setPassword(inputValue);
         break;
-      case 'agreement':
-        setAgreement(!agreement);
-        break;
-
-      default:
-        console.log('No input found');
     }
   };
   const handleInput = (something) => {
-    // TODO: Remove console logs
     // console.log('handle input triggered');
     // console.log('target', event.target);
     // const selectedValue = event.target.value;
     setArea(something);
-    // TODO: Remove console logs
-    // console.log('area selected', area);
+    console.log('area selected', area);
   };
 
   const validation = (name, value) => {
     let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
-    let regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
+    let regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
     if (name === 'password') {
       return regPassword.test(value);
@@ -123,36 +116,17 @@ export default function SignUpForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO: Remove console logs
-    // console.log('Submited');
-    // console.log('AREA', area);
 
-    if (!firstName) {
+    console.log('SUbmited');
+    console.log('AREA', area);
+    if (!email || !firstName || !password || !lastName || !area) {
 
-      setErrorMessage('Please add your first name');
-      return;
-    }
-
-    if (!lastName) {
-
-      setErrorMessage('Please add your last name');
-      return;
-    }
-
-    if (!email) {
-
-      setErrorMessage('Please enter your email');
+      setErrorMessage('input missing');
       return;
     }
 
     if (!validation('email', email)) {
-      setErrorMessage('Please enter a valid email');
-      return;
-    }
-
-    if (!password) {
-
-      setErrorMessage('Please create a password');
+      setErrorMessage('wrong email');
       return;
     }
 
@@ -160,12 +134,6 @@ export default function SignUpForm() {
       setErrorMessage(
         'Password Must have 1 capital letter, 1 low case, 1 number and at least 8 characters long'
       );
-      return;
-    }
-    
-    if (!area) {
-
-      setErrorMessage('Please select your area');
       return;
     }
 
@@ -178,7 +146,6 @@ export default function SignUpForm() {
           password,
           isEmployee: state.isEmployee,
           area,
-          userIcon,
         },
       });
 
@@ -277,28 +244,63 @@ export default function SignUpForm() {
                             </SelectGroup>
                           </SelectContent>
                         </Select>
+                      </div>
+                      {/* <div id='avatarHeader'>
                         <h2 className=" text-slate-200 flex justify-center text-lg font-bold">
                           Choose your avatar
                         </h2>
-                        <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
-                          {userIcons.map((icon, index) => (
-                           <div
-                              key={index}
-                              className={`bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10
-                          overflow-hidden hover:transition hover:scale-110 transition
-                          duration-300 ease-in-out cursor-pointer${
-                           icon.src === userIcon ? ' selected' : ''
-                          }`}
-                              onClick={() => handleImageClick(icon.src)}
-                             >
-                              <img src={icon.src} alt={icon.name} />
-                            </div>
-                           ))}
-                            </div>
-                    <div className=" flex flex-row justify-between">
-                      <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />
-                      <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer" />
-                    </div>
+                      </div> */}
+
+                      {/* <div id='avatarContainer' className="flex flex-wrap justify-center items-center lg:flex-row lg:gap-6">
+                        {userIcons.map((icon, index) => (
+                          <div
+                            key={index}
+                            className={`bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10
+                            overflow-hidden hover:transition hover:scale-110 transition
+                            duration-300 ease-in-out cursor-pointer${
+                            icon.src === selectedImageSrc ? ' selected' : ''
+                            }`}
+                            onClick={() => handleImageClick(icon.src)}
+                          >
+                            <img src={icon.src} alt={icon.name} />
+                          </div>
+                        ))}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                        {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
+                          <img
+                            src={memberImg}
+                            alt="memberOne"
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        </div> */}
+                      {/* <div className=" flex flex-row justify-between">
+                        <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />
+                        <AiOutlineArrowRight className=" text-slate-200 font-bold text-xl cursor-pointer" />
+                      </div> */}
                       <div id='termsOfService' className="flex flex-col-reverse sm:flex-row justify-center mb-4">
                         <input
                           type="checkbox"
@@ -335,25 +337,6 @@ export default function SignUpForm() {
                         <p className="error-text text-white">{errorMessage} !</p>
                       </div>
                     )}
-                    <input
-                      type="submit"
-                      onClick={handleFormSubmit}
-                      name="loginSub"
-                      id="loginSub"
-                      value="Create my account"
-                      className={`bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold ${
-                        !agreement && 'opacity-50 cursor-not-allowed'
-                      }`}
-                      disabled={!agreement}                    />
-                  </form>
-
-                  <div className="flex flex-row gap-4 items-center">
-                    <p className=" text-gray-500 text-sm">
-                      Already have an account?
-                    </p>
-                    <Link to="/log-in" className="text-white">
-                      Log In
-                    </Link>
                   </div>
                 )}
               </div>

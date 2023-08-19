@@ -11,8 +11,6 @@ import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
 import LeadDashboard from '../components/LeadDashboard';
 
-
-
 export default function Dashboard() {
   //
 
@@ -21,7 +19,6 @@ export default function Dashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;
 
-  
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
@@ -51,7 +48,7 @@ export default function Dashboard() {
               lastName={user.lastName}
               areaName={user.area.name}
               isEmployee={user.isEmployee}
-              _id={user.area._id} 
+              userIcon={user.userIcon}
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MonthOverview />

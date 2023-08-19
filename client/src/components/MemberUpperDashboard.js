@@ -42,7 +42,7 @@ export default function MemberUpperDashboard({
               src={memberImg}
               alt="memberOne"
               layout="fill"
-              objectFit="cover"
+              oobjectfit="cover"
             />
           </div>
           <h2 className="flex justify-end text-slate-200 text-2xl font-boldfont-poppins lg:text-center">

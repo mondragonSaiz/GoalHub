@@ -7,6 +7,7 @@ export const ADD_USER = gql`
     $email: String!
     $password: String!
     $area: ID!
+    $userIcon: String!
   ) {
     addUser(
       firstName: $firstName
@@ -15,6 +16,7 @@ export const ADD_USER = gql`
       email: $email
       password: $password
       area: $area
+      userIcon: $userIcon
     ) {
       token
       user {
@@ -38,3 +40,18 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+export const ADD_TASK = gql`
+  mutation addTask($name: String!, $taskDesc: String!, $isCompleted: Boolean!, $user: ID! ) {
+    addTask (name: $name, taskDesc: $taskDesc, isCompleted: $isCompleted, user: $user) {
+      name 
+      taskDesc
+      isCompleted
+      user {
+        _id
+        firstName
+        lastName
+        email 
+        isEmployee
+      }
+    }
+  }` 

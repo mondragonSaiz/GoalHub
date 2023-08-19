@@ -113,9 +113,12 @@ export default function SignUpForm() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+
     console.log('SUbmited');
     console.log('AREA', area);
     if (!email || !firstName || !password || !lastName || !area) {
+
       setErrorMessage('input missing');
       return;
     }
@@ -242,7 +245,7 @@ export default function SignUpForm() {
                       {userIcons.map((icon, index) => (
                         <div
                           key={index}
-                          className={`bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10
+                          className={`bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10
                     overflow-hidden hover:transition hover:scale-110 transition
                     duration-300 ease-in-out cursor-pointer${
                       icon.src === userIcon ? ' selected' : ''
@@ -252,38 +255,6 @@ export default function SignUpForm() {
                           <img src={icon.src} alt={icon.name} />
                         </div>
                       ))}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
-                      {/* <div className=" bg-slate-200 rounded-full lg:w-60 lg:h-60 w-60 h-60 mt-10 overflow-hidden hover:transition hover:scale-110 transition duration-300 ease-in-out cursor-pointer">
-                        <img
-                          src={memberImg}
-                          alt="memberOne"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                      </div> */}
                     </div>
                     <div className=" flex flex-row justify-between">
                       <AiOutlineArrowLeft className=" text-slate-200 font-bold text-xl cursor-pointer" />

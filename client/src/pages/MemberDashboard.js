@@ -10,14 +10,19 @@ import LeadDashboard from '../components/LeadDashboard';
 import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 // import {useState} from 'react';
 
 export default function MemberDashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;
-  console.log('USER?', user);
-
+  
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/" />;
+  }
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -25,7 +30,7 @@ export default function MemberDashboard() {
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>
-      {user.isEmployee ? (
+      {!user.isEmployee ? (
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
           <section className="min-h-screen">
             <Nav />
@@ -33,11 +38,12 @@ export default function MemberDashboard() {
               firstName={user.firstName}
               lastName={user.lastName}
               tasks={user.tasks}
-              area={user.area.name}
+              areaName={user.area.name}
+              _id={user.area._id}
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MyDashboard tasks={user.tasks} />
-              <MyTeamOverview />
+              <MembersOverview _id={user.area._id} />
               {/* <DashboardCard>
               <h1 className=" font-bold text-slate-200 font-poppins">
                 My dashboard
@@ -66,9 +72,10 @@ export default function MemberDashboard() {
               <LeaderUpperDashboard
                 firstName={user.firstName}
                 lastName={user.lastName}
+                _id={user.area._id}
               />
               <div className="flex flex-col lg:flex-row gap-4">
-                <LeadDashboard />
+                <LeadDashboard  _id={user.area._id}/>
                 {/* <MembersOverview _id={user.area._id} /> */}
                 {/* <DashboardCard>
             <h1 className=" font-bold text-slate-200 font-poppins">

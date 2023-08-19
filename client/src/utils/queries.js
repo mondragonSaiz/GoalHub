@@ -43,16 +43,20 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_AREA = gql`
-  query Area($id: ID!) {
-    area(_id: $id) {
-      name
-      users {
-        firstName
-        lastName
+query Area($id: ID!){
+  area(_id: $id) {
+    name
+    users {
+      firstName
+      lastName
+      tasks {
+        createdAt
+        name
+        isCompleted
       }
     }
   }
-`;
+}`;
 
 export const QUERY_AREAS = gql`
   query Areas {

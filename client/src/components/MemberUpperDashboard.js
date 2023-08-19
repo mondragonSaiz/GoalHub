@@ -3,22 +3,30 @@ import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_AREA } from '../utils/queries';
 
 export default function MemberUpperDashboard({
   firstName,
   lastName,
   tasks,
-  area,
+  areaName,
+  _id
 }) {
   const [first, setFirst] = useState(firstName);
-  console.log(
-    tasks.filter((task) => {
-      return task.isCompleted;
-    }).length
-  );
-  let completedTask = tasks.filter((task) => {
-    return task.isCompleted;
-  }).length;
+
+  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  const area = data.area
+  let allTask=area.users.reduce((acum, task)=>{
+    return acum+task.tasks.length},0 )
+  let teamCompletedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)
+
+
+ 
+  let completedTask = tasks.filter((task) =>task.isCompleted).length;
 
   const memberImg = memberOne;
   const memberName = `${
@@ -46,7 +54,7 @@ export default function MemberUpperDashboard({
           <Link
             className="flex justify-end text-gray-500 text-basefont-poppins lg:text-right"
             to={`/settings`}
-            state={{ first: first, lastName: lastName, area: area }}
+            state={{ first: first, lastName: lastName, area: areaName }}
           >
             Settings
           </Link>
@@ -70,10 +78,10 @@ export default function MemberUpperDashboard({
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">{area}</h2>
+            <h2 className="text-slate-200 font-bold text-xl">{areaName+" Team"}</h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
-            <Progress value={30} />
+            <Progress value={teamCompletedTask/allTask*100} />
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>

@@ -65,6 +65,8 @@ const typeDefs = gql`
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User
     removeArea(areaId: ID!): Area
+    # Testing
+    AddUserArea(area: ID!, user: ID!): User
   }
 `;
 module.exports = typeDefs;

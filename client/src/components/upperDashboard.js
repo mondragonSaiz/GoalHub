@@ -4,30 +4,31 @@ import { Progress } from './progress';
 import Card from './Card';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
+
 export default function UpperDashboard({
   firstName,
   lastName,
   isEmployee,
   areaName,
   userIcon,
-  id,
+  _id,
 }) {
   /*let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
-  
-
+  const { loading, data } = useQuery(QUERY_AREA, { variables: { id: _id } });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   const memberImg = memberOne;
+
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;
 
-  const { loading, data } = useQuery(QUERY_AREA, { variables: { id: id } });
-  if (loading) {
-    return <div>Loading...</div>;
-  }
   console.log('DATAAA', data);
   const area = data?.area;
+  // const userIcon = data?.userIcon;
   let allTask = area.users.reduce((acum, task) => {
     return acum + task.tasks.length;
   }, 0);

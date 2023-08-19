@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../utils/mutations'
 import memberOne from '../img/avatar/avatar1.png';
-// import ProgressBar from '../components/progressBar';
-// import { Checkbox } from '@radix-ui/react-checkbox';
-import { Checkbox } from './checkbox';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
 import NewTask from './NewTask'
@@ -21,6 +17,7 @@ export default function MyDashboard({_id}) {
   
   const [openModal, setOpenModal] = useState(false);
   const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
+
   const { loading, data: queryData} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;
@@ -28,8 +25,6 @@ export default function MyDashboard({_id}) {
   let index =1;
   const area = queryData.area
   
-
-
   const { name, taskDesc, user } = formData;
 
   const handleInputChange = (e) => {
@@ -96,6 +91,7 @@ export default function MyDashboard({_id}) {
    };
   
   return (
+    // Button to Open Modal for creating a Task
     <div className="flex flex-col w-full font-poppins mb-10">
       <button  
       className="openModalBtn" 
@@ -114,7 +110,7 @@ export default function MyDashboard({_id}) {
           </div>
         </div>
       </button>
-      {/* Here i have to add props to make the state work  */}
+ 
       {openModal && <NewTask 
       selectedUserId={selectedUserId}
       setSelectedUserId={setSelectedUserId} 
@@ -123,6 +119,8 @@ export default function MyDashboard({_id}) {
       handleInputChange={handleInputChange} 
       createTask={createTask} 
       closeModal={setOpenModal} />}
+
+      {/* Display of Employees(users) tasks*/}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">
       <div className='flex justify-between items-center'>
            <h2

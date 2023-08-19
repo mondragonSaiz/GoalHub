@@ -4,18 +4,19 @@ import memberOne from '../img/avatar/avatar1.png';
 // import { Checkbox } from '@radix-ui/react-checkbox';
 import { Checkbox } from './checkbox';
 import '../styles/dash.css';
+
 export default function MyDashboard({tasks}) {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
+
   let objectDate = new Date()
   let month = objectDate.getMonth();
   console.log(month + 1)
+
   let date;
   
   console.log(tasks)
-
- 
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">

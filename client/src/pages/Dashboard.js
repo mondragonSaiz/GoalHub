@@ -9,7 +9,7 @@ import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
 import MyTeamOverview from '../components/MyTeamOverview';
-import LeadDashboard from '../components/LeadDashboard';
+import MemberAddTask from '../components/ManagerAddTask';
 
 // ! TODO: Remove console logs
 
@@ -51,7 +51,7 @@ export default function Dashboard() {
               areaName={user.area.name}
               isEmployee={user.isEmployee}
               userIcon={user.userIcon}
-              id={user.area._id}
+              _id={user.area._id}
             />
             <div className="flex flex-col lg:flex-row gap-4">
               <MonthOverview />

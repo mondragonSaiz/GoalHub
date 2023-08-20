@@ -17,7 +17,10 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
   let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)
-
+  let compTask = area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted).map(tas=>{ 
+   let formatted = new Date(tas.createdAt)
+    return formatted.getDay()}))
+  console.log(compTask)
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
@@ -70,7 +73,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
             </h2>
             {/* <p className="text-gray-500 mb-4">overview</p> */}
             {/* <ProgressBar/> */}
-            <MonthLeader />
+            <MonthLeader compTask={compTask}/>
           </Card>
         </div>
       </div>

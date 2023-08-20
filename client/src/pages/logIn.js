@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 // ! TODO: Remove console logs
 
 export default function LogIn() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  if (Auth.loggedIn()) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;

@@ -10,6 +10,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import { QUERY_AREAS } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 import {
   Select,
   SelectGroup,
@@ -24,7 +25,7 @@ export default function SignUpForm() {
   console.log(queryData);
   const areas = queryData?.areas;
 
-  console.log('AREAS', areas);
+
   // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -35,6 +36,7 @@ export default function SignUpForm() {
   const [errorMessage, setErrorMessage] = useState('');
   const [userIcon, setUserIcon] = useState('');
 
+  
   const handleImageClick = (src) => {
     setUserIcon(src);
   };
@@ -42,6 +44,9 @@ export default function SignUpForm() {
     console.log('SELECTED 1', userIcon);
     console.log('SELECTED 2', area);
   }, [userIcon, area]);
+
+  
+
 
   const userIcons = [
     {
@@ -70,6 +75,11 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
+
+  if (Auth.loggedIn()) {
+    return <Navigate to="/dashboard" />;
+  }
+
   const handleInputChange = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
@@ -86,6 +96,9 @@ export default function SignUpForm() {
         break;
       case 'password':
         setPassword(inputValue);
+        break;
+      default:
+        console.log('missing input')
         break;
     }
   };

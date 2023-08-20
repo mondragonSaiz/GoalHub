@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
+import Subscription from './Subscriptions';
 
 
 // ! TODO: Remove console logs
@@ -119,21 +120,23 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex flex-row  gap-4">
-                  {//TODO: Conditional render
+                  
+                  {!employee ? 
                   <a className="rounded-lg"
-                    href="/subscriptions"
-                    style={{
-                      border: '2px solid gray',
-                      backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '2%',
-                      width: '6rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
-                    }}>
-                      Subscription
-                  </a>
-                }
+                  href="/subscriptions"
+                  style={{
+                  border: '2px solid gray',
+                  backgroundColor: '#202020',
+                  color: 'white',
+                  padding: '2%',
+                  width: '6rem',
+                  height: '3rem',
+                  fontSize: 'smaller',
+                  }}>
+                  Subscription
+                  </a> : <div></div>
+                  }
+                
                   <button
                     className="rounded-lg"
                     to="/sign-up"

@@ -21,7 +21,7 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 export default function Subscription(){
     const { loading, data } = useQuery(QUERY_ME);
-    const { info } = useQuery(QUERY_ALL_PRODUCTS);
+    const { __, info } = useQuery(QUERY_ALL_PRODUCTS);
     if (!Auth.loggedIn()) {
         return <Navigate to="/" />;
     }

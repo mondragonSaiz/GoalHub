@@ -100,6 +100,7 @@ const resolvers = {
               name: product.name,
               description: product.description,
             },
+            unit_amount: product.price * 100,
           },
         });
       }

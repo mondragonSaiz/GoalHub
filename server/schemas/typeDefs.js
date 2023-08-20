@@ -32,6 +32,32 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+
+  type Product {
+    _id: ID
+    name: String
+    description: String
+    price: Float
+  }
+  
+  type Order {
+    _id: ID
+    purchaseDate: String
+    product: Product
+  }
+
+  type Checkout {
+    session: ID
+  }
+
+  input ProductInput{
+    _id: ID
+    name: String
+    description: String
+    price: Float
+  }
+
+
   type Query {
     users: [User]
     user(id: ID!): User
@@ -40,6 +66,8 @@ const typeDefs = gql`
     area(_id: ID!): Area
     tasks: [Task]
     task(_id: ID!): Task
+    products(name: String): Product 
+    checkout( products: [ProductInput]): Checkout
   }
 
   type Mutation {
@@ -67,6 +95,7 @@ const typeDefs = gql`
     removeArea(areaId: ID!): Area
     # Testing
     # AddUserArea(area: ID!, user: ID!): User
+    addOrder(products: [ID]!): Order
   }
 `;
 module.exports = typeDefs;

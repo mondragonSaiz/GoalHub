@@ -5,8 +5,8 @@ import MonthOverview from '../components/monthOverview';
 import DashboardCard from '../components/DashboardCard';
 import MyTeamOverview from '../components/MyTeamOverview';
 import EmployeeDashboard from '../components/Employee/EmployeeDashboard';
-import MemberAddTask from '../components/Manager/ManagerAddTask';
-import MemberUpper from '../components/Manager/ManagerUpper';
+import ManagerAddTask from '../components/Manager/ManagerAddTask';
+import ManagerUpper from '../components/Manager/ManagerUpper';
 import EmployeeUpper from '../components/Employee/EmployeeUpper';
 
 // import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
@@ -61,7 +61,7 @@ export default function MemberDashboard() {
             <section className="min-h-screen">
               <Nav firstName={user.firstName} lastName={user.lastName} />
               {/* Member Upper Dashboard */}
-              <MemberUpper
+              <ManagerUpper
                 firstName={user.firstName}
                 lastName={user.lastName}
                 _id={user.area._id}
@@ -69,7 +69,7 @@ export default function MemberDashboard() {
               
               <div className="flex flex-col lg:flex-row gap-4">
                 {/* <LeadDashboard _id={user.area._id} /> */}
-                <MemberAddTask _id={user.area._id} />
+                <ManagerAddTask _id={user.area._id} />
                 {/* <MembersOverview _id={user.area._id} /> */}
                 {/* <DashboardCard>
             <h1 className=" font-bold text-slate-200 font-poppins">

@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations'
 import memberOne from '../../img/avatar/avatar1.png';
-import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../../utils/queries';
 import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {
+  // const {user, setUser} = useState(null);
+
+  // useEffect(() => {
+  //   const { data } = useQuery(QUERY_AREA, { variables: { id: _id }  });
+  //   setUser(data?.user);
+  // }, []);
+  // if (!user) {
+  //   return <div>Loading...</div>
+  // }
+
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [formData, setFormData] = useState({
     name: " ",
@@ -22,9 +31,10 @@ export default function MyDashboard({_id}) {
   if (loading) {
     return <div>Loading...</div>;
   }
-  let index =1;
-  const area = queryData.area
-  
+  let index = 1;
+  const area = queryData?.area
+
+  console.log(area)
   const { name, taskDesc, user } = formData;
 
   const handleInputChange = (e) => {
@@ -63,6 +73,7 @@ export default function MyDashboard({_id}) {
     console.log(formData.name)
     console.log(formData.taskDesc)
     console.log(selectedUserId)
+    console.log(user)
 
     if (!formData.name || !formData.taskDesc) {
       return; 
@@ -118,7 +129,8 @@ export default function MyDashboard({_id}) {
       formData={formData} 
       handleInputChange={handleInputChange} 
       createTask={createTask} 
-      closeModal={setOpenModal} />}
+      closeModal={setOpenModal}
+      _id={user.area._id} />}
 
       {/* Display of Employees(users) tasks*/}
       <div className="mt-4 p-5 border-2 rounded-2xl border-gray-500">

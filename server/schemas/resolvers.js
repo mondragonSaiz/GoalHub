@@ -43,6 +43,7 @@ const resolvers = {
           .populate('users')
           .populate('supervisor')
           .populate({ path: 'users', populate: 'tasks' });
+
       } catch (err) {
         console.log(err);
       }

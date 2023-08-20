@@ -15,6 +15,7 @@ import { Navigate } from 'react-router-dom';
 
 // import {useState} from 'react';
 
+// ! TODO: Remove console logs
 export default function MemberDashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me;

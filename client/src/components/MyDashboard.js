@@ -128,6 +128,7 @@ export default function MyDashboard({ tasks }) {
                   >
                     {task.isCompleted ? 'Completed' : 'Pending'}
                   </p>
+
                   <p className=" font-thin text-gray-500">{task.createdAt}</p>
                 </div>
               );

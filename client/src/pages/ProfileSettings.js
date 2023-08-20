@@ -14,14 +14,12 @@ export default function ProfileSettings() {
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-  
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
  
-  
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,23 +42,37 @@ export default function ProfileSettings() {
               className="items-center w-100 h-100 border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8"
               style={{ backgroundColor: '#202020' }}
             >
-              <div className="flex flex-row justify-end text-right">
-                <button
-                  onClick={logout}
-                  to="/"
-                  style={{
-                    backgroundColor: '#202020',
-                    color: 'white',
-                    border: '1px solid white',
-                    borderRadius: '15px',
-                    width: '6rem',
-                    height: '2.5rem',
-                    fontSize: 'smaller',
-                  }}
-                >
-                  Log out
-                </button>
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col ">
+                  <button
+                    className="text-gray-400 hover:text-gray-500"
+                    style={{
+                      backgroundColor: '#202020',
+                      width: '6rem',
+                      height: '2.5rem',
+                      fontSize: 'smaller',
+                    }}
+                  >
+                    <Link to="/member-dashboard">back</Link>
+                  </button>
+                </div>
+                <div className="flex flex-col">
+                  <button
+                    className="text-gray-400 hover:text-gray-500"
+                    onClick={logout}
+                    to="/"
+                    style={{
+                      backgroundColor: '#202020',
+                      width: '6rem',
+                      height: '2.5rem',
+                      fontSize: 'smaller',
+                    }}
+                  >
+                    Log out
+                  </button>
+                </div>
               </div>
+
               <div className="flex flex-row justify-center items-center">
                 <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
                   <div className=" bg-slate-200 rounded-full lg:w-20 lg:h-20 w-40 h-40 mt-10 overflow-hidden">

@@ -15,7 +15,8 @@ const logout = (event) => {
     event.preventDefault();
     Auth.logout();
 };
-
+// TODO: query products and render them to the buttons/links to create the stripe session
+// for the payment 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 export default function Subscription(){

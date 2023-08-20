@@ -1,10 +1,6 @@
-.dashContainer {
-  height: 32rem;
-}
-
 @media screen and (max-width: 430px) {
   .dashContainer {
-    height: 32rem;
+    font-size: 0.6875rem;
   }
   .dashContainer > h1 {
     font-size: 0.6875rem;
@@ -13,21 +9,19 @@
     font-size: 0.6875rem;
   }
   .dashContainer > div {
-    font-size: 0.6875rem;
+    font-size: 0.5875rem;
+  }
+  .taskElement {
+    font-size: 0.4875rem;
+  }
+  .taskElement_isCompleted {
+    font-size: 0.5875rem;
+    padding-left: 1rem;
   }
 }
 
 @media screen and (max-width: 360px) {
   .dashContainer {
-    height: 32rem;
-  }
-  .dashContainer > h1 {
-    font-size: 0.5875rem;
-  }
-  .dashContainer > p {
-    font-size: 0.5875rem;
-  }
-  .dashContainer > div {
     font-size: 0.5875rem;
   }
 }

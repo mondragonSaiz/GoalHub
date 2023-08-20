@@ -1,4 +1,4 @@
-const { User, Area, Task } = require('../models');
+const { User, Area, Task, Product, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
@@ -62,6 +62,62 @@ const resolvers = {
         console.log(err);
       }
     },
+
+    products: async (parent, { name }) => {
+      const params = {};
+
+      if (name) {
+        params.name = {
+          $regex: name,
+        };
+      }
+
+      return await Product.find(params).populate('name');
+    },
+
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+        });
+
+        return user.orders.id(_id);
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
+      await Order.create({ products: args.products.map(({ _id }) => _id) });
+      const line_items = [];
+
+      for (const product of args.products) {
+        line_items.push({
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: product.name,
+              description: product.description,
+            },
+          },
+        });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
+    },
+
+
+
+
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -184,6 +240,21 @@ const resolvers = {
       } catch (err) {
         console.log(err);
       }
+    },
+
+    addOrder: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order },
+        });
+
+        return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
   },
 };

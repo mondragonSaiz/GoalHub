@@ -66,8 +66,10 @@ const typeDefs = gql`
     area(_id: ID!): Area
     tasks: [Task]
     task(_id: ID!): Task
-    products(name: String): Product 
+    products: [Product] 
+    # product(_id: ID!): Product
     checkout( products: [ProductInput]): Checkout
+    order(_id: ID!): Order
   }
 
   type Mutation {

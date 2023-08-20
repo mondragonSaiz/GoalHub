@@ -24,7 +24,7 @@ export default function ProfileSettings() {
     return <div>Loading...</div>;
   }
   const user = data?.me;
-
+  console.log(user)
   const memberImg = memberOne;
   const memberName = `${
     user.firstName.slice(0, 1).toUpperCase() +
@@ -105,6 +105,19 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex flex-row  gap-4">
+                  <a className="rounded-lg"
+                    href="/subscriptions"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '6rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}>
+                      Subscription
+                  </a>
                   <button
                     className="rounded-lg"
                     to="/sign-up"

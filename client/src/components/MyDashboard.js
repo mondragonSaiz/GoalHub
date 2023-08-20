@@ -29,41 +29,52 @@ export default function MyDashboard({ tasks }) {
         <p className=" font-thin text-gray-500">
           Keep track of your achievements!
         </p>
-        <div
-          className="grid grid-cols-4 gap-4 dashContainer py-2"
-          style={{ color: 'white' }}
-        >
-          <div>Check</div>
-          <div>Task</div>
-          <div className="taskElement_isCompleted">Status</div>
-          <div>Date</div>
-        </div>
 
-        {tasks.map((task) => {
-          return (
+        {tasks.length !== 0 ? (
+          <div>
             <div
-              className="grid grid-cols-4 gap-4 overflow-auto"
+              className="grid grid-cols-4 gap-4 dashContainer py-2"
               style={{ color: 'white' }}
             >
-              <div className=" py-2 px-1 taskElement">
-                <Checkbox />
-              </div>
-              <div className=" py-2 px-1 text-base overflow-auto">
-                <p className="taskElement ">{task.name}</p>
-              </div>
-              <div className=" py-2 px-1 text-sm font-thin text-gray-500 ">
-                <p className="taskElement_isCompleted">
-                  {task.isCompleted ? 'Completed' : 'Pending'}
-                </p>
-              </div>
-              <div>
-                <p className="py-2 px-1  font-thin text-gray-500 text-base  taskElement">
-                  <p className="taskElement">{task.createdAt}</p>
-                </p>
-              </div>
+              <div>Check</div>
+              <div>Task</div>
+              <div className="taskElement_isCompleted">Status</div>
+              <div>Date</div>
             </div>
-          );
-        })}
+            {tasks.map((task) => {
+              return (
+                <div
+                  className="grid grid-cols-4 gap-4 overflow-auto"
+                  style={{ color: 'white' }}
+                >
+                  <div className=" py-2 px-1 taskElement">
+                    <Checkbox />
+                  </div>
+                  <div className=" py-2 px-1 text-base overflow-auto">
+                    <p className="taskElement ">{task.name}</p>
+                  </div>
+                  <div className=" py-2 px-1 text-sm font-thin text-gray-500 ">
+                    <p className="taskElement_isCompleted">
+                      {task.isCompleted ? 'Completed' : 'Pending'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="py-2 px-1  font-thin text-gray-500 text-base  taskElement">
+                      <p className="taskElement">{task.createdAt}</p>
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="py-4">
+            <p className="font-thin text-gray-500 text-base">
+              No tasks assigned.
+            </p>
+          </div>
+        )}
+
         {/* <div>Check</div>
           <div>Task</div>
           <div>Status</div>
@@ -127,283 +138,6 @@ export default function MyDashboard({ tasks }) {
             <p className="text-white">Free Of Tasks :{')'}</p>
           </div>
         )} */}
-
-        {/*  <div className="flex flex-col justify-between items-center mt-5">
-            <div style={{ visibility: 'hidden', paddingBottom: '0.8rem' }}>
-              <p>cb</p>
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-            <div style={{ paddingBottom: '0.8rem' }}>
-              <Checkbox />
-            </div>
-          </div>
-          <div className="flex flex-col justify-between items-center mt-5">
-            <h2
-              className=" flex font-bold text-slate-200"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              Status
-            </h2>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              In progress
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              done
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              In progress
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              Incomplete
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              done
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              In progress
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              done
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              Incomplete
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              done
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              In progress
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              done
-            </p>
-          </div>
-          <div className="flex flex-col justify-between items-center mt-5">
-            <h2
-              className=" flex font-bold text-slate-200"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              Achievement
-            </h2>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              achievement
-            </p>
-          </div>
-          <div className="flex flex-col justify-between items-center mt-5">
-            <h2
-              className=" flex font-bold text-slate-200"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              Hours Spent
-            </h2>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-            <p
-              className=" font-thin text-gray-500"
-              style={{ paddingBottom: '0.8rem' }}
-            >
-              0hrs
-            </p>
-          </div>
-        </div>
-
-        {/* <div class="grid grid-cols-4 gap-1" style={{ fontSize: 'smaller' }}>
-          <div>
-            <div style={{ visibility: 'hidden' }}>check</div>
-            <div>
-              <Checkbox />
-            </div>
-            <div>
-              <Checkbox />
-            </div>
-          </div>
-          <div>Status</div>
-          <div>achievement</div>
-          <div> Hours</div>
-          */}
       </div>
     </div>
   );

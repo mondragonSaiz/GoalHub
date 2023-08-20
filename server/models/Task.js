@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-
+const moment = require('moment');
 const taskSchema = new Schema({
   name: {
     type: String,
@@ -17,7 +17,7 @@ const taskSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
+    get: (timestamp) => moment(timestamp).format('MM/DD/YYYY'),
   },
   isCompleted: {
     type: Boolean,

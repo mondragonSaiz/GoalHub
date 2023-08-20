@@ -18,95 +18,6 @@ const logout = (event) => {
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-// const Cart = () => {
-//   const [state, dispatch] = useStoreContext();
-//   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
-
-//   useEffect(() => {
-//     if (data) {
-//       stripePromise.then((res) => {
-//         res.redirectToCheckout({ sessionId: data.checkout.session });
-//       });
-//     }
-//   }, [data]);
-
-//   useEffect(() => {
-//     async function getCart() {
-//       const cart = await idbPromise('cart', 'get');
-//       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
-//     }
-
-//     if (!state.cart.length) {
-//       getCart();
-//     }
-//   }, [state.cart.length, dispatch]);
-
-//   function toggleCart() {
-//     dispatch({ type: TOGGLE_CART });
-//   }
-
-//   function calculateTotal() {
-//     let sum = 0;
-//     state.cart.forEach((item) => {
-//       sum += item.price * item.purchaseQuantity;
-//     });
-//     return sum.toFixed(2);
-//   }
-
-//   function submitCheckout() {
-//     getCheckout({
-//       variables: { 
-//         products: [...state.cart],
-//       },
-//     });
-//   }
-
-//   if (!state.cartOpen) {
-//     return (
-//       <div className="cart-closed" onClick={toggleCart}>
-//         <span role="img" aria-label="trash">
-//           🛒
-//         </span>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="cart">
-//       <div className="close" onClick={toggleCart}>
-//         [close]
-//       </div>
-//       <h2>Shopping Cart</h2>
-//       {state.cart.length ? (
-//         <div>
-//           {state.cart.map((item) => (
-//             <CartItem key={item._id} item={item} />
-//           ))}
-
-//           <div className="flex-row space-between">
-//             <strong>Total: ${calculateTotal()}</strong>
-
-//             {Auth.loggedIn() ? (
-//               <button onClick={submitCheckout}>Checkout</button>
-//             ) : (
-//               <span>(log in to check out)</span>
-//             )}
-//           </div>
-//         </div>
-//       ) : (
-//         <h3>
-//           <span role="img" aria-label="shocked">
-//             😱
-//           </span>
-//           You haven't added anything to your cart yet!
-//         </h3>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Cart;
-
 export default function Subscription(){
     const { loading, data } = useQuery(QUERY_ME);
     const { info } = useQuery(QUERY_ALL_PRODUCTS);
@@ -148,7 +59,7 @@ export default function Subscription(){
                   </div>
                     <div className="flex flex-row  gap-4">
                       <button className="rounded-lg"
-                        to="/subscriptions"
+                        href="/"
                         style={{
                           border: '2px solid gray',
                           backgroundColor: '#202020',
@@ -158,11 +69,11 @@ export default function Subscription(){
                           height: '3rem',
                           fontSize: 'smaller',
                         }}>
-                          Subscription
+                          Product #1
                       </button>
-                      <button
+                      <a
                         className="rounded-lg"
-                        to="/sign-up"
+                        href="/"
                         style={{
                           border: '2px solid gray',
                           backgroundColor: '#202020',
@@ -173,11 +84,11 @@ export default function Subscription(){
                           fontSize: 'smaller',
                         }}
                       >
-                        Change Name
-                      </button>
-                      <button
+                        Product #2
+                      </a>
+                      <a
                         className="rounded-lg"
-                        to="/sign-up"
+                        href="/"
                         style={{
                           border: '2px solid gray',
                           backgroundColor: '#202020',
@@ -188,17 +99,9 @@ export default function Subscription(){
                           fontSize: 'smaller',
                         }}
                       >
-                        Delete Account
-                      </button>
+                        Product #3
+                      </a>
                     </div>
-    
-                  {/* <div className="flex flex-row gap-4 items-center">
-                    <p className=" rotate-90 text-gray-500">|</p>
-                    <p className=" text-gray-500 text-sm">
-                      Don't have a GoalHub account?
-                    </p>
-                    <p className=" rotate-90 text-gray-500">|</p>
-                  </div> */}
                 </div>
               </div>
             </section>

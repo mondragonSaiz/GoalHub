@@ -20,11 +20,13 @@ export default function ProfileSettings() {
     Auth.logout();
   };
  
+  
+
   if (loading) {
     return <div>Loading...</div>;
   }
   const user = data?.me;
-  console.log(user)
+  const employee = user.isEmployee;
   const memberImg = memberOne;
   const memberName = `${
     user.firstName.slice(0, 1).toUpperCase() +
@@ -105,6 +107,7 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex flex-row  gap-4">
+                  {//TODO: Conditional render
                   <a className="rounded-lg"
                     href="/subscriptions"
                     style={{
@@ -118,6 +121,7 @@ export default function ProfileSettings() {
                     }}>
                       Subscription
                   </a>
+                }
                   <button
                     className="rounded-lg"
                     to="/sign-up"

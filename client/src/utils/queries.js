@@ -68,7 +68,7 @@ export const QUERY_AREAS = gql`
 `;
 
 export const QUERY_ALL_PRODUCTS = gql`
-  {
+  query allProducts {
     products {
       _id
       name

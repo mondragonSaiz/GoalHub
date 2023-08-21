@@ -14,12 +14,12 @@ export default function ProfileSettings() {
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-  
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
- 
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -95,14 +95,32 @@ export default function ProfileSettings() {
                 </div>
                 <div className="flex flex-row  gap-4">
                   <button
-                    className="text-sm font-normal bg-zinc-900 text-white border-2 rounded-lg border-slate-200 lg:w-32 w-24 h-12 hover:text-zinc-900 hover:bg-slate-200"
+                    className="rounded-lg"
                     to="/sign-up"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '6rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}
                   >
                     Change Name
                   </button>
                   <button
-                    className="text-sm font-normal bg-zinc-900 text-white border-2 rounded-lg border-slate-200 lg:w-32 w-24 h-12 hover:text-zinc-900 hover:bg-slate-200"
+                    className="rounded-lg"
                     to="/sign-up"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '6rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}
                   >
                     Delete Account
                   </button>

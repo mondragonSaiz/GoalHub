@@ -7,7 +7,6 @@ import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 
-
 // ! TODO: Remove console logs
 export default function ProfileSettings() {
   const { loading, data } = useQuery(QUERY_ME);
@@ -38,55 +37,36 @@ export default function ProfileSettings() {
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div
-              className="items-center w-100 h-100 border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8"
-              style={{ backgroundColor: '#202020' }}
-            >
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col ">
-                  <button
-                    className="text-gray-400 hover:text-gray-500"
-                    style={{
-                      backgroundColor: '#202020',
-                      width: '6rem',
-                      height: '2.5rem',
-                      fontSize: 'smaller',
-                    }}
-                  >
-                    <Link to="/member-dashboard">back</Link>
-                  </button>
-                </div>
-                <div className="flex flex-col">
-                  <button
-                    className="text-gray-400 hover:text-gray-500"
-                    onClick={logout}
-                    to="/"
-                    style={{
-                      backgroundColor: '#202020',
-                      width: '6rem',
-                      height: '2.5rem',
-                      fontSize: 'smaller',
-                    }}
-                  >
-                    Log out
-                  </button>
-                </div>
+            <div className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900">
+              <div className="flex flex-row justify-between  gap-4">
+                <button
+                  to="/dashboard"
+                  className=" text-sm font-bold bg-zinc-900 text-green-300 rounded-xl border-green-300 w-20 h-10 hover:text-gray-500 hover:bg-green-200"
+                >
+                  <Link to={`/member-dashboard`}>Back</Link>
+                </button>
+                <button
+                  onClick={logout}
+                  to="/"
+                  className=" text-sm font-bold bg-zinc-900 text-red-400 rounded-xl border-red-300 w-20 h-10 hover:text-zinc-900 hover:bg-red-300"
+                >
+                  Log out
+                </button>
               </div>
-
               <div className="flex flex-row justify-center items-center">
                 <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-                  <div className=" bg-slate-200 rounded-full lg:w-20 lg:h-20 w-40 h-40 mt-10 overflow-hidden">
+                  <div className=" bg-slate-200 rounded-full lg:w-48 lg:h-48 w-40 h-40 mt-10 overflow-hidden">
                     <img
-                      src={memberImg}
+                      src={user.userIcon}
                       alt="memberOne"
                       layout="fill"
                       oobjectfit="cover"
                     />
                   </div>
-                  <h2 className="flex justify-end text-slate-200 text-md font-boldfont-poppins lg:text-center">
+                  <h2 className="flex justify-end text-slate-200 text-md font-bold font-poppins lg:text-center lg:text-xl">
                     {memberName}
                   </h2>
-                  <p className="flex justify-end text-gray-500  text-md text-basefont-poppins lg:text-right">
+                  <p className="flex justify-end text-gray-500  text-md text-base font-poppins lg:text-center lg:text-xl">
                     {memberTeam}
                   </p>
                 </div>
@@ -97,72 +77,58 @@ export default function ProfileSettings() {
                 className="flex flex-col justify-center items-center gap-4"
               >
                 <div className="flex flex-row justify-center items-center gap-4">
-                  <label className="text-gray-500  text-md text-basefont-poppins">
+                  <label className="text-gray-500  text-md text-basefont-poppins lg:text-xl">
                     Name
                   </label>
                   <input
                     placeholder={memberName}
                     type="text"
-                    className=" focus:text-slate-200 text-slate-200  border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
-                    style={{ backgroundColor: '#202020' }}
+                    className=" focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />
                 </div>
                 <div className="flex flex-row justify-center items-center gap-4">
-                  <label className="text-gray-500  text-md text-basefont-poppins">
+                  <label className="text-gray-500  text-md text-basefont-poppins lg:text-xl">
                     Team
                   </label>
                   <input
                     placeholder={memberTeam}
                     type="text"
-                    className="focus:text-slate-200 text-slate-200  border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
-                    style={{ backgroundColor: '#202020' }}
+                    className="focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />
                 </div>
-                <div className="flex flex-row  gap-4 h">
-                  <div className="text-gray-300 hover:text-gray-500">
-                    <button
-                      className="rounded-lg "
-                      to="/sign-up"
-                      style={{
-                        border: '2px solid gray',
-                        backgroundColor: '#202020',
-
-                        padding: '2%',
-                        width: '6rem',
-                        height: '3rem',
-                        fontSize: 'smaller',
-                      }}
-                    >
-                      Change Name
-                    </button>
-                  </div>
-                  <div className="text-gray-300 hover:text-gray-500">
-                    {' '}
-                    <button
-                      className="rounded-lg"
-                      to="/sign-up"
-                      style={{
-                        border: '2px solid gray',
-
-                        padding: '2%',
-                        width: '6rem',
-                        height: '3rem',
-                        fontSize: 'smaller',
-                      }}
-                    >
-                      Delete Account
-                    </button>
-                  </div>
+                <div className="flex flex-row  gap-4">
+                  <button
+                    className="rounded-lg"
+                    to="/sign-up"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '6rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}
+                  >
+                    Change Name
+                  </button>
+                  <button
+                    className="rounded-lg"
+                    to="/sign-up"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '6rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}
+                  >
+                    Delete Account
+                  </button>
                 </div>
               </form>
-
-              {/* <div className="flex flex-row gap-4 items-center">
-                <p className=" rotate-90 text-gray-500">|</p>
-                <p className=" text-gray-500 text-sm">
-                  Don't have a GoalHub account?
-                </p>
-                <p className=" rotate-90 text-gray-500">|</p>
-              </div> */}
             </div>
           </div>
         </section>

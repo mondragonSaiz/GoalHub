@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 export default function SignUp() {
   const [isEmployee, setIsEmployee] = useState(true);
+
+  if (Auth.loggedIn()) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const handleClick = (e) => {
     if (e.target.id === 'employee') {
@@ -54,7 +60,7 @@ export default function SignUp() {
                   ></div>
                   <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">
                     I’m an employer, looking to increase motivation and
-                    productivity
+                    productivity on my team
                   </h1>
                 </button>
               </div>

@@ -27,12 +27,15 @@ export default function MembersOverview({ _id }) {
       >
         <h1 className=" font-bold text-slate-200">Member</h1>
         <p className=" font-thin text-gray-500">Look at our progress!</p>
-        {area.users.map((user) => {
+        {area.users.map((user, index) => {
           return (
-            <div className="flex flex-row justify-between items-center mt-5">
+            <div
+              key={index}
+              className="flex flex-row justify-between items-center mt-5"
+            >
               <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
                 <img
-                  src={memberImg}
+                  src={user.userIcon}
                   alt="memberOne"
                   layout="fill"
                   objectfit="cover"

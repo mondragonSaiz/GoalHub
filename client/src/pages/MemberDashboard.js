@@ -23,7 +23,7 @@ export default function MemberDashboard() {
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,6 +36,7 @@ export default function MemberDashboard() {
           <section className="min-h-screen">
             <Nav />
             <MemberUpperDashboard
+              userIcon={user.userIcon}
               firstName={user.firstName}
               lastName={user.lastName}
               tasks={user.tasks}
@@ -45,22 +46,6 @@ export default function MemberDashboard() {
             <div className="flex flex-col lg:flex-row gap-4">
               <MyDashboard tasks={user.tasks} />
               <MembersOverview _id={user.area._id} />
-              {/* <DashboardCard>
-              <h1 className=" font-bold text-slate-200 font-poppins">
-                My dashboard
-              </h1>
-              <p className=" font-thin text-gray-500 font-poppins">
-                Kepp track of your achievements
-              </p>
-            </DashboardCard>
-            <DashboardCard>
-              <h1 className=" font-bold text-slate-200 font-poppins">
-                My team
-              </h1>
-              <p className=" font-thin text-gray-500 font-poppins">
-                Check out other's achievements
-              </p>
-            </DashboardCard> */}
             </div>
           </section>
         </main>
@@ -71,29 +56,13 @@ export default function MemberDashboard() {
               <Nav firstName={user.firstName} lastName={user.lastName} />
               {/* Leader Upper Dashboard */}
               <LeaderUpperDashboard
+                userIcon={user.userIcon}
                 firstName={user.firstName}
                 lastName={user.lastName}
                 _id={user.area._id}
               />
               <div className="flex flex-col lg:flex-row gap-4">
                 <LeadDashboard _id={user.area._id} />
-                {/* <MembersOverview _id={user.area._id} /> */}
-                {/* <DashboardCard>
-            <h1 className=" font-bold text-slate-200 font-poppins">
-              My dashboard
-            </h1>
-            <p className=" font-thin text-gray-500 font-poppins">
-              Kepp track of your achievements
-            </p>
-          </DashboardCard>
-          <DashboardCard>
-            <h1 className=" font-bold text-slate-200 font-poppins">
-              My team
-            </h1>
-            <p className=" font-thin text-gray-500 font-poppins">
-              Check out other's achievements
-            </p>
-          </DashboardCard> */}
               </div>
             </section>
           </main>

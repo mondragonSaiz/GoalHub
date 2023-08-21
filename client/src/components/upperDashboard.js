@@ -48,7 +48,7 @@ export default function UpperDashboard({
                 {areaName}
               </p>
             </div>
-            <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
+            <div className="flex flex-col lg:items-center ga.p-10 lg:flex-row lg:h-40 lg:mt-8">
              {areas.map(area=>{
                 let allTask = area.users.reduce((acum, task) => {
                   
@@ -90,7 +90,7 @@ export default function UpperDashboard({
                   </div>
                 </Card>
                 }
-                  
+ .                 
               </>)})}  
               </div>    
          </div> 

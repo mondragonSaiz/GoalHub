@@ -126,6 +126,13 @@ const resolvers = {
         area,
         userIcon,
       });
+
+      areaUpdated = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: user._id } },
+        { new: true })
+
+
       const token = signToken(user);
       return { token, user };
     },

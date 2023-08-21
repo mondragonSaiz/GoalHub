@@ -1,11 +1,100 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
-export default function ForgotPassword({
-//Hooks
-}) {
+export default function ForgotPassword() {
+
+  // Extract 'id' and 'token' parameters from the URL using React Router's useParams
+  const { id, token } = useParams();
+
+    // Initialize navigation history
+  const history = useNavigate();
+
+   // State to store 'data2', not used in this code
+  const [data2, setData] = useState(false);
+
+   // State to store the user's new password
+  const [password, setPassword] = useState("");
+
+    // State to store a message (used for success or error)
+  const [message, setMessage] = useState("");
+
+   // Function to check if the user is valid
+  const userValid = async () => {
+        // Send a GET request to a server endpoint to validate the user
+      const res = await fetch(`/forgot-password/${id}/${token}`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json"
+          }
+      });
+
+    // Parse the response as JSON
+      const data = await res.json()
+      
+    // Check if the response status is 201 (success)
+      if (data.status == 201) {
+          console.log("user valid")
+      } else {
+    // If the user is not valid, navigate to a different route
+          history("*")
+      }
+  }
+
+  //This part goes in CreateNewPassword Modal
+  // Function to update the 'password' state when the user types in the input field
+  const setval = (e) => {
+      setPassword(e.target.value)
+  }
+  // Function to send the new password to the server
+  const sendpassword = async (e) => {
+      e.preventDefault();
+     // Validate the password
+      if (password === "") {
+          toast.error("password is required!", {
+              position: "top-center"
+          });
+      } else if (password.length < 6) {
+          toast.error("password must be 6 char!", {
+              position: "top-center"
+          });
+      } else {
+        // Send a POST request to update the password
+          const res = await fetch(`/${id}/${token}`, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ password })
+          });
+        // Parse the response as JSON     
+          const data = await res.json()
+
+        // Check if the response status is 201 (success)
+          if (data.status == 201) {
+        // Clear the 'password' state and set a success message in 'message'
+              setPassword("")
+              setMessage(true)
+          } else {
+        // Display an error message if the response status is not 201
+              console.error("! Token Expired generate new LInk",{
+                  position: "top-center"
+              })
+          }
+      } 
+    }
+  // Use 'useEffect' to execute code when the component is mounted
+    useEffect(() => {
+  // Call 'userValid' to check if the user is valid
+      userValid()
+  // After 3000 milliseconds (3 seconds), set 'data2' to true
+      setTimeout(() => {
+          setData(true)
+      }, 3000)
+  }, [])
+
  return ( <div className=" font-poppins">
  <main className="flex justify-center bg-neutral-950">
    <section className="flex min-h-screen">

@@ -17,8 +17,8 @@ export default function HomePage() {
       <main className="bg-neutral-950 px-10 md:px-20 lg:px-40">
         <section className="min-h-screen">
           <NavHome/>
-          <div className='flex flex-col mt-10 lg:flex-row lg:justify-around gap-3'>
-            <div className='text-slate-200 font-bold text-6xl w-5/6 lg:text-7xl lg:w-3/5 '>
+          <div className='flex flex-col mt-10 lg:flex-row lg:justify-evenly'>
+            <div className='text-slate-200 font-bold text-6xl w-5/6 lg:text-8xl lg:w-3/5'>
               <h1 className='font-poppins'>All-in-one goal manager.</h1>
             </div>
             <div className='mt-10 lg:w-1/3'>
@@ -33,7 +33,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className='flex flex-row flex-wrap mt-10 justify-center gap-20 lg:flex-nowrap'>
+          <div className='pb-10 md:pb-0 flex flex-row flex-wrap mt-10 justify-center gap-20 lg:flex-nowrap'>
               <div className='hover:transition hover:scale-125 transition duration-300 ease-in-out'>
                 <img src={avatar3} alt="avatar3" className='w-64 h-auto -mb-5 lg:w-72'/>
                 <p className=' text-slate-200 font-thin text-center lg:text-base'>Keep tasks <strong className=' font-bold'>organized</strong>.</p>

@@ -10,6 +10,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import { QUERY_AREAS } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 import {
   Select,
   SelectGroup,
@@ -24,7 +25,7 @@ export default function SignUpForm() {
   console.log(queryData);
   const areas = queryData?.areas;
 
-  console.log('AREAS', areas);
+
   // console.log('area', areas[0].name);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -35,6 +36,7 @@ export default function SignUpForm() {
   const [errorMessage, setErrorMessage] = useState('');
   const [userIcon, setUserIcon] = useState('');
 
+  
   const handleImageClick = (src) => {
     setUserIcon(src);
   };
@@ -42,6 +44,9 @@ export default function SignUpForm() {
     console.log('SELECTED 1', userIcon);
     console.log('SELECTED 2', area);
   }, [userIcon, area]);
+
+  
+
 
   const userIcons = [
     {
@@ -70,6 +75,11 @@ export default function SignUpForm() {
 
   let { state } = useLocation();
 
+
+  if (Auth.loggedIn()) {
+    return <Navigate to="/dashboard" />;
+  }
+
   const handleInputChange = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
@@ -86,6 +96,9 @@ export default function SignUpForm() {
         break;
       case 'password':
         setPassword(inputValue);
+        break;
+      default:
+        console.log('missing input')
         break;
     }
   };
@@ -167,7 +180,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className=" font-poppins">
+    <div className="font-poppins">
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center">
@@ -178,7 +191,7 @@ export default function SignUpForm() {
                 </p>
               ) : (
                 <div className="flex flex-col items-center w-auto rounded-2xl  gap-8">
-                  <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">
+                  <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center pt-5">
                     I want to keep track of my{' '}
                     {state.isEmployee ? 'tasks' : 'team'}
                   </h2>
@@ -242,7 +255,7 @@ export default function SignUpForm() {
                       Choose your avatar
                     </h2>
 
-                    <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
+                    <div className="flex flex-col md:flex-row md:flex-wrap md:gap-10 justify-center items-center lg:flex-row lg:gap-6">
                       {userIcons.map((icon, index) => (
                         <div
                           key={index}
@@ -302,6 +315,17 @@ export default function SignUpForm() {
           </div>
         </section>
       </main>
-    </div>
+      <style>
+        {`
+          .selected {
+            outline: 4px solid green;
+            transform: scale(1.1)
+          }
+          .selectedImage {
+            border: 2px solid green;
+          }
+        `}
+      </style>
+    </div>
   );
 }

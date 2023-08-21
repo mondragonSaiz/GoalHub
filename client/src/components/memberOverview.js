@@ -27,7 +27,11 @@ export default function MembersOverview({ _id }) {
       >
         <h1 className=" font-bold text-slate-200">Member</h1>
         <p className=" font-thin text-gray-500">Look at our progress!</p>
+
         {area.users.map((user, index) => {
+
+   
+
           return (
             <div
               key={index}
@@ -35,7 +39,7 @@ export default function MembersOverview({ _id }) {
             >
               <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
                 <img
-                  src={memberImg}
+                  src={user.userIcon}
                   alt="memberOne"
                   layout="fill"
                   objectfit="cover"

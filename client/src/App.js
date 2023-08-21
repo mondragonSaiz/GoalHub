@@ -5,6 +5,8 @@ import MemberDashboard from './pages/MemberDashboard';
 
 import SignUp from './pages/signUp';
 import LogIn from './pages/logIn';
+import ForgotPassword from '../src/components/ForgotPassword';
+
 import '../src/styles/globals.css';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -51,6 +53,7 @@ function App() {
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up-form" element={<SignUpForm />} />
             {/* <Route path="/new-task" element={<NewTask />} /> */}
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/settings" element={<ProfileSettings />} />
           </Routes>
       </Router>

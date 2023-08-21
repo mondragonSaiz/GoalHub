@@ -26,6 +26,11 @@ const userSchema = new Schema({
     required: true,
     // match: /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/
   },
+  cpassword: {
+    type: String,
+    required: true,
+    // match: /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/
+  },
   isEmployee: {
     type: Boolean,
     required: true,
@@ -59,6 +64,29 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.pre('save', async function (next) {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 12);
+    this.cpassword = await bcrypt.hash(this.cpassword, 12);
+  }
+  next();
+});
+
+//Generate Token
+userSchema.methods.generateAuthtoken = async function () {
+  try {
+      let token23 = jwt.sign({ _id: this._id }, keysecret, {
+          expiresIn: "1d"
+      });
+
+      this.tokens = this.tokens.concat({ token: token23 });
+      await this.save();
+      return token23;
+  } catch (error) {
+      res.status(422).json(error)
+  }
+}
 
 const User = mongoose.model('User', userSchema);
 

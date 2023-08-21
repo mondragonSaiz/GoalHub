@@ -55,7 +55,6 @@ query Area($id: ID!){
         createdAt
         name
         isCompleted
-
       }
     }
   }

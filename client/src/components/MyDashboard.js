@@ -63,13 +63,13 @@ export default function MyDashboard({ tasks }) {
             <p className=" font-thin text-gray-500">
               Keep track of your achievements!
             </p>
-            <button
+            {/* <button
               type="submit"
               className="border border-green-200  rounded-lg font-thin text-green-300 hover:text-green-400 hover:border-green-400 px-2"
               style={{ fontSize: 'smaller' }}
             >
               Save
-            </button>
+            </button> */}
           </div>
 
           {tasks.length !== 0 ? (

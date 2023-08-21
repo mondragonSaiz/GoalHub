@@ -39,29 +39,20 @@ export default function ProfileSettings() {
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
             <div
-              className="items-center w-100 h-100 border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8"
-              style={{ backgroundColor: '#202020' }}
+              className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900"
             >
               <div className="flex flex-row justify-end text-right">
                 <button
                   onClick={logout}
                   to="/"
-                  style={{
-                    backgroundColor: '#202020',
-                    color: 'white',
-                    border: '1px solid white',
-                    borderRadius: '15px',
-                    width: '6rem',
-                    height: '2.5rem',
-                    fontSize: 'smaller',
-                  }}
+                  className=' text-sm font-bold bg-zinc-900 text-white border-2 rounded-xl border-slate-200 w-20 h-10 hover:text-zinc-900 hover:bg-slate-200'
                 >
                   Log out
                 </button>
               </div>
               <div className="flex flex-row justify-center items-center">
                 <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-                  <div className=" bg-slate-200 rounded-full lg:w-20 lg:h-20 w-40 h-40 mt-10 overflow-hidden">
+                  <div className=" bg-slate-200 rounded-full lg:w-48 lg:h-48 w-40 h-40 mt-10 overflow-hidden">
                     <img
                       src={memberImg}
                       alt="memberOne"
@@ -69,10 +60,10 @@ export default function ProfileSettings() {
                       oobjectfit="cover"
                     />
                   </div>
-                  <h2 className="flex justify-end text-slate-200 text-md font-boldfont-poppins lg:text-center">
+                  <h2 className="flex justify-end text-slate-200 text-md font-bold font-poppins lg:text-center lg:text-xl">
                     {memberName}
                   </h2>
-                  <p className="flex justify-end text-gray-500  text-md text-basefont-poppins lg:text-right">
+                  <p className="flex justify-end text-gray-500  text-md text-base font-poppins lg:text-center lg:text-xl">
                     {memberTeam}
                   </p>
                 </div>
@@ -83,68 +74,40 @@ export default function ProfileSettings() {
                 className="flex flex-col justify-center items-center gap-4"
               >
                 <div className="flex flex-row justify-center items-center gap-4">
-                  <label className="text-gray-500  text-md text-basefont-poppins">
+                  <label className="text-gray-500  text-md text-basefont-poppins lg:text-xl">
                     Name
                   </label>
                   <input
                     placeholder={memberName}
                     type="text"
-                    className=" focus:text-slate-200 text-slate-200  border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
-                    style={{ backgroundColor: '#202020' }}
+                    className=" focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />
                 </div>
                 <div className="flex flex-row justify-center items-center gap-4">
-                  <label className="text-gray-500  text-md text-basefont-poppins">
+                  <label className="text-gray-500  text-md text-basefont-poppins lg:text-xl">
                     Team
                   </label>
                   <input
                     placeholder={memberTeam}
                     type="text"
-                    className="focus:text-slate-200 text-slate-200  border-2 rounded-lg border-gray-500 text-left py-2 pr-56 pl-4"
-                    style={{ backgroundColor: '#202020' }}
+                    className="focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />
                 </div>
                 <div className="flex flex-row  gap-4">
                   <button
-                    className="rounded-lg"
+                    className="text-sm font-normal bg-zinc-900 text-white border-2 rounded-lg border-slate-200 lg:w-32 w-24 h-12 hover:text-zinc-900 hover:bg-slate-200"
                     to="/sign-up"
-                    style={{
-                      border: '2px solid gray',
-                      backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '2%',
-                      width: '6rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
-                    }}
                   >
                     Change Name
                   </button>
                   <button
-                    className="rounded-lg"
+                    className="text-sm font-normal bg-zinc-900 text-white border-2 rounded-lg border-slate-200 lg:w-32 w-24 h-12 hover:text-zinc-900 hover:bg-slate-200"
                     to="/sign-up"
-                    style={{
-                      border: '2px solid gray',
-                      backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '2%',
-                      width: '6rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
-                    }}
                   >
                     Delete Account
                   </button>
                 </div>
               </form>
-
-              {/* <div className="flex flex-row gap-4 items-center">
-                <p className=" rotate-90 text-gray-500">|</p>
-                <p className=" text-gray-500 text-sm">
-                  Don't have a GoalHub account?
-                </p>
-                <p className=" rotate-90 text-gray-500">|</p>
-              </div> */}
             </div>
           </div>
         </section>

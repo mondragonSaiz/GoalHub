@@ -54,7 +54,7 @@ export default function SignUp() {
                   ></div>
                   <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">
                     I’m an employer, looking to increase motivation and
-                    productivity
+                    productivity on my team
                   </h1>
                 </button>
               </div>

@@ -46,14 +46,14 @@ export default function LogIn() {
   };
 
   return (
-    <div className=" font-poppins">
-      <main className="flex justify-center bg-neutral-950">
-        <section className="flex min-h-screen">
+    <div className=" font-poppins bg-neutral-950">
+      <main className="flex justify-center items-center min-h-screen px-8">
+        <section className="flex ">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
+            <div className="flex flex-col items-center w-auto border-2 border-box rounded-2xl border-slate-200 px-14 py-14 gap-8">
               {data ? (
-                <p>
-                  Successfully loged!{' '}
+                <p className="text-slate-200 font-bold text-3xl text-center">
+                  Successfully loged!{' '}<br></br>
                   <Link to="/dashboard">Taking you to your dashboard.</Link>
                 </p>
               ) : (

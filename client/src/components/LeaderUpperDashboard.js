@@ -17,6 +17,9 @@ export default function MemberUpperDashboard({ firstName, lastName, _id, userIco
   let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)
+  
+
+
   let compTask = area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted).map(tas=>{ 
    let formatted = new Date(tas.createdAt)
     return formatted.getDay()}))

@@ -76,7 +76,8 @@ export default function MembersOverview({ _id }) {
                 />
                 {/* <ProgressBar/> */}
                 <div className="flex justify-center mt-1">
-                  <p className="text-gray-500">No Task assigned</p>  
+                    
+                    <p className="text-gray-500">No Task assigned</p>    
                 </div>
               </div>
               )}

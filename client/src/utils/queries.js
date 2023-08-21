@@ -59,7 +59,7 @@ query Area($id: ID!){
       }
     }
   }
-`;
+}`;
 
 export const QUERY_AREAS = gql`
 query areas{
@@ -71,6 +71,7 @@ query areas{
     }
     users {
       firstName
+      email
       tasks {
         isCompleted
         name

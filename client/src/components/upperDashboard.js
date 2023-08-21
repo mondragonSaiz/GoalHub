@@ -90,13 +90,10 @@ export default function UpperDashboard({
                   </div>
                 </Card>
                 }
-               
-                
-                
+                  
               </>)})}  
               </div>    
          </div> 
        </section>
       );
- 
 }

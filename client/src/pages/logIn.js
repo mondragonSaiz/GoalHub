@@ -50,7 +50,7 @@ export default function LogIn() {
       <main className="flex justify-center items-center min-h-screen px-8">
         <section className="flex">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div className="flex flex-col items-center w-auto border-2 border-box rounded-2xl border-slate-200 px-8 py-8 sm:px-14 sm:py-14 gap-8">
+            <div className="flex flex-col items-center w-auto border-2 border-box rounded-2xl border-slate-200 px-8 py-10 sm:px-14 sm:py-14 md:px-16 md:py-16 lg:px-40 lg:py-20 gap-8">
               {data ? (
                 <p className="text-slate-200 font-bold text-3xl lg:text-4xl text-center">
                   Successfully loged!{' '}<br></br>
@@ -60,7 +60,7 @@ export default function LogIn() {
                 <div className="flex flex-col items-center w-full rounded-2xl border-slate-200 gap-8">
                   
                   <form>
-                    <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-5 lg:mb-8 text-center">
+                    <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-8 lg:mb-8 text-center">
                       Log in to GoalHub
                     </h2>
                     <fieldset className="flex flex-col gap-6">
@@ -70,7 +70,7 @@ export default function LogIn() {
                         type="text"
                         name="email"
                         value={formState.email}
-                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-56 lg:pl-4"
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
                       />
                       <input
                       onChange={handleChange}
@@ -78,7 +78,7 @@ export default function LogIn() {
                       placeholder="Password"
                       type="password"
                       value={formState.password}
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-56 lg:pl-4"
+                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
                       />
                       <input
                         type="submit"

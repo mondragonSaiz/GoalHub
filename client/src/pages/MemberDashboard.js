@@ -41,7 +41,6 @@ export default function MemberDashboard() {
               lastName={user.lastName}
               tasks={user.tasks}
               areaName={user.area.name}
-              userIcon={user.userIcon}
               _id={user.area._id}
             />
             <div className="flex flex-col lg:flex-row gap-4">

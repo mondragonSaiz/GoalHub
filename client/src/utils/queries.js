@@ -33,6 +33,7 @@ export const QUERY_ME = gql`
       firstName
       lastName
       tasks {
+        _id
         isCompleted
         name
         taskDesc
@@ -54,10 +55,11 @@ query Area($id: ID!){
         createdAt
         name
         isCompleted
+
       }
     }
   }
-}`;
+`;
 
 export const QUERY_AREAS = gql`
 query areas{

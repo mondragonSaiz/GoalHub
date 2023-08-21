@@ -7,7 +7,6 @@ import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 
-
 // ! TODO: Remove console logs
 export default function ProfileSettings() {
   const { loading, data } = useQuery(QUERY_ME);
@@ -38,23 +37,20 @@ export default function ProfileSettings() {
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div
-              className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900"
-            >
-              <div className="flex flex-row justify-end text-right gap-4">
+            <div className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900">
+              <div className="flex flex-row justify-between  gap-4">
                 <button
-                  onClick={logout}
-                  to="/"
-                  className=' text-sm font-bold bg-zinc-900 text-white border-2 rounded-xl border-slate-200 w-20 h-10 hover:text-zinc-900 hover:bg-slate-200'
+                  to="/dashboard"
+                  className=" text-sm font-bold bg-zinc-900 text-green-300 rounded-xl border-green-300 w-20 h-10 hover:text-gray-500 hover:bg-green-200"
                 >
-                  Log out
+                  <Link to={`/member-dashboard`}>Back</Link>
                 </button>
                 <button
                   onClick={logout}
-                  to="/dashboard"
-                  className=' text-sm font-bold bg-zinc-900 text-white border-2 rounded-xl border-slate-200 w-20 h-10 hover:text-zinc-900 hover:bg-slate-200'
+                  to="/"
+                  className=" text-sm font-bold bg-zinc-900 text-red-400 rounded-xl border-red-300 w-20 h-10 hover:text-zinc-900 hover:bg-red-300"
                 >
-                  Back
+                  Log out
                 </button>
               </div>
               <div className="flex flex-row justify-center items-center">

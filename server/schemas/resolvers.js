@@ -1,7 +1,7 @@
 const { User, Area, Task } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -183,6 +183,19 @@ const resolvers = {
         });
       } catch (err) {
         console.log(err);
+      }
+    },
+    updateTask: async (parent, { taskId, isComplete }, context) => {
+      try {
+        const updatedTask = await Task.findByIdAndUpdate(
+          taskId,
+          { isCompleted: isComplete },
+          { new: true }
+        );
+        return updatedTask;
+      } catch (err) {
+        console.log(err);
+        // throw new Error('Failed to update task.');
       }
     },
   },

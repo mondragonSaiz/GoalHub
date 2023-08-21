@@ -41,13 +41,20 @@ export default function ProfileSettings() {
             <div
               className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900"
             >
-              <div className="flex flex-row justify-end text-right">
+              <div className="flex flex-row justify-end text-right gap-4">
                 <button
                   onClick={logout}
                   to="/"
                   className=' text-sm font-bold bg-zinc-900 text-white border-2 rounded-xl border-slate-200 w-20 h-10 hover:text-zinc-900 hover:bg-slate-200'
                 >
                   Log out
+                </button>
+                <button
+                  onClick={logout}
+                  to="/dashboard"
+                  className=' text-sm font-bold bg-zinc-900 text-white border-2 rounded-xl border-slate-200 w-20 h-10 hover:text-zinc-900 hover:bg-slate-200'
+                >
+                  Back
                 </button>
               </div>
               <div className="flex flex-row justify-center items-center">

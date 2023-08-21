@@ -31,11 +31,12 @@ export default function MemberDashboard() {
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>
-      {user.isEmployee ? (
+      {!user.isEmployee ? (
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
           <section className="min-h-screen">
             <Nav />
             <MemberUpperDashboard
+              userIcon={user.userIcon}
               firstName={user.firstName}
               lastName={user.lastName}
               tasks={user.tasks}
@@ -71,6 +72,7 @@ export default function MemberDashboard() {
               <Nav firstName={user.firstName} lastName={user.lastName} />
               {/* Leader Upper Dashboard */}
               <LeaderUpperDashboard
+                userIcon={user.userIcon}
                 firstName={user.firstName}
                 lastName={user.lastName}
                 _id={user.area._id}

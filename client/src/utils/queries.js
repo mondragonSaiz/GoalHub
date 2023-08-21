@@ -48,6 +48,7 @@ query Area($id: ID!){
     name
     users {
       firstName
+      userIcon
       lastName
       tasks {
         createdAt
@@ -59,10 +60,20 @@ query Area($id: ID!){
 }`;
 
 export const QUERY_AREAS = gql`
-  query Areas {
-    areas {
-      _id
-      name
+query areas{
+  areas {
+    _id
+     name
+    supervisor {
+    firstName
+    }
+    users {
+      firstName
+      tasks {
+        isCompleted
+        name
+        createdAt
+      }
     }
   }
-`;
+}`;

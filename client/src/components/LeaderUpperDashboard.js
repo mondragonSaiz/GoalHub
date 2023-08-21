@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
 
 
-export default function MemberUpperDashboard({ firstName, lastName, _id }) {
+export default function MemberUpperDashboard({ firstName, lastName, _id, userIcon }) {
   const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;
@@ -32,7 +32,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
           <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
-              src={memberImg}
+              src={userIcon}
               alt="memberOne"
               layout="fill"
               oobjectfit="cover"

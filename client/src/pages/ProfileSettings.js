@@ -77,7 +77,7 @@ export default function ProfileSettings() {
                 <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
                   <div className=" bg-slate-200 rounded-full lg:w-20 lg:h-20 w-40 h-40 mt-10 overflow-hidden">
                     <img
-                      src={memberImg}
+                      src={user.userIcon}
                       alt="memberOne"
                       layout="fill"
                       oobjectfit="cover"

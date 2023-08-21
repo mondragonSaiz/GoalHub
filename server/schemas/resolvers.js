@@ -33,7 +33,10 @@ const resolvers = {
     },
     areas: async () => {
       try {
-        return Area.find().populate('users').populate('supervisor');
+        return Area.find()
+          .populate('users')
+          .populate('supervisor')
+          .populate({ path: 'users', populate: 'tasks' });;
       } catch (err) {
         console.log(err);
       }
@@ -86,7 +89,7 @@ const resolvers = {
       try {
         const user = await User.findOneAndUpdate(
           { email: email },
-          { password: password },
+          { $set: { password: password } },
           { runValidators: true, new: true }
         );
         const token = signToken(user);
@@ -123,15 +126,27 @@ const resolvers = {
         area,
         userIcon,
       });
+
+      areaUpdated = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: user._id } },
+        { new: true })
+
+
       const token = signToken(user);
       return { token, user };
     },
     AddUserArea: async (parent, { user, area }) => {
       const userAreaUpdated = await User.findByIdAndUpdate(
         { _id: user },
-        { $set: { area: area } },
+        { area: area  },
         { new: true }
       ).populate('area');
+
+      areaUpdated = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: userAreaUpdated._id } },
+        { new: true })
 
       return userAreaUpdated;
     },

@@ -35,7 +35,7 @@ export default function MembersOverview({ _id }) {
             >
               <div className="bg-slate-200 rounded-full w-20 h-20 overflow-hidden">
                 <img
-                  src={memberImg}
+                  src={user.userIcon}
                   alt="memberOne"
                   layout="fill"
                   objectfit="cover"

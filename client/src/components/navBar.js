@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RxCalendar } from 'react-icons/rx';
 import Logo from '../img/logo.svg';
 import { Link } from 'react-router-dom';
+function getDate() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  return `${month}/${date}/${year}`;
+}
+
 export default function Nav({ firstName, lastName }) {
-  const Date = 'Aug 08, 2023';
+  const [currentDate, setCurrentDate] = useState(getDate())
+
   const location = window.location;
   console.log('location', location);
   console.log(
@@ -18,9 +27,9 @@ export default function Nav({ firstName, lastName }) {
       <ul className="flex items-center justify-end">
         <div className="flex flex-row justify-center items-center mr-5 border-2 rounded-lg border-gray-500 px-5 py-1.5">
           {/* <img src={Logo} alt="" className="backdrop-invert-0"/> */}
-          <RxCalendar className=" text-slate-200" />
-          <p className="flex px-2 text-slate-200 font-poppins font-bold">
-            {Date}
+          <RxCalendar className=" text-slate-200 text-2xl" />
+          <p className="flex px-2 text-slate-200 text-xs md:text-lg font-poppins font-bold">
+            {currentDate}
           </p>
         </div>
 

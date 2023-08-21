@@ -16,8 +16,6 @@ export default function UpperDashboard({
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
   
-
-  const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
   } ${lastName.slice(0, 1).toUpperCase()}.`;

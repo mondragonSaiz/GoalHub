@@ -167,7 +167,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className=" font-poppins">
+    <div className="font-poppins">
       <main className="flex justify-center bg-neutral-950">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center">
@@ -178,7 +178,7 @@ export default function SignUpForm() {
                 </p>
               ) : (
                 <div className="flex flex-col items-center w-auto rounded-2xl  gap-8">
-                  <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center">
+                  <h2 className="text-slate-200 font-bold text-4xl mb-5 text-center pt-5">
                     I want to keep track of my{' '}
                     {state.isEmployee ? 'tasks' : 'team'}
                   </h2>
@@ -242,7 +242,7 @@ export default function SignUpForm() {
                       Choose your avatar
                     </h2>
 
-                    <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-6">
+                    <div className="flex flex-col md:flex-row md:flex-wrap md:gap-10 justify-center items-center lg:flex-row lg:gap-6">
                       {userIcons.map((icon, index) => (
                         <div
                           key={index}
@@ -302,6 +302,17 @@ export default function SignUpForm() {
           </div>
         </section>
       </main>
-    </div>
+      <style>
+        {`
+          .selected {
+            outline: 4px solid green;
+            transform: scale(1.1)
+          }
+          .selectedImage {
+            border: 2px solid green;
+          }
+        `}
+      </style>
+    </div>
   );
 }

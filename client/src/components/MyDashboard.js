@@ -25,10 +25,17 @@ export default function MyDashboard({ tasks }) {
         <div>
           <h1 className=" font-bold text-slate-200">My dashboard</h1>
         </div>
-
-        <p className=" font-thin text-gray-500">
-          Keep track of your achievements!
-        </p>
+        <div className=" flex flex-row justify-between">
+          <p className=" font-thin text-gray-500">
+            Keep track of your achievements!
+          </p>
+          <button
+            className="border border-green-200  rounded-lg font-thin text-green-300 hover:text-green-400 hover:border-green-400 px-2"
+            style={{ fontSize: 'smaller' }}
+          >
+            Save
+          </button>
+        </div>
 
         {tasks.length !== 0 ? (
           <div>

@@ -185,13 +185,13 @@ const resolvers = {
         console.log(err);
       }
     },
-    updateTask: async (parent, { taskId, isComplete }, context) => {
+    updateTask: async (parent, { taskId, isCompleted }, context) => {
       try {
         const updatedTask = await Task.findByIdAndUpdate(
           taskId,
-          { isCompleted: isComplete },
+          { isCompleted: isCompleted },
           { new: true }
-        );
+        ).populate('user');
         return updatedTask;
       } catch (err) {
         console.log(err);

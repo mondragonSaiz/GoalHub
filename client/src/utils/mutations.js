@@ -41,17 +41,45 @@ export const LOGIN_USER = gql`
   }
 `;
 export const ADD_TASK = gql`
-  mutation addTask($name: String!, $taskDesc: String!, $isCompleted: Boolean!, $user: ID! ) {
-    addTask (name: $name, taskDesc: $taskDesc, isCompleted: $isCompleted, user: $user) {
-      name 
+  mutation addTask(
+    $name: String!
+    $taskDesc: String!
+    $isCompleted: Boolean!
+    $user: ID!
+  ) {
+    addTask(
+      name: $name
+      taskDesc: $taskDesc
+      isCompleted: $isCompleted
+      user: $user
+    ) {
+      name
       taskDesc
       isCompleted
       user {
         _id
         firstName
         lastName
-        email 
+        email
         isEmployee
       }
     }
-  }` 
+  }
+`;
+
+export const UPDATE_TASK = gql`
+  mutation updateTask($taskId: ID!, $isCompleted: Boolean!) {
+    updateTask(isCompleted: $isCompleted) {
+      name
+      taskDesc
+      isCompleted
+      user {
+        _id
+        firstName
+        lastName
+        email
+        isEmployee
+      }
+    }
+  }
+`;

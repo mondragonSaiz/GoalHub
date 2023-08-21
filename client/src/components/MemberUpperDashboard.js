@@ -11,6 +11,7 @@ export default function MemberUpperDashboard({
   lastName,
   tasks,
   areaName,
+  userIcon,
   _id
 }) {
   const [first, setFirst] = useState(firstName);
@@ -39,7 +40,7 @@ export default function MemberUpperDashboard({
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
           <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
-              src={memberImg}
+              src={userIcon}
               alt="memberOne"
               layout="fill"
               oobjectfit="cover"

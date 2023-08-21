@@ -69,7 +69,7 @@ export const ADD_TASK = gql`
 
 export const UPDATE_TASK = gql`
   mutation updateTask($taskId: ID!, $isCompleted: Boolean!) {
-    updateTask(isCompleted: $isCompleted) {
+    updateTask(taskId: $taskId, isCompleted: $isCompleted) {
       name
       taskDesc
       isCompleted

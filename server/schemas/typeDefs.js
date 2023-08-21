@@ -92,7 +92,7 @@ const typeDefs = gql`
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User
     removeArea(areaId: ID!): Area
-    updateTask(taskId: ID!): Task
+    updateTask(taskId: ID!, isCompleted: Boolean!): Task
     # Testing
     # AddUserArea(area: ID!, user: ID!): User
     addOrder(products: [ID]!): Order

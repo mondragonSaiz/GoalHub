@@ -58,24 +58,24 @@ query Area($id: ID!){
       }
     }
   }
-`;
+}`;
 
 export const QUERY_AREAS = gql`
-  query areas {
-    areas {
-      _id
-      name
-      supervisor {
-        firstName
-      }
-      users {
-        firstName
-        tasks {
-          isCompleted
-          name
-          createdAt
-        }
+query areas{
+  areas {
+    _id
+     name
+    supervisor {
+    firstName
+    }
+    users {
+      firstName
+      email
+      tasks {
+        isCompleted
+        name
+        createdAt
       }
     }
   }
-`;
+}`;

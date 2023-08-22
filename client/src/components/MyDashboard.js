@@ -64,9 +64,8 @@ export default function MyDashboard({ tasks }) {
     }
   };
   console.log(month + 1);
-  let date;
+
   if (tasks.length !== 0) {
-    console.log(tasks);
     const mes = new Date(tasks[0].createdAt);
     console.log('TASK MONTH :', mes.getMonth() + 1);
 

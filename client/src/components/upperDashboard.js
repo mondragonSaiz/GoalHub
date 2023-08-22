@@ -83,6 +83,7 @@ export default function UpperDashboard({
                     </div>
                   </>
                 ) : (
+                  <div>
                   <Card>
                     <h2 className="text-slate-200 font-bold text-xl ">
                       {area.name}
@@ -94,6 +95,7 @@ export default function UpperDashboard({
                       <p className="text-gray-500">100%</p>
                     </div>
                   </Card>
+                  </div>
                 )}
               </>
             );

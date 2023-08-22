@@ -193,12 +193,17 @@ const resolvers = {
         area,
         userIcon,
       });
-
-      areaUpdated = await Area.findOneAndUpdate(
-        { _id: area },
-        { $addToSet: { users: user._id } },
-        { new: true })
-
+      if(user.isEmployee){
+        areaUpdated = await Area.findOneAndUpdate(
+          { _id: area },
+          { $addToSet: { users: user._id } },
+          { new: true })
+      } else {
+          areaUpdated = await Area.findOneAndUpdate(
+            { _id: area },
+            { supervisor: user._id },
+            { new: true })
+      }
 
       const token = signToken(user);
       return { token, user };

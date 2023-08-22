@@ -47,28 +47,28 @@ export default function MonthLeader({compTask}) {
 
     
     return (
-      <div>
-       
+        <div className="flex flex-col justify-evenly">
         <div className="flex flex-row w-full mt-2 justify-around rotate-180">       
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg` } style={{height: `${sunday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg` } style={{height: `${sunday*20}px`}}>
+                <div className="progress-bar-fill"></div>
+                
+            </div>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${saturday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${saturday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${friday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${friday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${thursday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${thursday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${wednesday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${wednesday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5 mb-1 rounded-lg`} style={{height: `${tuesday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
-            <div className={`relative progress-bar bg-slate-200 w-5 mb-1 rounded-lg`} style={{height: `${tuesday*4}px`}}>
-                <div className="progress-bar-fill"></div>
-            </div>
-            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${monday*4}px`}}>
+            <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${monday*20}px`}}>
                 <div className="progress-bar-fill"></div>
             </div>
             

@@ -12,7 +12,7 @@ const areaSchema = new Schema({
   },
   supervisor: {
     type: Schema.Types.ObjectId,
-    required: true,
+    // required: true,
     ref: 'User',
   },
   users: [

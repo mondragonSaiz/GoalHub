@@ -38,6 +38,7 @@ const typeDefs = gql`
     name: String
     description: String
     price: Float
+    purchaseQuantity: Int
   }
 
   type Order {
@@ -55,6 +56,7 @@ const typeDefs = gql`
     name: String
     description: String
     price: Float
+    purchaseQuantity: Int
   }
 
   type Query {
@@ -65,8 +67,9 @@ const typeDefs = gql`
     area(_id: ID!): Area
     tasks: [Task]
     task(_id: ID!): Task
-    products(name: String): Product
+    products: [Product]
     checkout(products: [ProductInput]): Checkout
+    order(_id: ID!): Order
   }
 
   type Mutation {
@@ -87,7 +90,7 @@ const typeDefs = gql`
       isCompleted: Boolean!
       user: ID!
     ): Task
-    addArea(name: String!, supervisorID: ID!): Area
+    addArea(name: String!, supervisorID: ID): Area
     AddUserArea(area: ID!, user: ID!): User
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User

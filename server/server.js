@@ -38,7 +38,7 @@ const startApolloServer = async () => {
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );
     });
-    seeds();
+    // seeds();
   });
 };
 

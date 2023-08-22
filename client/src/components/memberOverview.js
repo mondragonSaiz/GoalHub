@@ -66,9 +66,20 @@ export default function MembersOverview({ _id }) {
                   </div>
                 </div>
               ) : (
-                <div>
-                  <p className="font-thin text-gray-500">No tasks assigned</p>
+                <div className="w-80">
+                <Progress
+                  value={
+                    (user.tasks.filter((task) => task.isCompleted).length /
+                      user.tasks.length) *
+                    100
+                  }
+                />
+                {/* <ProgressBar/> */}
+                <div className="flex justify-center mt-1">
+                    
+                    <p className="text-gray-500">No Task assigned</p>    
                 </div>
+              </div>
               )}
             </div>
           );

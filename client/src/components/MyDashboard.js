@@ -65,19 +65,19 @@ export default function MyDashboard({ tasks }) {
   console.log(month + 1);
   let date;
 
-  console.log(tasks);
-  const mes = new Date(tasks[0].createdAt);
-  console.log('TASK MONTH :', mes.getMonth() + 1);
+  // console.log(tasks);
+  // const mes = new Date(tasks[0].createdAt);
+  // console.log('TASK MONTH :', mes.getMonth() + 1);
 
-  const currentMonthTasks = tasks.filter((task) => {
-    const createdAt = new Date(task.createdAt);
-    const currentMonth = new Date().getMonth();
-    return createdAt.getMonth() === currentMonth;
-  });
+  // const currentMonthTasks = tasks.filter((task) => {
+  //   const createdAt = new Date(task.createdAt);
+  //   const currentMonth = new Date().getMonth();
+  //   return createdAt.getMonth() === currentMonth;
+  // });
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
-      <form>
+      {/* <form>
         <div
           className="dashContainer border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
           style={{ height: '32rem' }}
@@ -148,7 +148,7 @@ export default function MyDashboard({ tasks }) {
             </div>
           )}
         </div>
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -20,7 +20,7 @@ if (!Auth.loggedIn()) {
 if (query_me.loading) {
     return <div>Loading...</div>;
 }
-
+console.log(query_products)
 return (
     <div>
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">

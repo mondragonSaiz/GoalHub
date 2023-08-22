@@ -87,9 +87,9 @@ export const QUERY_ALL_PRODUCTS = gql`
       name
       description
       price
+      purchaseQuantity
     }
-  }
-`;
+  }`;
 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ProductInput]) {

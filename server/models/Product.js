@@ -16,6 +16,11 @@ const productSchema = new Schema({
         required: true,
         min: 0.99
     },
+    purchaseQuantity: {
+        type: Number,
+        min: 1,
+        default: 0
+    },
 });
 
 const Product = mongoose.model('Product', productSchema);

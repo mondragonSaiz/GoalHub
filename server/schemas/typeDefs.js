@@ -38,7 +38,7 @@ const typeDefs = gql`
     name: String
     description: String
     price: Float
-    quantity: Int
+    purchaseQuantity: Int
   }
 
   type Order {
@@ -56,7 +56,6 @@ const typeDefs = gql`
     name: String
     description: String
     price: Float
-    quantity: Int
     purchaseQuantity: Int
   }
 

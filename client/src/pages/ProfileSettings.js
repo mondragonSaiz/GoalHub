@@ -98,6 +98,23 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex flex-row  gap-4">
+              {!employee ? 
+                <a
+                    className="rounded-lg"
+                    href="/subscriptions"
+                    style={{
+                      border: '2px solid gray',
+                      backgroundColor: '#202020',
+                      color: 'white',
+                      padding: '2%',
+                      width: '8rem',
+                      height: '3rem',
+                      fontSize: 'smaller',
+                    }}
+                  >
+                    Subscriptions
+                  </a> : <div> </div>
+                  };
                   <button
                     className="rounded-lg"
                     to="/sign-up"

@@ -91,10 +91,10 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
     checkout: async (parent, args, context) => {
-      console.log('Context',context.headers.referer);
+      // console.log('Context',context.headers.referer);
       const url = new URL(context.headers.referer).origin;
-      
       // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
       await Order.create({ products: args.products.map(({ _id }) => _id) });
       const line_items = [];
@@ -103,12 +103,15 @@ const resolvers = {
         line_items.push({
           price_data: {
             currency: 'usd',
+            unit_amount: product.price,
             product_data: {
               name: product.name,
               description: product.description,
+              // unit_amount: product.price * 100,
             },
-            unit_amount: product.price * 100,
+            // unit_amount: product.price * 100,
           },
+          quantity: 1,
         });
       }
       console.log('*************', JSON.stringify(line_items))

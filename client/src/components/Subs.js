@@ -15,7 +15,7 @@ import { Navigate } from 'react-router-dom';
 const stripePromise = loadStripe('pk_test_51NgGzoKCT9DQWm9OHmmFkVoIjMcOnfEgHKGzSpSyTDvPDfGUCapFqsrSwcLUOJ9W7UqUpNQtcr6UnznPf1J9hSF800j2ISzbbq');
 
 const Subscription = () => {
-    const state = useStoreContext();
+    // const state = useStoreContext();
     const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
     const query_me = useQuery(QUERY_ME);
     const query_products = useQuery(QUERY_ALL_PRODUCTS);
@@ -26,8 +26,7 @@ const Subscription = () => {
         if (data) {
           stripePromise.then((res) => {
             res.redirectToCheckout({ sessionId: data.checkout.session });
-          });
-        }
+          })};
       }, [data]);
 
       // useEffect(() => {
@@ -44,6 +43,7 @@ const Subscription = () => {
       function submitCheckout(pdata) {
         console.log(pdata)
         const {__typename, ...rest} = pdata
+        console.log(rest)
         getCheckout({
           variables: { 
             products: [rest],
@@ -60,8 +60,8 @@ const Subscription = () => {
         return <div>Loading...</div>;
     }
     
-    console.log(query_me);
-    console.log(query_products);
+    // console.log(query_me);
+    // console.log(query_products);
     const products_arr = query_products.data.products;
     return (
         <div className="font-poppins">
@@ -86,7 +86,7 @@ const Subscription = () => {
     <p>Plan: {products_arr[0].name}</p>
     <div>
     <div>Description: {products_arr[0].description}</div>
-    <span>Price: ${products_arr[0].price}</span> 
+    <span>Price: $20</span> 
     </div>
     </div>
                       </button>
@@ -109,7 +109,7 @@ const Subscription = () => {
     <h2>Plan: {products_arr[1].name}</h2>
     <div>
     <div>Description: {products_arr[1].description}</div>
-    <span>Price: ${products_arr[1].price}</span> 
+    <span>Price: $30</span> 
     </div>
     </div>
                       </button>
@@ -133,7 +133,7 @@ const Subscription = () => {
     <p>Plan: {products_arr[2].name}</p>
     <div>
     <div>Description: {products_arr[2].description}</div>
-    <span>Price: ${products_arr[2].price}</span> 
+    <span>Price: $40</span> 
     </div>
     </div>
                       </button>

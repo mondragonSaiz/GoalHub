@@ -33,23 +33,23 @@ export default function SignUp() {
                 <button
                   id="employee"
                   onClick={handleClick}
-                  className="w-80 h-auto border-2 rounded-2xl border-slate-200 hover:border-4 cursor-pointer"
-                >
+                  className="sm:w-80 h-auto border-2 rounded-2xl border-slate-200 hover:border-4 cursor-pointer block focus:outline-none flex items-center justify-start"
+                > 
                   <div
                     className={
                       !isEmployee
-                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64  mb-10'
+                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10'
                         : 'bg-slate-200 visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64 mb-10'
                     }
                   ></div>
-                  <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">
+                  <h1 className="text-slate-200 font-medium text-sm text-left px-10">
                     I'm an employee, looking to keep track of my achievements
                   </h1>
                 </button>
                 <button
                   id="employer"
                   onClick={handleClick}
-                  className="w-80 h-auto border-2 cursor-pointer rounded-2xl border-slate-200 hover:border-4 "
+                  className="sm:w-80 h-auto border-2 cursor-pointer rounded-2xl border-slate-200 hover:border-4 "
                 >
                   <div
                     className={

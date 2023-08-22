@@ -24,41 +24,41 @@ export default function SignUp() {
     <div className="font-poppins bg-neutral-950">
       <main className="flex justify-center items-center min-h-screen px-8 md:px-20 lg:px-40">
         <section className="flex">
-          <div className="flex flex-col justify-center items-center sm:mt-10 sm:mb-10">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 lg:px-14 py-14 gap-8">
-              <h1 className="text-slate-200 text-2xl font-bold lg:text-4xl mb-5 text-center">
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center border-2 rounded-2xl border-slate-200 py-8 px-4 md:px-20 lg:px-14 lg:py-14 gap-8">
+              <h1 className="text-slate-200 text-2xl font-bold lg:text-4xl text-center">
                 Join as an employee or employer
               </h1>
-              <div className="flex flex-col lg:flex-row gap-16">
+              <div className="flex flex-col md:flex-row lg:flex-row px-4  md:px-0 gap-8">
                 <button
                   id="employee"
                   onClick={handleClick}
-                  className="sm:w-80 px-4 py-4 gap-4 h-auto border-2 rounded-2xl border-slate-200 hover:border-4 cursor-pointer focus:outline-none flex flex-row-reverse items-center "
-                > 
+                  className="w-56 h-[136px] px-4 py-4 gap-4 border-2 rounded-2xl border-slate-200 lg:hover:border-sky-400 cursor-pointer focus:outline-none flex flex-row-reverse items-center flex-shrink-0"
+                  > 
                   <div
                     className={
                       !isEmployee
-                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10'
-                        : 'bg-slate-200 visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64 mb-10'
+                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-8 h-8 flex-shrink-0'
+                        : 'visible btn-employee border-slate-200 bg-slate-200 border-2 rounded-full w-8 h-8 flex-shrink-0'
                     }
                   ></div>
-                  <h1 className="text-slate-200 font-medium text-sm text-left">
+                  <h1 className="text-slate-200 font-medium text-sm text-left flex-grow max-w-xs">
                     I'm an employee, looking to keep track of my achievements
                   </h1>
                 </button>
                 <button
                   id="employer"
                   onClick={handleClick}
-                  className="sm:w-80 h-auto border-2 cursor-pointer rounded-2xl border-slate-200 hover:border-4 "
+                  className="w-56 h-auto px-4 py-4 gap-4 border-2 rounded-2xl border-slate-200 lg:hover:border-sky-400 cursor-pointer focus:outline-none flex flex-row-reverse items-center flex-shrink-0"
                 >
                   <div
                     className={
                       isEmployee
-                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64  mb-10'
-                        : 'bg-slate-200 visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64  mb-10'
+                        ? 'visible btn-employee border-slate-200 border-2 rounded-full w-8 h-8 shrink-0'
+                        : 'visible btn-employee border-slate-200 bg-slate-200 border-2 rounded-full w-8 h-8 flex-shrink-0'
                     }
                   ></div>
-                  <h1 className="text-slate-200 font-medium text-sm text-left px-10 mb-10 mt-4">
+                  <h1 className="text-slate-200 font-medium text-sm text-left flex-grow max-w-xs">
                     I’m an employer, looking to increase motivation and
                     productivity on my team
                   </h1>
@@ -68,7 +68,7 @@ export default function SignUp() {
                 <Link
                   to="/sign-up-form"
                   state={{ isEmployee: isEmployee }}
-                  className="flex bg-slate-200 text-neutral-950 py-2 px-20 font-bold font-poppins rounded-full lg:text-lg justify-center w-auto cursor-pointer"
+                  className="flex bg-slate-200 text-neutral-950 py-2 px-4 font-bold font-poppins rounded-full lg:text-lg justify-center w-48 cursor-pointer"
                 >
                   Apply as {isEmployee ? 'an Employee' : 'an Employer'}
                 </Link>

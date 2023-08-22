@@ -33,7 +33,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id, userIco
     <section className=" font-poppins">
       <div className="lg:flex-row lg:flex md:flex-col justify-between mt-5 mb-1">
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-          <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
+          <div className=" bg-slate-200 rounded-full xl:w-48 xl:h-48 lg:w-48 lg:h-48 w-60 h-60 mt-10 xl:mt-0 overflow-hidden">
             <img
               src={userIcon}
               alt="memberOne"
@@ -52,12 +52,12 @@ export default function MemberUpperDashboard({ firstName, lastName, _id, userIco
             Settings
           </Link>
         </div>
-        <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8">
+        <div className="flex flex-col lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8 overflow-auto">
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl mb-2">
+            <h2 className="text-slate-200 font-bold text-xl mb-2 lg:text-base">
               Total Achievements
             </h2>
-            <h1 className="text-slate-200 font-bold text-4xl mb-2">{`${completedTask}/${allTask}`}</h1>
+            <h1 className="text-slate-200 font-bold text-4xl mb-2 lg:text-base">{`${completedTask}/${allTask}`}</h1>
             <p className="text-gray-500">We are almost there!</p>
           </Card>
           <Card>

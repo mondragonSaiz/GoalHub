@@ -5,19 +5,6 @@ import memberTwo from '../img/avatar/avatar2.png';
 import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
-<<<<<<< HEAD
-export default function NewTask({ 
-   users,
-   _id,
-   selectedUserId, 
-   setSelectedUserId,
-   formData, 
-   handleInputChange, 
-   handleSubmit, 
-   closeModal }) {
-
-let [SelectedUser, setSelectedUser] = useState(null);
-=======
 export default function NewTask({
   users,
   _id,
@@ -29,7 +16,6 @@ export default function NewTask({
   closeModal,
 }) {
   let [SelectedUser, setSelectedUser] = useState(null);
->>>>>>> b4738bd373469c8ceab3ab19841cfd8124e98f6a
 
   return (
     <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">

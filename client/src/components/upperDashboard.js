@@ -32,7 +32,7 @@ export default function UpperDashboard({
         <section>
           <div className="2xl:overflow-auto xl:flex-row-reverse xl:flex md:flex-col justify-between mt-5 mb-1">
             <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-              <div className=" bg-slate-200 rounded-full xl:w-52 xl:h-52 lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
+              <div className=" bg-slate-200 rounded-full xl:w-48 xl:h-48 lg:w-48 lg:h-48 w-60 h-60 mt-10 xl:mt-0 overflow-hidden">
                 <img
                   src={userIcon}
                   alt="memberOne"
@@ -61,7 +61,7 @@ export default function UpperDashboard({
                 <>
                 <div className='order-first'>
                   <Card>
-                    <h2 className="text-slate-200 font-bold text-xl mb-2 ">
+                    <h2 className="text-slate-200 font-bold text-xl mb-2">
                       Achievements completed
                     </h2>
                     <h1 className="text-slate-200 font-bold text-4xl mb-2">{`${completedTask}/${allTask}`}</h1>

@@ -48,6 +48,7 @@ query Area($id: ID!){
   area(_id: $id) {
     name
     users {
+      _id
       firstName
       userIcon
       lastName

@@ -6,8 +6,8 @@ import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
 
-export default function NewTask({ selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
-const [SelectedUser, setSelectedUser] = useState(null);
+export default function NewTask({ users, selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
+let [SelectedUser, setSelectedUser] = useState(null);
 
 // Query for Images, 
   return (
@@ -91,82 +91,33 @@ const [SelectedUser, setSelectedUser] = useState(null);
               </div>
 
               <div className="flex lg:flex-row flex-wrap w-full justify-center ">
-                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4" 
-                style={{ cursor: 'pointer' }} 
-                >
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d0b' ? 'selected' : ''
-                }`}
-                onClick={() => {
-                setSelectedUser('64dff40853ea9507f1d85d0b');
-                setSelectedUserId('64dff40853ea9507f1d85d0b');
-                }}>
-                    <img
-                      src={memberOne}
-                      alt="memberOne"
-                      value="64dff40853ea9507f1d85d0b"
-                      layout="fill"
-                      objectfit="cover"
-                    />
-                  </div>
-                  <div className="flex justify-center pt-2">
-                    <p className="text-slate-200 font-normal">Eduardo</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d09' ? 'selected' : ''
-                  }`}
-                  onClick={() => {
-                    setSelectedUser('64dff40853ea9507f1d85d09');
-                    setSelectedUserId('64dff40853ea9507f1d85d09');
-                  }}>
-                    <img
-                      src={memberTwo}
-                      value="64dff40853ea9507f1d85d09"
-                      alt="memberTwo"
-                      layout="fill"
-                      objectfit="cover"
-                    />
-                  </div>
-                  <div className="flex justify-center pt-2">
-                    <p className="text-slate-200 font-normal">Alejandro</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                  <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d0a' ? 'selected' : '' }`}
-                  onClick={() => {
-                    setSelectedUser('64dff40853ea9507f1d85d0a')
-                    setSelectedUserId('64dff40853ea9507f1d85d0a');
-                  }}>
-                    <img
-                      src={memberThree}
-                      alt="memberThree"
-                      value="64dff40853ea9507f1d85d0a"
-                      layout="fill"
-                      objectfit="cover"
-                    />
-                  </div>
-                  <div className="flex justify-center pt-2">
-                    <p className="text-slate-200 font-normal">Daniel</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4">
-                <div className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === '64dff40853ea9507f1d85d08' ? 'selected' : '' }`}
-                  onClick={() => {
-                    setSelectedUser('64dff40853ea9507f1d85d08');
-                    setSelectedUserId('64dff40853ea9507f1d85d08')
-                  }}>
-                    <img
-                      src={memberFour}
-                      alt="memberFour"
-                      value="64dff40853ea9507f1d85d08"
-                      layout="fill"
-                      objectfit="cover"
-                    />
-                  </div>
-                  <div className="flex justify-center pt-2">
-                    <p className="text-slate-200 font-normal">Hector</p>
-                  </div>
-                </div>
+                {users.map(user=>{
+                  return (
+                    <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4" 
+                    style={{ cursor: 'pointer' }} 
+                    >
+                      <div key={user._id} className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser = user._id ? 'selected' : ''
+                    }`}
+                    onClick={() => {
+                    setSelectedUser(user._id);
+                    setSelectedUserId(user._id);
+                    }}>
+                        <img
+                          src={user.userIcon}
+                          alt="memberOne"
+                          value={user._id}
+                          layout="fill"
+                          objectfit="cover"
+                        />
+                      </div>
+                      <div className="flex justify-center pt-2">
+                        <p className="text-slate-200 font-normal">{user.firstName}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+               
+               
               </div>
             </div>
             <div className="flex flex-row xs:flex-col">

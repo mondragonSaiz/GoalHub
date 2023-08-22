@@ -90,7 +90,7 @@ const typeDefs = gql`
       isCompleted: Boolean!
       user: ID!
     ): Task
-    addArea(name: String!, supervisorID: ID!): Area
+    addArea(name: String!, supervisorID: ID): Area
     AddUserArea(area: ID!, user: ID!): User
     removeTask(taskId: ID!): User
     removeUser(userId: ID!): User

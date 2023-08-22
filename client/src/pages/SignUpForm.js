@@ -99,6 +99,9 @@ export default function SignUpForm() {
       case 'password':
         setPassword(inputValue);
         break;
+      case 'agreement':
+        setAgreement(!agreement);
+        break;
       default:
         console.log('missing input')
         break;
@@ -131,7 +134,7 @@ export default function SignUpForm() {
     e.preventDefault();
 
 
-    // console.log('Submited');
+    // console.log('Submitted');
     // console.log('AREA', area);
     if (!firstName) {
       setErrorMessage('Please add your first name');
@@ -313,8 +316,10 @@ export default function SignUpForm() {
                       name="loginSub"
                       id="loginSub"
                       value="Create my account"
-                      className=" bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold"
-                    />
+                      className={`bg-slate-200 text-neutral-950 rounded-lg py-2 cursor-pointer font-bold ${
+                        !agreement && 'opacity-50 cursor-not-allowed'
+                      }`}
+                      disabled={!agreement}                        />
                   </form>
 
                   <div className="flex flex-row gap-4 items-center">

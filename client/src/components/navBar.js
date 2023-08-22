@@ -20,7 +20,7 @@ export default function Nav({ firstName, lastName }) {
     location === 'http://localhost:3000/member-dashboard'
   );
   return (
-    <nav className="flex justify-between">
+    <nav className="flex justify-between pt-4">
       <a href="/dashboard">
         <img src={Logo} width={200} height={200} alt="" />
       </a>

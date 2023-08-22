@@ -1,29 +1,29 @@
 import React from 'react';
 import MonthBars from './monthBars';
+import { useQuery } from '@apollo/client';
+import { QUERY_AREAS } from '../utils/queries';
 
 export default function MonthOverview() {
+  const { loading, data } = useQuery(QUERY_AREAS);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
+
+  const areas = data?.areas;
+  let allCompletedTask = areas.map(area=>area.users.map(user=>user.tasks.filter(task=>task.isCompleted).map(tas=> {
+    let formatted = new Date(tas.createdAt)
+    return formatted.getDay()}))).flat().flat()
+  
+
   return (
-    <div className="w-full">
+    <div className="w-full 2xl:mt-0 xl:mt-32 lg:mt-56 md:mt-10 mt-5">
       <div
         className="border-2 rounded-2xl border-gray-500 py-5 px-7 text-white font-bold text-xl pb-8 font-poppins"
         style={{ height: '32rem' }}
       >
         Month overview
-        <MonthBars />
-        <div className="flex flex-row justify-around font-poppins">
-          <p className="text-slate-200 font-normal text-xs">Jan</p>
-          <p className="text-slate-200 font-normal text-xs">Feb</p>
-          <p className="text-slate-200 font-normal text-xs">Mar</p>
-          <p className="text-slate-200 font-normal text-xs">Apr</p>
-          <p className="text-slate-200 font-normal text-xs">May</p>
-          <p className="text-slate-200 font-normal text-xs">Jun</p>
-          <p className="text-slate-200 font-normal text-xs">Jul</p>
-          <p className="text-slate-200 font-normal text-xs">Aug</p>
-          <p className="text-slate-200 font-normal text-xs">Sep</p>
-          <p className="text-slate-200 font-normal text-xs">Oct</p>
-          <p className="text-slate-200 font-normal text-xs">Nov</p>
-          <p className="text-slate-200 font-normal text-xs">Dec</p>
-        </div>
+        <MonthBars allCompletedTask={allCompletedTask}/>
       </div>
     </div>
   );

@@ -12,22 +12,23 @@ export default function MemberUpperDashboard({
   tasks,
   areaName,
   userIcon,
-  _id
+  _id,
 }) {
   const [first, setFirst] = useState(firstName);
 
-  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  const { loading, data } = useQuery(QUERY_AREA, { variables: { id: _id } });
   if (loading) {
     return <div>Loading...</div>;
   }
-  const area = data.area
-  let allTask=area.users.reduce((acum, task)=>{
-    return acum+task.tasks.length},0 )
-  let teamCompletedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)
+  const area = data.area;
+  let allTask = area.users.reduce((acum, task) => {
+    return acum + task.tasks.length;
+  }, 0);
+  let teamCompletedTask = area.users
+    .map((user) => user.tasks.filter((comp) => comp.isCompleted))
+    .reduce((acum, task) => acum + task.length, 0);
 
-
- 
-  let completedTask = tasks.filter((task) =>task.isCompleted).length;
+  let completedTask = tasks.filter((task) => task.isCompleted).length;
 
   const memberImg = memberOne;
   const memberName = `${
@@ -36,9 +37,9 @@ export default function MemberUpperDashboard({
   const memberTeam = 'art team';
   return (
     <section className=" font-poppins">
-      <div className="lg:flex-row lg:flex md:flex-col justify-between mt-5 mb-1">
+      <div className="xl:flex-row-reverse xl:flex md:flex-col justify-between mt-5 mb-1">
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-          <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
+          <div className=" bg-slate-200 rounded-full xl:w-52 xl:h-52 lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
               src={userIcon}
               alt="memberOne"
@@ -79,10 +80,12 @@ export default function MemberUpperDashboard({
             </div>
           </Card>
           <Card>
-            <h2 className="text-slate-200 font-bold text-xl">{areaName+" Team"}</h2>
+            <h2 className="text-slate-200 font-bold text-xl">
+              {areaName + ' Team'}
+            </h2>
             <p className="text-gray-500 mb-4">overview</p>
             {/* <ProgressBar/> */}
-            <Progress value={teamCompletedTask/allTask*100} />
+            <Progress value={(teamCompletedTask / allTask) * 100} />
             <div className="flex justify-between mt-1">
               <p className="text-gray-500">0%</p>
               <p className="text-gray-500">100%</p>

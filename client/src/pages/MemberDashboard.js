@@ -13,8 +13,6 @@ import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 
-// import {useState} from 'react';
-
 // ! TODO: Remove console logs
 export default function MemberDashboard() {
   const { loading, data } = useQuery(QUERY_ME);
@@ -23,7 +21,7 @@ export default function MemberDashboard() {
   if (!Auth.loggedIn()) {
     return <Navigate to="/" />;
   }
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -31,7 +29,7 @@ export default function MemberDashboard() {
   return (
     // <div className={darkMode ? 'dark' : ''}>
     <div>
-      {!user.isEmployee ? (
+      {user.isEmployee ? (
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
           <section className="min-h-screen">
             <Nav />

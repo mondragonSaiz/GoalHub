@@ -33,6 +33,7 @@ export const QUERY_ME = gql`
       firstName
       lastName
       tasks {
+        _id
         isCompleted
         name
         taskDesc
@@ -47,6 +48,7 @@ query Area($id: ID!){
   area(_id: $id) {
     name
     users {
+      _id
       firstName
       userIcon
       lastName
@@ -69,6 +71,7 @@ query areas{
     }
     users {
       firstName
+      email
       tasks {
         isCompleted
         name

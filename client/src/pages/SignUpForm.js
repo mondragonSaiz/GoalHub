@@ -20,6 +20,8 @@ import {
   SelectLabel,
   SelectItem,
 } from '../components/select';
+
+// ! TODO: Remove console.logs
 export default function SignUpForm() {
   const { loading: queryLoading, data: queryData } = useQuery(QUERY_AREAS);
   console.log(queryData);
@@ -41,8 +43,8 @@ export default function SignUpForm() {
     setUserIcon(src);
   };
   useEffect(() => {
-    console.log('SELECTED 1', userIcon);
-    console.log('SELECTED 2', area);
+    // console.log('SELECTED 1', userIcon);
+    // console.log('SELECTED 2', area);
   }, [userIcon, area]);
 
   
@@ -112,7 +114,7 @@ export default function SignUpForm() {
 
   const validation = (name, value) => {
     let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
-    let regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    let regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
 
     if (name === 'password') {
       return regPassword.test(value);
@@ -129,26 +131,45 @@ export default function SignUpForm() {
     e.preventDefault();
 
 
-    console.log('SUbmited');
-    console.log('AREA', area);
-    if (!email || !firstName || !password || !lastName || !area) {
+    // console.log('Submited');
+    // console.log('AREA', area);
+    if (!firstName) {
+      setErrorMessage('Please add your first name');
+      return;
+    }
 
-      setErrorMessage('input missing');
+    if (!lastName) {
+      setErrorMessage('Please add your last name');
+      return;
+    }
+
+    if (!email) {
+      setErrorMessage('Please enter your email');
       return;
     }
 
     if (!validation('email', email)) {
-      setErrorMessage('wrong email');
-      return;
-    }
+    setErrorMessage('Please enter a valid email');
+    return;
+  }
 
-    if (!validation('password', password)) {
-      setErrorMessage(
-        'Password Must have 1 capital letter, 1 low case, 1 number and at least 8 characters long'
-      );
-      return;
-    }
+  if (!password) {
+    setErrorMessage('Please create a password');
+    return;
+  }
 
+  if (!validation('password', password)) {
+    setErrorMessage(
+      'Password Must have 1 capital letter, 1 low case, 1 number and at least 8 characters long'
+    );
+    return;
+  }
+
+  if (!area) {
+    setErrorMessage('Please select your area');
+    return;
+  }
+  
     try {
       const { data } = await addUser({
         variables: {

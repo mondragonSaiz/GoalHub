@@ -33,6 +33,7 @@ export const QUERY_ME = gql`
       firstName
       lastName
       tasks {
+        _id
         isCompleted
         name
         taskDesc
@@ -48,6 +49,7 @@ query Area($id: ID!){
     name
     users {
       firstName
+      userIcon
       lastName
       tasks {
         createdAt
@@ -59,13 +61,24 @@ query Area($id: ID!){
 }`;
 
 export const QUERY_AREAS = gql`
-  query Areas {
-    areas {
-      _id
-      name
+query areas{
+  areas {
+    _id
+     name
+    supervisor {
+    firstName
+    }
+    users {
+      firstName
+      email
+      tasks {
+        isCompleted
+        name
+        createdAt
+      }
     }
   }
-`;
+}`;
 
 export const QUERY_ALL_PRODUCTS = gql`
   query allProducts {
@@ -84,7 +97,7 @@ export const QUERY_CHECKOUT = gql`
       session
     }
   }
-`;
+}`;
 
 // export const QUERY_USER = gql`
 //   {

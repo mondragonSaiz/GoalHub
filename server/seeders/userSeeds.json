@@ -46,5 +46,13 @@
     "password": "password06",
     "isEmployee": false,
     "area": "64de4b0ec1ac2328af68007b"
+  },
+  {
+    "firstName": "Samuel",
+    "lastName": "Munguia",
+    "email": "samuelmunguia@email.com",
+    "password": "testpassword123",
+    "isEmployee": false,
+    "area": "64de4b0ec1ac2328af68007b"
   }
 ]

@@ -11,8 +11,7 @@ import { useQuery } from '@apollo/client';
 import { Navigate } from 'react-router-dom';
 // import { ADD_ORDER } from '../utils/mutations';
 
-// TODO: query products and render them to the buttons/links to create the stripe session
-// for the payment 
+// TODO: create the stripe session for the payment 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Subscription = () => {

@@ -1,7 +1,7 @@
 const { User, Area, Task, Product, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -33,7 +33,10 @@ const resolvers = {
     },
     areas: async () => {
       try {
-        return Area.find().populate('users').populate('supervisor');
+        return Area.find()
+          .populate('users')
+          .populate('supervisor')
+          .populate({ path: 'users', populate: 'tasks' });;
       } catch (err) {
         console.log(err);
       }
@@ -143,7 +146,7 @@ const resolvers = {
       try {
         const user = await User.findOneAndUpdate(
           { email: email },
-          { password: password },
+          { $set: { password: password } },
           { runValidators: true, new: true }
         );
         const token = signToken(user);
@@ -180,15 +183,27 @@ const resolvers = {
         area,
         userIcon,
       });
+
+      areaUpdated = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: user._id } },
+        { new: true })
+
+
       const token = signToken(user);
       return { token, user };
     },
     AddUserArea: async (parent, { user, area }) => {
       const userAreaUpdated = await User.findByIdAndUpdate(
         { _id: user },
-        { $set: { area: area } },
+        { area: area  },
         { new: true }
       ).populate('area');
+
+      areaUpdated = await Area.findOneAndUpdate(
+        { _id: area },
+        { $addToSet: { users: userAreaUpdated._id } },
+        { new: true })
 
       return userAreaUpdated;
     },
@@ -240,6 +255,19 @@ const resolvers = {
         });
       } catch (err) {
         console.log(err);
+      }
+    },
+    updateTask: async (parent, { taskId, isCompleted }, context) => {
+      try {
+        const updatedTask = await Task.findByIdAndUpdate(
+          taskId,
+          { isCompleted: isCompleted },
+          { new: true }
+        ).populate('user');
+        return updatedTask;
+      } catch (err) {
+        console.log(err);
+        // throw new Error('Failed to update task.');
       }
     },
 

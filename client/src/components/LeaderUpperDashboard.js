@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
 
 
-export default function MemberUpperDashboard({ firstName, lastName, _id }) {
+export default function MemberUpperDashboard({ firstName, lastName, _id, userIcon }) {
   const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
   if (loading) {
     return <div>Loading...</div>;
@@ -17,7 +17,13 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
   let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)
+  
 
+
+  let compTask = area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted).map(tas=>{ 
+   let formatted = new Date(tas.createdAt)
+    return formatted.getDay()}))
+  console.log(compTask)
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()
@@ -29,7 +35,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
           <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
-              src={memberImg}
+              src={userIcon}
               alt="memberOne"
               layout="fill"
               oobjectfit="cover"
@@ -70,7 +76,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id }) {
             </h2>
             {/* <p className="text-gray-500 mb-4">overview</p> */}
             {/* <ProgressBar/> */}
-            <MonthLeader />
+            <MonthLeader compTask={compTask}/>
           </Card>
         </div>
       </div>

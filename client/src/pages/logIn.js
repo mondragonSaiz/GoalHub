@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 // ! TODO: Remove console logs
 
 export default function LogIn() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  if (Auth.loggedIn()) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,21 +46,21 @@ export default function LogIn() {
   };
 
   return (
-    <div className=" font-poppins">
-      <main className="flex justify-center bg-neutral-950">
-        <section className="flex min-h-screen">
+    <div className=" font-poppins bg-neutral-950">
+      <main className="flex justify-center items-center min-h-screen px-8">
+        <section className="flex">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
+            <div className="flex flex-col items-center w-auto border-2 border-box rounded-2xl border-slate-200 px-8 py-8 sm:px-14 sm:py-14 gap-8">
               {data ? (
-                <p>
-                  Successfully loged!{' '}
+                <p className="text-slate-200 font-bold text-3xl lg:text-4xl text-center">
+                  Successfully loged!{' '}<br></br>
                   <Link to="/dashboard">Taking you to your dashboard.</Link>
                 </p>
               ) : (
                 <div className="flex flex-col items-center w-full rounded-2xl border-slate-200 gap-8">
                   
                   <form>
-                    <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-5 text-center">
+                    <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-5 lg:mb-8 text-center">
                       Log in to GoalHub
                     </h2>
                     <fieldset className="flex flex-col gap-6">
@@ -86,7 +91,7 @@ export default function LogIn() {
                     </fieldset>
                     <div className="flex flex-row gap-4 justify-center mt-4">
                       <p className=" rotate-90 text-gray-500">|</p>
-                      <p className=" text-gray-500 text-sm">
+                      <p className=" text-gray-500 text-sm text-center">
                         Don't have a GoalHub account?
                       </p>
                       <p className=" rotate-90 text-gray-500">|</p>

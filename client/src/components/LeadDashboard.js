@@ -11,63 +11,59 @@ import { QUERY_AREA } from '../utils/queries';
 import NewTask from './NewTask'
 
 export default function MyDashboard({_id}) {
-  const [selectedUserId, setSelectedUserId] = useState(null);
-  const [formData, setFormData] = useState({
-    name: " ",
-    taskDesc: " ", 
-    isCompleted: false,
-    user: null
-  });
   
-  const [openModal, setOpenModal] = useState(false);
-  const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
-  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  let index =1;
-  const area = data.area
-  
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [formData, setFormData] = useState({
+    name: " ",
+    taskDesc: " ",
+    isCompleted: false,
+    user: null
+  });
+
+  const [openModal, setOpenModal] = useState(false);
+  const [addTask, { error, data: mutationData }] = useMutation(ADD_TASK);
+  const { loading, data} = useQuery(QUERY_AREA, {variables: { id: _id },})
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  let index =1;
+  const area = data.area
 
 
-  const { name, taskDesc, user } = formData;
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const { name, taskDesc, user } = formData;
 
-  const createTask = async (e, closeModal) => {
-    e.preventDefault()
-    try {
-      await addTask ({
-        variables: {
-          name: formData.name,
-          taskDesc: formData.taskDesc, 
-          isCompleted: false,
-          user: selectedUserId,
-        },
-      });
-      if (name === "" | taskDesc === ""){
-        return console.error("Input field cannot be empty")
-      }
-      if (!selectedUserId) {
-        console.error("Please select a user.");
-        return;
-      }
-   
-    } catch (error) {
-      console.error('Error adding task:', error);
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  };
+  const createTask = async (e, closeModal) => {
+    e.preventDefault()
+    try {
+      await addTask ({
+        variables: {
+          name: formData.name,
+          taskDesc: formData.taskDesc,
+          isCompleted: false,
+          user: selectedUserId,
+        },
+      });
+      if (name === "" | taskDesc === ""){
+        return console.error("Input field cannot be empty")
+      }
+      if (!selectedUserId) {
+        console.error("Please select a user.");
+        return;
+      }
 
-  const handleSubmit = async (e, closeModal ) => {
-    e.preventDefault()
+    } catch (error) {
+      console.error('Error adding task:', error);
+    };
+  };
 
-    console.log(formData.name)
-    console.log(formData.taskDesc)
-    console.log(selectedUserId)
+  const handleSubmit = async (e, closeModal ) => {
+    e.preventDefault()
 
     if (!formData.name || !formData.taskDesc) {
       return; 
@@ -202,3 +198,4 @@ export default function MyDashboard({_id}) {
     </div>
   );
 }
+

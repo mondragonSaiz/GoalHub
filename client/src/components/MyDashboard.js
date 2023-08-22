@@ -40,7 +40,6 @@ export default function MyDashboard({ tasks }) {
     tasks.forEach((task) => {
       initialStatus[task._id] = task.isCompleted || false;
     });
-    console.log('INITIAL', initialStatus);
     setCheckboxStatus(initialStatus);
   }, [tasks]);
 
@@ -64,16 +63,19 @@ export default function MyDashboard({ tasks }) {
   };
   console.log(month + 1);
   let date;
+  if (tasks.length !== 0) {
+    console.log(tasks);
+    const mes = new Date(tasks[0].createdAt);
+    console.log('TASK MONTH :', mes.getMonth() + 1);
 
-  // console.log(tasks);
-  // const mes = new Date(tasks[0].createdAt);
-  // console.log('TASK MONTH :', mes.getMonth() + 1);
 
-  // const currentMonthTasks = tasks.filter((task) => {
-  //   const createdAt = new Date(task.createdAt);
-  //   const currentMonth = new Date().getMonth();
-  //   return createdAt.getMonth() === currentMonth;
-  // });
+    const currentMonthTasks = tasks.filter((task) => {
+      const createdAt = new Date(task.createdAt);
+      const currentMonth = new Date().getMonth();
+      return createdAt.getMonth() === currentMonth;
+    });
+  }
+
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
@@ -91,8 +93,13 @@ export default function MyDashboard({ tasks }) {
             </p>
             <button
               type="submit"
-              className="border border-green-200  rounded-lg font-thin text-green-300 hover:text-gray-500 hover:border-green-400 hover:bg-green-400 px-2"
+              className={`border border-green-200 rounded-lg font-thin text-green-300 hover:text-gray-500 hover:border-green-400 hover:bg-green-400 px-2 ${
+                tasks.length === 0
+                  ? 'border border-gray-200 text-gray-300 disabled:opacity-50 hover:border-gray-400  hover:bg-gray-400 cursor-not-allowed'
+                  : ''
+              }`}
               style={{ fontSize: 'smaller' }}
+              disabled={tasks.length === 0}
             >
               Save
             </button>
@@ -107,38 +114,44 @@ export default function MyDashboard({ tasks }) {
                 <div>Check</div>
                 <div>Task</div>
                 <div className="taskElement_isCompleted">Status</div>
-                <div>Date</div>
+                <div className="createdAtElement">Date</div>
               </div>
-              {currentMonthTasks.map((task, index) => {
-                return (
-                  <div
-                    key={task._id}
-                    className="grid grid-cols-4 gap-4 overflow-auto"
-                    style={{ color: 'white' }}
-                  >
-                    <div className=" py-2 px-1 taskElement">
-                      <input
-                        type="checkbox"
-                        checked={checkboxStatus[task._id]}
-                        onChange={() => handleCheckboxToggle(task._id)}
-                      />
+              {tasks
+                .filter((task) => {
+                  const createdAt = new Date(task.createdAt);
+                  const currentMonth = new Date().getMonth();
+                  return createdAt.getMonth() === currentMonth;
+                })
+                .map((task, index) => {
+                  return (
+                    <div
+                      key={task._id}
+                      className="grid grid-cols-4 gap-4 overflow-auto"
+                      style={{ color: 'white' }}
+                    >
+                      <div className=" py-2 px-1 taskElement">
+                        <input
+                          type="checkbox"
+                          checked={checkboxStatus[task._id]}
+                          onChange={() => handleCheckboxToggle(task._id)}
+                        />
+                      </div>
+                      <div className="py-2 px-1 text-base overflow-auto">
+                        <p className="taskElement ">{task.name}</p>
+                      </div>
+                      <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                        <p className="taskElement_isCompleted">
+                          {task.isCompleted ? 'Completed' : 'Pending'}
+                        </p>
+                      </div>
+                      <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                        <p className="taskElement createdAtElement">
+                          {task.createdAt}
+                        </p>
+                      </div>
                     </div>
-                    <div className=" py-2 px-1 text-base overflow-auto">
-                      <p className="taskElement ">{task.name}</p>
-                    </div>
-                    <div className=" py-2 px-1 text-sm font-thin text-gray-500 ">
-                      <p className="taskElement_isCompleted">
-                        {task.isCompleted ? 'Completed' : 'Pending'}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="py-2 px-1  font-thin text-gray-500 text-base  taskElement">
-                        {task.createdAt}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           ) : (
             <div className="py-4">

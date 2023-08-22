@@ -44,7 +44,6 @@ const userSchema = new Schema({
       ref: 'Task',
     },
   ],
-  // orders: [Order.Schema],
 });
 
 // Set up pre-save middleware to create password

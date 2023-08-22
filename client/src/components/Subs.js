@@ -2,20 +2,14 @@ import React, { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT, QUERY_ME, QUERY_ALL_PRODUCTS } from '../utils/queries';
-import { idbPromise } from '../utils/helpers';
 import Auth from '../utils/auth';
-import { useStoreContext } from '../utils/GlobalState';
-import { ADD_MULTIPLE_TO_CART } from '../utils/actions';
 import '../styles/globals.css';
 import { useQuery } from '@apollo/client';
 import { Navigate } from 'react-router-dom';
-// import { ADD_ORDER } from '../utils/mutations';
 
-// TODO: create the stripe session for the payment 
 const stripePromise = loadStripe('pk_test_51NgGzoKCT9DQWm9OHmmFkVoIjMcOnfEgHKGzSpSyTDvPDfGUCapFqsrSwcLUOJ9W7UqUpNQtcr6UnznPf1J9hSF800j2ISzbbq');
 
 const Subscription = () => {
-    // const state = useStoreContext();
     const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
     const query_me = useQuery(QUERY_ME);
     const query_products = useQuery(QUERY_ALL_PRODUCTS);
@@ -29,17 +23,6 @@ const Subscription = () => {
           })};
       }, [data]);
 
-      // useEffect(() => {
-      //   async function getCart() {
-      //     const cart = await idbPromise('cart', 'get');
-      //     dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
-      //   }
-    
-      //   if (!state.cart.length) {
-      //     getCart();
-      //   }
-      // }, [state.cart.length, dispatch]);
-
       function submitCheckout(pdata) {
         console.log(pdata)
         const {__typename, ...rest} = pdata
@@ -49,7 +32,6 @@ const Subscription = () => {
             products: [rest],
           },
         });
-        // console.log(context.headers.referer)
       }
 
     if (!Auth.loggedIn()) {
@@ -60,8 +42,6 @@ const Subscription = () => {
         return <div>Loading...</div>;
     }
     
-    // console.log(query_me);
-    // console.log(query_products);
     const products_arr = query_products.data.products;
     return (
         <div className="font-poppins">

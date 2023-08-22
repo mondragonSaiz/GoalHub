@@ -5,11 +5,21 @@ import memberTwo from '../img/avatar/avatar2.png';
 import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
+export default function NewTask({ 
+   users,
+   _id,
+   selectedUserId, 
+   setSelectedUserId,
+   formData, 
+   handleInputChange, 
+   handleSubmit, 
+   closeModal }) {
+
 
 export default function NewTask({ users, selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
+
 let [SelectedUser, setSelectedUser] = useState(null);
 
-// Query for Images, 
   return (
     <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">
       <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
@@ -17,7 +27,7 @@ let [SelectedUser, setSelectedUser] = useState(null);
           <div className="flex flex-col justify-center w-full items-center lg:-mt-20 mt-10 mb-10">
             <div className="flex flex-row justify-between" >
             <h1 className="  text-slate-200 text-2xl font-bold lg:text-4xl md:text-4xl sm:text-4xl mb-5 text-center">
-              New Task 
+              New Task
             </h1>
             </div>
             {/* Pending: when xs p-4 - p-6 */}
@@ -49,13 +59,11 @@ let [SelectedUser, setSelectedUser] = useState(null);
                       placeholder="Title for your task"
                       type="text"
                       name="name"
-                    
                       onChange={handleInputChange}
                       className=" flex-grow justify-between focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left  py-2 pl-4"
                     />
                   </div>
                 </div> */}
-
                 {/* Description */}
                 <div className="mb-6">
                 <label htmlFor="large-input" className="block mb-2 text-2xl font-medium  text-slate-200 dark:text-black">
@@ -82,24 +90,25 @@ let [SelectedUser, setSelectedUser] = useState(null);
                       placeholder="Write your task "
                       type="text"
                       name="description"
-                      
                       onChange={handleInputChange}
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 text-left  py-8  pl-4"
                     />
                   </div>
                 </div> */}
               </div>
-
               <div className="flex lg:flex-row flex-wrap w-full justify-center ">
                 {users.map(user=>{
                   return (
-                    <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4" 
-                    style={{ cursor: 'pointer' }} 
+
+                    <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4"
+                    style={{ cursor: 'pointer' }}
                     >
-                      <div key={user._id} className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser = user._id ? 'selected' : ''
+                      <div 
+                      key={user._id} 
+                      className={`bg-slate-200 rounded-full w-20 h-20 overflow-hidden ${SelectedUser === user.firstName ? 'selected' : ''
                     }`}
                     onClick={() => {
-                    setSelectedUser(user._id);
+                    setSelectedUser(user.firstName);
                     setSelectedUserId(user._id);
                     }}>
                         <img
@@ -116,8 +125,7 @@ let [SelectedUser, setSelectedUser] = useState(null);
                     </div>
                   )
                 })}
-               
-               
+
               </div>
             </div>
             <div className="flex flex-row xs:flex-col">
@@ -138,7 +146,6 @@ let [SelectedUser, setSelectedUser] = useState(null);
               </a>
             </div>
             </div>
-    
           </div>
         </section>
       </main>
@@ -155,3 +162,14 @@ let [SelectedUser, setSelectedUser] = useState(null);
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+

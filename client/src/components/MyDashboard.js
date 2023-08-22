@@ -40,7 +40,6 @@ export default function MyDashboard({ tasks }) {
     tasks.forEach((task) => {
       initialStatus[task._id] = task.isCompleted || false;
     });
-    console.log('INITIAL', initialStatus);
     setCheckboxStatus(initialStatus);
   }, [tasks]);
 
@@ -107,7 +106,7 @@ export default function MyDashboard({ tasks }) {
                 <div>Check</div>
                 <div>Task</div>
                 <div className="taskElement_isCompleted">Status</div>
-                <div>Date</div>
+                <div className="createdAtElement">Date</div>
               </div>
               {currentMonthTasks.map((task, index) => {
                 return (
@@ -123,16 +122,16 @@ export default function MyDashboard({ tasks }) {
                         onChange={() => handleCheckboxToggle(task._id)}
                       />
                     </div>
-                    <div className=" py-2 px-1 text-base overflow-auto">
+                    <div className="py-2 px-1 text-base overflow-auto">
                       <p className="taskElement ">{task.name}</p>
                     </div>
-                    <div className=" py-2 px-1 text-sm font-thin text-gray-500 ">
+                    <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
                       <p className="taskElement_isCompleted">
                         {task.isCompleted ? 'Completed' : 'Pending'}
                       </p>
                     </div>
-                    <div>
-                      <p className="py-2 px-1  font-thin text-gray-500 text-base  taskElement">
+                    <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                      <p className="taskElement createdAtElement">
                         {task.createdAt}
                       </p>
                     </div>

@@ -67,7 +67,6 @@ const typeDefs = gql`
     tasks: [Task]
     task(_id: ID!): Task
     products: [Product] 
-    # product(_id: ID!): Product
     checkout( products: [ProductInput]): Checkout
     order(_id: ID!): Order
   }

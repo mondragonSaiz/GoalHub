@@ -97,3 +97,14 @@ mutation addOrder($products: [ID]!) {
   }
 }
 `;
+
+export const DEL_USER = gql`
+  mutation removeUser($userId: ID!) {
+    removeUser(userId: $userId) {
+      _id
+      firstName
+      lastName
+      email
+    }
+  }
+`;

@@ -80,3 +80,21 @@ query areas{
     }
   }
 }`;
+
+export const QUERY_ALL_PRODUCTS = gql`
+  query allProducts {
+    products {
+      _id
+      name
+      description
+      price
+      purchaseQuantity
+    }
+  }`;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($products: [ProductInput]) {
+    checkout(products: $products) {
+      session
+    }
+  }`;

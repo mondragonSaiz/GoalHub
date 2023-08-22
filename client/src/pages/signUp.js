@@ -33,7 +33,7 @@ export default function SignUp() {
                 <button
                   id="employee"
                   onClick={handleClick}
-                  className="sm:w-80 h-auto border-2 rounded-2xl border-slate-200 hover:border-4 cursor-pointer block focus:outline-none flex items-center justify-start"
+                  className="sm:w-80 px-4 py-4 gap-4 h-auto border-2 rounded-2xl border-slate-200 hover:border-4 cursor-pointer focus:outline-none flex flex-row-reverse items-center "
                 > 
                   <div
                     className={
@@ -42,7 +42,7 @@ export default function SignUp() {
                         : 'bg-slate-200 visible btn-employee border-slate-200 border-2 rounded-full w-10 h-10 mt-4 ml-64 mb-10'
                     }
                   ></div>
-                  <h1 className="text-slate-200 font-medium text-sm text-left px-10">
+                  <h1 className="text-slate-200 font-medium text-sm text-left">
                     I'm an employee, looking to keep track of my achievements
                   </h1>
                 </button>
@@ -64,7 +64,7 @@ export default function SignUp() {
                   </h1>
                 </button>
               </div>
-              <div className="flex text-center">
+              <div className="flex text-center px-4">
                 <Link
                   to="/sign-up-form"
                   state={{ isEmployee: isEmployee }}
@@ -73,7 +73,7 @@ export default function SignUp() {
                   Apply as {isEmployee ? 'an Employee' : 'an Employer'}
                 </Link>
               </div>
-              <div className="flex flex-row gap-2 justify-center">
+              <div className="flex flex-col justify-center text-center">
                 <p className="text-slate-200 font-normal">
                   Already have an account?
                 </p>

@@ -18,6 +18,9 @@
     font-size: 0.5875rem;
     padding-left: 1rem;
   }
+  .createdAtElement {
+    padding-left: 1rem;
+  }
 }
 
 @media screen and (max-width: 360px) {

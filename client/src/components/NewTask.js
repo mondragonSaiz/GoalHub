@@ -15,6 +15,9 @@ export default function NewTask({
    handleSubmit, 
    closeModal }) {
 
+
+export default function NewTask({ users, selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
+
 let [SelectedUser, setSelectedUser] = useState(null);
 
   return (
@@ -96,6 +99,7 @@ let [SelectedUser, setSelectedUser] = useState(null);
               <div className="flex lg:flex-row flex-wrap w-full justify-center ">
                 {users.map(user=>{
                   return (
+
                     <div className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4"
                     style={{ cursor: 'pointer' }}
                     >
@@ -121,6 +125,7 @@ let [SelectedUser, setSelectedUser] = useState(null);
                     </div>
                   )
                 })}
+
               </div>
             </div>
             <div className="flex flex-row xs:flex-col">

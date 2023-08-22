@@ -118,7 +118,7 @@ export default function ProfileSettings() {
                       oobjectfit="cover"
                     />
                   </div>
-                  <h2 className="flex justify-end text-slate-200 text-md font-bold font-poppins lg:text-center lg:text-xl">
+                  <h2 className="flex pt-4 justify-end text-slate-200 text-md font-bold font-poppins lg:text-center lg:text-xl">
                     {memberName}
                   </h2>
                   <p className="flex justify-end text-gray-500  text-md text-base font-poppins lg:text-center lg:text-xl">
@@ -151,38 +151,43 @@ export default function ProfileSettings() {
                     className="focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />
                 </div>
-                <div className="flex flex-row  gap-4">
+                <div className="flex flex-row ">
+                <div className='flex justify-center gap-3  pt-5 pb-8 '>
               {!employee ? 
                 <a
-                    className="rounded-lg"
+                    className="flex justify-center items-center font-medium text-sm rounded-full"
                     href="/subscriptions"
                     style={{
                       border: '2px solid gray',
-                      backgroundColor: '#202020',
+                      // backgroundColor: '#202020',
                       color: 'white',
-                      padding: '2%',
-                      width: '8rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
+                      padding: '5%',
+                      // width: '8rem',
+                      // height: '3rem',
+                      // fontSize: 'smaller',
                     }}
                   >
                     Subscriptions
                   </a> : <div> </div>
                   };
+                  
                   <button
-                    className="rounded-lg"
-                    onClick={() => setChangePasswordOpen(true)}
-                    style={{
-                      border: '2px solid gray',
-                      backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '2%',
-                      width: '6rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
+                    className="flex bg-gray-100 text-neutral-950 py-4 px-8 font-medium text-sm font-poppins rounded-full  justify-center w-auto cursor-pointer"
+                    onClick={(event) => { 
+                      event.preventDefault();
+                      setChangePasswordOpen(true)
                     }}
+                    // style={{
+                    //   border: '2px solid gray',
+                    //   backgroundColor: '#202020',
+                    //   color: 'white',
+                    //   padding: '2%',
+                    //   width: '6rem',
+                    //   height: '3rem',
+                    //   fontSize: 'smaller',
+                    // }}
                   >
-                    Change Password
+                    Change <br></br> Password
                   </button>
                   {changePasswordOpen && (
                     <ChangePasswordModal
@@ -190,24 +195,25 @@ export default function ProfileSettings() {
                     />
                   )}
                   <button
-                    className="rounded-lg"
+                    className="flex bg-gray-100 text-neutral-950 py-4 px-10 font-medium text-sm font-poppins rounded-full  justify-center w-auto cursor-pointer"
                     to="/sign-up"
-                    style={{
-                      border: '2px solid gray',
-                      backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '2%',
-                      width: '6rem',
-                      height: '3rem',
-                      fontSize: 'smaller',
-                    }}
+                    // style={{
+                    //   border: '2px solid gray',
+                    //   backgroundColor: '#202020',
+                    //   color: 'white',
+                    //   padding: '2%',
+                    //   width: '6rem',
+                    //   height: '3rem',
+                    //   fontSize: 'smaller',
+                    // }}
                     onClick={(event) => { 
                       event.preventDefault();
                       setOpenModal(true)
                     }}
                   >
-                    Delete Account
+                    Delete <br></br> Account
                   </button>
+                  </div>
                 </div>
               </form>
             </div>

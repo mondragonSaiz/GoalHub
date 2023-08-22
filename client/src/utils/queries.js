@@ -33,6 +33,7 @@ export const QUERY_ME = gql`
       isEmployee
       firstName
       lastName
+      email
       tasks {
         _id
         isCompleted

@@ -1,7 +1,7 @@
-const { User, Area, Task } = require('../models');
+const { User, Area, Task, Product, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_51NgGzoKCT9DQWm9Okqjq45gPZysf1Gw6zEuW7Rw2EZRuTNBjcnPBOwEzPCW4L9zBZGD1L18i6OheH7eIqwI2lFA8001hS4GqMX');
 
 const resolvers = {
   Query: {
@@ -65,6 +65,73 @@ const resolvers = {
         console.log(err);
       }
     },
+
+    products: async (parent, { name }) => {
+      const params = {};
+
+      if (name) {
+        params.name = {
+          $regex: name,
+        };
+      }
+      const test =  await Product.find(params).populate('name');
+      console.log(test)
+      return test;
+    },
+
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+        });
+
+        return user.orders.id(_id);
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
+      await Order.create({ products: args.products.map(({ _id }) => _id) });
+      const line_items = [];
+
+      for (const product of args.products) {
+        line_items.push({
+          price_data: {
+            currency: 'usd',
+            unit_amount: product.price,
+            product_data: {
+              name: product.name,
+              description: product.description,
+            },
+          },
+          quantity: 1,
+        });
+      }
+      console.log('*************', JSON.stringify(line_items))
+      
+      try {
+        const session = 
+      await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+      console.log({ session: session.id })
+      return { session: session.id };
+      } catch (error) {
+        console.log(error)
+      }
+      
+    },
+
+
+
+
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -212,6 +279,21 @@ const resolvers = {
         console.log(err);
         // throw new Error('Failed to update task.');
       }
+    },
+
+    addOrder: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order },
+        });
+
+        return order;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
   },
 };

@@ -37,9 +37,9 @@ export default function MemberUpperDashboard({
   const memberTeam = 'art team';
   return (
     <section className=" font-poppins">
-      <div className="lg:flex-row lg:flex md:flex-col justify-between mt-5 mb-1">
+      <div className="xl:flex-row-reverse xl:flex md:flex-col justify-between mt-5 mb-1">
         <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
-          <div className=" bg-slate-200 rounded-full lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
+          <div className=" bg-slate-200 rounded-full xl:w-52 xl:h-52 lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
             <img
               src={userIcon}
               alt="memberOne"

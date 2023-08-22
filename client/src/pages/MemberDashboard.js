@@ -41,7 +41,7 @@ export default function MemberDashboard() {
               areaName={user.area.name}
               _id={user.area._id}
             />
-            <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex flex-col lg:gap-0 lg:flex-col xl:flex-row xl:gap-4 gap-2 mt-2">
               <MyDashboard tasks={user.tasks} />
               <MembersOverview _id={user.area._id} />
             </div>

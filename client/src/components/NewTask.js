@@ -15,9 +15,6 @@ export default function NewTask({
    handleSubmit, 
    closeModal }) {
 
-
-export default function NewTask({ users, selectedUserId, setSelectedUserId,formData, handleInputChange, handleSubmit, closeModal }) {
-
 let [SelectedUser, setSelectedUser] = useState(null);
 
   return (

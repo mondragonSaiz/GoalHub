@@ -30,7 +30,7 @@ export default function UpperDashboard({
   
       return (
         <section>
-          <div className="xl:flex-row-reverse xl:flex md:flex-col justify-between mt-5 mb-1">
+          <div className="2xl:overflow-auto xl:flex-row-reverse xl:flex md:flex-col justify-between mt-5 mb-1">
             <div className="lg:flex lg:flex-col mb-5 flex flex-col items-center">
               <div className=" bg-slate-200 rounded-full xl:w-52 xl:h-52 lg:w-40 lg:h-40 w-60 h-60 mt-10 overflow-hidden">
                 <img

@@ -67,6 +67,7 @@ export default function ForgotPassword() {
                 Enter the email address associated with your account and we'll send you a link to reset your password
                </p>
                <fieldset className="flex flex-col gap-6">
+                {/* <label htmlFor="email">Email </label> */}
                  <input
                   //  onChange={handleChange}
                    placeholder="Enter Your Email Address"

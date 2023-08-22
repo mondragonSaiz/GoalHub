@@ -9,10 +9,12 @@ import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 import Subscription from './Subscriptions';
+import ChangePassword from '../components/ChangePassword'
 
 // ! TODO: Remove console logs
 export default function ProfileSettings() {
   const [openModal, setOpenModal] = useState(false);
+  const [changePasswordOpen, setChangePasswordOpen ] = useState(false);
   const [deleteAccount, { error, data: deletedUser }] = useMutation(DEL_USER);
 
   const { loading, data } = useQuery(QUERY_ME);
@@ -78,7 +80,6 @@ export default function ProfileSettings() {
                 <button
                   className="bg-red-700 text-white text-xl px-20 py-2 rounded-full"
                   onClick={handleDeleteAccount}
-                  to="/forgot-password"
                 >
                   Yes
                 </button>
@@ -170,7 +171,7 @@ export default function ProfileSettings() {
                   };
                   <button
                     className="rounded-lg"
-                    to="/sign-up"
+                    onClick={() => setChangePasswordOpen(true)}
                     style={{
                       border: '2px solid gray',
                       backgroundColor: '#202020',
@@ -183,6 +184,11 @@ export default function ProfileSettings() {
                   >
                     Change Password
                   </button>
+                  {changePasswordOpen && (
+                    <ChangePassword
+                      onClose={() => setChangePasswordOpen(false)}
+                    />
+                  )}
                   <button
                     className="rounded-lg"
                     to="/sign-up"

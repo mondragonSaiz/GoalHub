@@ -42,13 +42,11 @@ export default function monthBars({allCompletedTask}) {
     })
 
     console.log(monday,tuesday,wednesday,thursday,friday,saturday,sunday)
-   
 
 
     
     return (
-      <div className="">
-       
+        <div className="flex flex-col justify-evenly">
         <div className="flex flex-row w-full mt-2 justify-around rotate-180">       
             <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg` } style={{height: `${sunday*40}px`}}>
                 <div className="progress-bar-fill"></div>
@@ -74,17 +72,16 @@ export default function monthBars({allCompletedTask}) {
             </div>
             
         </div>
-               <div className="flex flex-row pt-2 justify-around font-poppins">
-               <p className="text-slate-200 font-normal text-xs">M</p>
-               <p className="text-slate-200 font-normal text-xs">T</p>
-               <p className="text-slate-200 font-normal text-xs">W</p>
-               <p className="text-slate-200 font-normal text-xs">T</p>
-               <p className="text-slate-200 font-normal text-xs">F</p>
-               <p className="text-slate-200 font-normal text-xs">S</p>
-               <p className="text-slate-200 font-normal text-xs">S</p>
-              
-           </div>
-         </div>    
+                <div className="flex flex-row pt-2 justify-around font-poppins">
+                <p className="text-slate-200 font-normal text-xs">M</p>
+                <p className="text-slate-200 font-normal text-xs">T</p>
+                <p className="text-slate-200 font-normal text-xs">W</p>
+                <p className="text-slate-200 font-normal text-xs">T</p>
+                <p className="text-slate-200 font-normal text-xs">F</p>
+                <p className="text-slate-200 font-normal text-xs">S</p>
+                <p className="text-slate-200 font-normal text-xs">S</p>
+            </div>
+        </div>    
     
     )
 }

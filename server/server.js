@@ -5,7 +5,7 @@ const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-
+const seeds = require('./seeders/seed')
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -38,6 +38,7 @@ const startApolloServer = async () => {
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );
     });
+    seeds();
   });
 };
 

@@ -43,21 +43,23 @@ export default function Dashboard() {
     <div>
       <div className=" font-poppins">
         <main className="bg-neutral-900 px-10 md:px-20 lg:px-40">
-          <section className="min-h-screen">
-            <Nav firstName={user.firstName} lastName={user.lastName} />
-            <UpperDashboard
-              firstName={user.firstName}
-              lastName={user.lastName}
-              areaName={user.area.name}
-              isEmployee={user.isEmployee}
-              userIcon={user.userIcon}
-              id={user.area._id}
-            />
-            <div className="flex flex-col lg:flex-row gap-4">
-              <MonthOverview />
-              <MembersOverview _id={user.area._id} />
-            </div>
-          </section>
+          <div>
+            <section className="lg:flex lg:flex-col xl:flex-none min-h-screen">
+              <Nav firstName={user.firstName} lastName={user.lastName} />
+                <UpperDashboard
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  areaName={user.area.name}
+                  isEmployee={user.isEmployee}
+                  userIcon={user.userIcon}
+                  id={user.area._id}
+                />
+                <div className="flex flex-col 2xl:flex-row gap-4">
+                  <MonthOverview />
+                  <MembersOverview _id={user.area._id} />
+                </div>
+            </section>
+          </div>
         </main>
       </div>
     </div>

@@ -12,33 +12,51 @@ export default function MyDashboard({ tasks }) {
   const memberTeam = 'art team';
   let objectDate = new Date();
   let month = objectDate.getMonth();
-  const [updateTask, { error, data }] = useMutation(UPDATE_TASK);
-  const [checkboxStates, setCheckboxStates] = useState({});
+  const [updateTask] = useMutation(UPDATE_TASK, {
+    // Configure update function to update Apollo Client cache
+    update: (cache, { data: { updateTask } }) => {
+      // Update cache to reflect the updated task
+      cache.modify({
+        fields: {
+          // Assuming you have a query named 'tasks' that fetches tasks
+          tasks: (existingTasks, { readField }) => {
+            return existingTasks.map((task) => {
+              if (task._id === updateTask._id) {
+                // Update the 'isCompleted' field of the updated task
+                return { ...task, isCompleted: updateTask.isCompleted };
+              }
+              return task;
+            });
+          },
+        },
+      });
+    },
+  });
+  const [checkboxStatus, setCheckboxStatus] = useState({});
 
   useEffect(() => {
-    // Update checkboxStates when tasks change
-    const newCheckboxStates = {};
+    // Initialize the checkbox status based on tasks' isCompleted values
+    const initialStatus = {};
     tasks.forEach((task) => {
-      newCheckboxStates[task._id] = task.isCompleted;
+      initialStatus[task._id] = task.isCompleted || false;
     });
-    setCheckboxStates(newCheckboxStates);
+    console.log('INITIAL', initialStatus);
+    setCheckboxStatus(initialStatus);
   }, [tasks]);
 
-  const handleCheckboxToggle = async (taskId, isCompleted) => {
-    console.log('TASK ID', taskId);
-    console.log('TASK IS COMPLETED', !isCompleted);
+  const handleCheckboxToggle = async (taskId) => {
+    const isCompleted = checkboxStatus[taskId]; // Use checkboxStatus for current value
 
     try {
       const { data } = await updateTask({
         variables: {
           taskId,
-          isCompleted: !isCompleted, // Toggle the isCompleted value
+          isCompleted: !isCompleted,
         },
       });
-
-      setCheckboxStates((prevStates) => ({
-        ...prevStates,
-        [taskId]: !isCompleted,
+      setCheckboxStatus((prevStatus) => ({
+        ...prevStatus,
+        [taskId]: !prevStatus[taskId],
       }));
     } catch (error) {
       console.error('Error updating task:', error);
@@ -48,6 +66,14 @@ export default function MyDashboard({ tasks }) {
   let date;
 
   console.log(tasks);
+  const mes = new Date(tasks[0].createdAt);
+  console.log('TASK MONTH :', mes.getMonth() + 1);
+
+  const currentMonthTasks = tasks.filter((task) => {
+    const createdAt = new Date(task.createdAt);
+    const currentMonth = new Date().getMonth();
+    return createdAt.getMonth() === currentMonth;
+  });
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
@@ -63,13 +89,13 @@ export default function MyDashboard({ tasks }) {
             <p className=" font-thin text-gray-500">
               Keep track of your achievements!
             </p>
-            {/* <button
+            <button
               type="submit"
-              className="border border-green-200  rounded-lg font-thin text-green-300 hover:text-green-400 hover:border-green-400 px-2"
+              className="border border-green-200  rounded-lg font-thin text-green-300 hover:text-gray-500 hover:border-green-400 hover:bg-green-400 px-2"
               style={{ fontSize: 'smaller' }}
             >
               Save
-            </button> */}
+            </button>
           </div>
 
           {tasks.length !== 0 ? (
@@ -83,7 +109,7 @@ export default function MyDashboard({ tasks }) {
                 <div className="taskElement_isCompleted">Status</div>
                 <div>Date</div>
               </div>
-              {tasks.map((task, index) => {
+              {currentMonthTasks.map((task, index) => {
                 return (
                   <div
                     key={task._id}
@@ -93,10 +119,8 @@ export default function MyDashboard({ tasks }) {
                     <div className=" py-2 px-1 taskElement">
                       <input
                         type="checkbox"
-                        checked={task.isCompleted}
-                        onChange={() =>
-                          handleCheckboxToggle(task._id, task.isCompleted)
-                        }
+                        checked={checkboxStatus[task._id]}
+                        onChange={() => handleCheckboxToggle(task._id)}
                       />
                     </div>
                     <div className=" py-2 px-1 text-base overflow-auto">
@@ -123,71 +147,6 @@ export default function MyDashboard({ tasks }) {
               </p>
             </div>
           )}
-
-          {/* <div>Check</div>
-          <div>Task</div>
-          <div>Status</div>
-          <div>Assigned on</div> */}
-
-          {/* {tasks.length !== 0 ? (
-          <div>
-            <div className="flex justify-between items-center">
-              <h2
-                className=" flex font-bold text-slate-200"
-                style={{ paddingBottom: '0.8rem' }}
-              >
-                Check
-              </h2>
-              <h2
-                className=" flex font-bold text-slate-200"
-                style={{ paddingBottom: '0.8rem' }}
-              >
-                Task
-              </h2>
-              <h2
-                className=" flex font-bold text-slate-200"
-                style={{ paddingBottom: '0.8rem' }}
-              >
-                Status
-              </h2>
-              <h2
-                className=" flex font-bold text-slate-200"
-                style={{ paddingBottom: '0.8rem' }}
-              >
-                Assigned on
-              </h2>
-            </div>
-            {tasks.map((task) => {
-              return (
-                <div className=" flex justify-between items-center">
-                  {' '}
-                  flex justify-between items-center  OR flex flex-row justify-between items-center mt-5
-                  <div style={{ paddingBottom: '0.8rem' }}>
-                    <Checkbox />
-                  </div>
-                  <h2
-                    className=" flex font-bold text-slate-200"
-                    style={{ paddingBottom: '0.8rem', fontSize: 'smaller' }}
-                  >
-                    {task.name}
-                  </h2>
-                  <p
-                    className=" font-thin text-gray-500"
-                    style={{ paddingBottom: '0.8rem' }}
-                  >
-                    {task.isCompleted ? 'Completed' : 'Pending'}
-                  </p>
-
-                  <p className=" font-thin text-gray-500">{task.createdAt}</p>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            <p className="text-white">Free Of Tasks :{')'}</p>
-          </div>
-        )} */}
         </div>
       </form>
     </div>

@@ -1,10 +1,30 @@
 import React, { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
+import { CHANGE_PSWD } from '../utils/mutations'
 
 const ChangePasswordModal = ({ onClose }) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [deleteAccount, { error, data: deletedUser }] = useMutation(CHANGE_PSWD);
+
+  const { loading, data } = useQuery(QUERY_ME);
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/" />;
+  }
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+ 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  const user = data?.me;
 
   const handleChangePassword = () => {
     // Validate old and new passwords here
@@ -20,8 +40,9 @@ const ChangePasswordModal = ({ onClose }) => {
     onClose();
   };
 
-  return 
-    ( <div className=" font-poppins">
+
+  return (
+  <div className=" font-poppins">
     <main className="flex justify-center bg-neutral-950">
       <section className="flex min-h-screen">
         <div className="flex flex-col justify-center items-center lg:-mt-20">
@@ -36,21 +57,21 @@ const ChangePasswordModal = ({ onClose }) => {
                 
                 <form className="flex flex-col items-center">
                   <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-5 text-center">
-                    Enter your email.
+                    Change your password
                   </h2>
-                  <p className=" text-slate-200 text-sm text-center  mb-5 w-80"> 
+                  {/* <p className=" text-slate-200 text-sm text-center  mb-5 w-80"> 
                    Enter the email address associated with your account and we'll send you a link to reset your password
-                  </p>
+                  </p> */}
                   <fieldset className="flex flex-col gap-6">
                    {/* <label htmlFor="email">Email </label> */}
                     <input
                      //  onChange={handleChange}
-                      placeholder="Enter Your Email Address"
-                      type="email"
+                      placeholder="Enter your current password"
+                      type="password"
                       value= {email}
                       onChange={setVal}
-                      name="email"
-                      id="email"
+                      name="current-password"
+                      id="current-password"
                      //  value={formState.email}
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-56 lg:pl-4"
                     />
@@ -64,10 +85,17 @@ const ChangePasswordModal = ({ onClose }) => {
                     /> */}
                     <input
                       type="submit"
-                      onClick={sendLink}
-                      name="loginSub"
-                      id="loginSub"
-                      value="Submit"
+                      name="newpassword-1"
+                      id="newpassword-1"
+                      value="newpassword-1"
+                      
+                      className=" bg-slate-200 text-neutral-950 text-sm lg:text-lg rounded-lg py-2 px-20 cursor-pointer"
+                    />
+                    <input
+                      type="submit"
+                      name="newpassword-2"
+                      id="newpassword-2"
+                      value="newpassword-2"
                       
                       className=" bg-slate-200 text-neutral-950 text-sm lg:text-lg rounded-lg py-2 px-20 cursor-pointer"
                     />
@@ -99,7 +127,7 @@ const ChangePasswordModal = ({ onClose }) => {
     </main>
    </div>
     // Render your modal content here with input fields for old password, new password, and confirm password
-  );
-};
+  )
+}
 
 export default ChangePasswordModal;

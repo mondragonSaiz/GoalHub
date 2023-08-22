@@ -9,7 +9,7 @@ import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 import Subscription from './Subscriptions';
-import ChangePassword from '../components/ChangePassword'
+import ChangePasswordModal from '../components/ChangePassword'
 
 // ! TODO: Remove console logs
 export default function ProfileSettings() {
@@ -185,7 +185,7 @@ export default function ProfileSettings() {
                     Change Password
                   </button>
                   {changePasswordOpen && (
-                    <ChangePassword
+                    <ChangePasswordModal
                       onClose={() => setChangePasswordOpen(false)}
                     />
                   )}

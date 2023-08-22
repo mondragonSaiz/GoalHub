@@ -108,3 +108,16 @@ export const DEL_USER = gql`
     }
   }
 `;
+
+export const CHANGE_PSWD = gql`
+  mutation forgotPassword ($email: String!, $password: String!) {
+    forgotPassword (email: $email, password: $password) {
+      user {
+        _id 
+        firstName 
+        lastName
+        email
+      }
+      token
+    }
+  }`

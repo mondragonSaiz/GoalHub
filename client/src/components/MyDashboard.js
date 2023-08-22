@@ -4,6 +4,8 @@ import memberOne from '../img/avatar/avatar1.png';
 // import { Checkbox } from '@radix-ui/react-checkbox';
 import { useMutation } from '@apollo/client';
 import { UPDATE_TASK } from '../utils/mutations';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card';
+import { FaCalendar } from 'react-icons/fa';
 import { Checkbox } from './checkbox';
 import '../styles/dash.css';
 export default function MyDashboard({ tasks }) {
@@ -122,32 +124,45 @@ export default function MyDashboard({ tasks }) {
                 })
                 .map((task, index) => {
                   return (
-                    <div
-                      key={task._id}
-                      className="grid grid-cols-4 gap-4 overflow-auto"
-                      style={{ color: 'white' }}
-                    >
-                      <div className=" py-2 px-1 taskElement">
-                        <input
-                          type="checkbox"
-                          checked={checkboxStatus[task._id]}
-                          onChange={() => handleCheckboxToggle(task._id)}
-                        />
+                    <HoverCard>
+                      <div
+                        key={task._id}
+                        className="grid grid-cols-4 gap-4 overflow-auto"
+                        style={{ color: 'white' }}
+                      >
+                        <div className=" py-2 px-1 taskElement">
+                          <input
+                            type="checkbox"
+                            checked={checkboxStatus[task._id]}
+                            onChange={() => handleCheckboxToggle(task._id)}
+                          />
+                        </div>
+                        <HoverCardTrigger asChild>
+                          <div className="py-2 px-1 text-base overflow-auto">
+                            <p className="taskElement ">{task.name}</p>
+                          </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="w-80">
+                          <p className="text-base">{task.taskDesc}</p>
+                          <div className="flex py-2">
+                            <p className=" text-sm taskElement createdAtElement px-1">
+                              assigned on: {task.createdAt}
+                            </p>
+                            <FaCalendar className="icon" />
+                          </div>
+                        </HoverCardContent>
+                        <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                          <p className="taskElement_isCompleted">
+                            {task.isCompleted ? 'Completed' : 'Pending'}
+                          </p>
+                        </div>
+                        <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                          <p className="taskElement createdAtElement">
+                            {task.createdAt}
+                          </p>
+                        </div>
                       </div>
-                      <div className="py-2 px-1 text-base overflow-auto">
-                        <p className="taskElement ">{task.name}</p>
-                      </div>
-                      <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
-                        <p className="taskElement_isCompleted">
-                          {task.isCompleted ? 'Completed' : 'Pending'}
-                        </p>
-                      </div>
-                      <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
-                        <p className="taskElement createdAtElement">
-                          {task.createdAt}
-                        </p>
-                      </div>
-                    </div>
+                    </HoverCard>
                   );
                 })}
             </div>

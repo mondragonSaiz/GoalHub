@@ -47,11 +47,12 @@ export default function monthBars({allCompletedTask}) {
 
     
     return (
-      <div>
+      <div className="">
        
         <div className="flex flex-row w-full mt-2 justify-around rotate-180">       
             <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg` } style={{height: `${sunday*40}px`}}>
                 <div className="progress-bar-fill"></div>
+                
             </div>
             <div className={`relative progress-bar bg-slate-200 w-5  mb-1 rounded-lg`} style={{height: `${saturday*40}px`}}>
                 <div className="progress-bar-fill"></div>

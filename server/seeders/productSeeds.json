@@ -2,16 +2,19 @@
     {
         "name": "Personal Plan",
         "description": "This is a plan for a single license for a single Leader user.",
-        "price": 19.99
+        "price": 19.99,
+        "quantity": 1
     },
     {
         "name": "Pyme Plan",
         "description": "This is a plan for a single license for a single Leader user and up to 10 normal users.",
-        "price": 29.99
+        "price": 29.99,
+        "quantity": 1
     },
     {
         "name": "Enterprise plan",
         "description": "This plan includes up to 3 Leader user licenses and up to 30 regular users",
-        "price": 39.99
+        "price": 39.99,
+        "quantity": 1
     }
 ]

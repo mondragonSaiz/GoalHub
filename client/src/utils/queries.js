@@ -96,8 +96,7 @@ export const QUERY_CHECKOUT = gql`
     checkout(products: $products) {
       session
     }
-  }
-}`;
+  }`;
 
 // export const QUERY_USER = gql`
 //   {

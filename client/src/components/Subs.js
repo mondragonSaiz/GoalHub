@@ -12,23 +12,23 @@ import { Navigate } from 'react-router-dom';
 // import { ADD_ORDER } from '../utils/mutations';
 
 // TODO: create the stripe session for the payment 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe('pk_test_51NgGzoKCT9DQWm9OHmmFkVoIjMcOnfEgHKGzSpSyTDvPDfGUCapFqsrSwcLUOJ9W7UqUpNQtcr6UnznPf1J9hSF800j2ISzbbq');
 
 const Subscription = () => {
-    // const state = useStoreContext();
-    // const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
+    const state = useStoreContext();
+    const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
     const query_me = useQuery(QUERY_ME);
     const query_products = useQuery(QUERY_ALL_PRODUCTS);
     
 
 
-    // useEffect(() => {
-    //     if (data) {
-    //       stripePromise.then((res) => {
-    //         res.redirectToCheckout({ sessionId: data.checkout.session });
-    //       });
-    //     }
-    //   }, [data]);
+    useEffect(() => {
+        if (data) {
+          stripePromise.then((res) => {
+            res.redirectToCheckout({ sessionId: data.checkout.session });
+          });
+        }
+      }, [data]);
 
       // useEffect(() => {
       //   async function getCart() {
@@ -42,12 +42,14 @@ const Subscription = () => {
       // }, [state.cart.length, dispatch]);
 
       function submitCheckout(pdata) {
-        // getCheckout({
-        //   variables: { 
-        //     products: [...pdata],
-        //   },
-        // });
         console.log(pdata)
+        const {__typename, ...rest} = pdata
+        getCheckout({
+          variables: { 
+            products: [rest],
+          },
+        });
+        // console.log(context.headers.referer)
       }
 
     if (!Auth.loggedIn()) {

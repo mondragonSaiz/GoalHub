@@ -1,7 +1,7 @@
 const { User, Area, Task, Product, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_51NgGzoKCT9DQWm9Okqjq45gPZysf1Gw6zEuW7Rw2EZRuTNBjcnPBOwEzPCW4L9zBZGD1L18i6OheH7eIqwI2lFA8001hS4GqMX');
 
 const resolvers = {
   Query: {
@@ -28,6 +28,7 @@ const resolvers = {
           .populate('tasks')
           .populate('area')
           .populate({ path: 'area', populate: 'users' });
+          // .populate({path: 'orders.products', populate: ''})
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -74,8 +75,9 @@ const resolvers = {
           $regex: name,
         };
       }
-
-      return await Product.find(params).populate('name');
+      const test =  await Product.find(params).populate('name');
+      console.log(test)
+      return test;
     },
 
     order: async (parent, { _id }, context) => {
@@ -90,7 +92,9 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     checkout: async (parent, args, context) => {
+      console.log('Context',context.headers.referer);
       const url = new URL(context.headers.referer).origin;
+      
       // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
       await Order.create({ products: args.products.map(({ _id }) => _id) });
       const line_items = [];
@@ -107,16 +111,23 @@ const resolvers = {
           },
         });
       }
-
-      const session = await stripe.checkout.sessions.create({
+      console.log('*************', JSON.stringify(line_items))
+      
+      try {
+        const session = 
+      await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
-
+      console.log({ session: session.id })
       return { session: session.id };
+      } catch (error) {
+        console.log(error)
+      }
+      
     },
 
 

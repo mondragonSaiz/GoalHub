@@ -25,7 +25,7 @@ export default function SignUp() {
       <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20 mt-10 mb-10">
-            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 px-14 py-14 gap-8">
+            <div className="flex flex-col items-center w-auto border-2 rounded-2xl border-slate-200 lg:px-14 py-14 gap-8">
               <h1 className="text-slate-200 text-2xl font-bold lg:text-4xl mb-5 text-center">
                 Join as an employee or employer
               </h1>
@@ -64,13 +64,15 @@ export default function SignUp() {
                   </h1>
                 </button>
               </div>
-              <Link
-                to="/sign-up-form"
-                state={{ isEmployee: isEmployee }}
-                className="flex bg-slate-200 text-neutral-950 py-2 px-20 font-bold font-poppins rounded-full lg:text-lg justify-center w-auto cursor-pointer"
-              >
-                Apply as {isEmployee ? 'an Employee' : 'an Employer'}
-              </Link>
+              <div className="flex text-center">
+                <Link
+                  to="/sign-up-form"
+                  state={{ isEmployee: isEmployee }}
+                  className="flex bg-slate-200 text-neutral-950 py-2 px-20 font-bold font-poppins rounded-full lg:text-lg justify-center w-auto cursor-pointer"
+                >
+                  Apply as {isEmployee ? 'an Employee' : 'an Employer'}
+                </Link>
+              </div>
               <div className="flex flex-row gap-2 justify-center">
                 <p className="text-slate-200 font-normal">
                   Already have an account?

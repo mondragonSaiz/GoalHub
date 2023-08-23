@@ -47,7 +47,7 @@ export default function UpperDashboard({
             {areaName}
           </p>
         </div>
-        <div className="flex lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8 overflow-auto">
+        <div className="flex lg:items-center gap-10 lg:flex-row lg:h-40 lg:mt-8 overflow-x-auto ...">
           {areas.map((area) => {
             let allTask = area.users.reduce((acum, task) => {
               return acum + task.tasks.length;

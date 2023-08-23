@@ -4,17 +4,17 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import memberOne from '../img/avatar/avatar3.png';
 import { useQuery, useMutation } from '@apollo/client';
-import { DEL_USER } from '../utils/mutations'
+import { DEL_USER } from '../utils/mutations';
 import { QUERY_ME, QUERY_AREA } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 import Subscription from './Subscriptions';
-import ChangePasswordModal from '../components/ChangePassword'
+import ChangePasswordModal from '../components/ChangePassword';
 
 // ! TODO: Remove console logs
 export default function ProfileSettings() {
   const [openModal, setOpenModal] = useState(false);
-  const [changePasswordOpen, setChangePasswordOpen ] = useState(false);
+  const [changePasswordOpen, setChangePasswordOpen] = useState(false);
   const [deleteAccount, { error, data: deletedUser }] = useMutation(DEL_USER);
 
   const { loading, data } = useQuery(QUERY_ME);
@@ -26,7 +26,7 @@ export default function ProfileSettings() {
     event.preventDefault();
     Auth.logout();
   };
- 
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -42,17 +42,16 @@ export default function ProfileSettings() {
     : `${user.area.name} Manager`;
 
   const handleDeleteAccount = async () => {
-    console.log(user._id)
+    console.log(user._id);
     try {
       const { data } = await deleteAccount({
         variables: { userId: user._id }, // Pass the user's ID to the mutation
       });
-      console.log(data)
+      console.log(data);
       // Check if the deletion was successful and handle it accordingly
 
-        // Logout the user and redirect to the homepage
+      // Logout the user and redirect to the homepage
       Auth.logout();
-      
     } catch (error) {
       // Handle any errors that occur during account deletion
       console.error(error);
@@ -66,33 +65,34 @@ export default function ProfileSettings() {
           <div className="flex flex-col justify-center items-center lg:-mt-20">
             <div className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900">
               {/* Place the SettingsModal here */}
-            <Modal
-              isOpen={openModal}
-              onClose={() => setOpenModal(false)}
-              title="Confirm Account Deletion"
-              className="flex justify-center bg-neutral-950"
-            >
-              <main className="flex flex-col justify-center h-screen bg-neutral-950 font-poppins"> 
-              <div className='flex flex-col lg:w-auto'>
-              <p className="text-slate-200 font-bold text-xl lg:text-4xl mb-5 text-center">Are you sure you want to delete your account?</p>
-              </div>
-              <div className="flex justify-center mt-4">
-                <button
-                  className="bg-red-700 text-white text-xl px-20 py-2 rounded-full"
-                  onClick={handleDeleteAccount}
-                >
-                  Yes
-                </button>
-                <button
-                  className="bg-gray-400 text-white text-xl px-20 py-2 rounded-full ml-4"
-                  onClick={() => setOpenModal(false)}
-                >
-                  No
-                </button>
-              </div>
-              </main>
-             
-            </Modal>
+              <Modal
+                isOpen={openModal}
+                onClose={() => setOpenModal(false)}
+                title="Confirm Account Deletion"
+                className="flex justify-center bg-neutral-950"
+              >
+                <main className="flex flex-col justify-center h-screen bg-neutral-950 font-poppins">
+                  <div className="flex flex-col lg:w-auto">
+                    <p className="text-slate-200 font-bold text-xl lg:text-4xl mb-5 text-center">
+                      Are you sure you want to delete your account?
+                    </p>
+                  </div>
+                  <div className="flex justify-center mt-4">
+                    <button
+                      className="bg-red-700 text-white text-xl px-20 py-2 rounded-full"
+                      onClick={handleDeleteAccount}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="bg-gray-400 text-white text-xl px-20 py-2 rounded-full ml-4"
+                      onClick={() => setOpenModal(false)}
+                    >
+                      No
+                    </button>
+                  </div>
+                </main>
+              </Modal>
               <div className="flex flex-row justify-between  gap-4">
                 <button
                   to="/dashboard"
@@ -152,67 +152,67 @@ export default function ProfileSettings() {
                   />
                 </div>
                 <div className="flex flex-row ">
-                <div className='flex justify-center gap-3  pt-5 pb-8 '>
-              {!employee ? 
-                <a
-                    className="flex justify-center items-center font-medium text-sm rounded-full"
-                    href="/subscriptions"
-                    style={{
-                      border: '2px solid gray',
-                      // backgroundColor: '#202020',
-                      color: 'white',
-                      padding: '5%',
-                      // width: '8rem',
-                      // height: '3rem',
-                      // fontSize: 'smaller',
-                    }}
-                  >
-                    Subscriptions
-                  </a> : <div> </div>
-                  };
-                  
-                  <button
-                    className="flex bg-gray-100 text-neutral-950 py-4 px-8 font-medium text-sm font-poppins rounded-full  justify-center w-auto cursor-pointer"
-                    onClick={(event) => { 
-                      event.preventDefault();
-                      setChangePasswordOpen(true)
-                    }}
-                    // style={{
-                    //   border: '2px solid gray',
-                    //   backgroundColor: '#202020',
-                    //   color: 'white',
-                    //   padding: '2%',
-                    //   width: '6rem',
-                    //   height: '3rem',
-                    //   fontSize: 'smaller',
-                    // }}
-                  >
-                    Change <br></br> Password
-                  </button>
-                  {changePasswordOpen && (
-                    <ChangePasswordModal
-                      onClose={() => setChangePasswordOpen(false)}
-                    />
-                  )}
-                  <button
-                    className="flex bg-gray-100 text-neutral-950 py-4 px-10 font-medium text-sm font-poppins rounded-full  justify-center w-auto cursor-pointer"
-                    to="/sign-up"
-                    // style={{
-                    //   border: '2px solid gray',
-                    //   backgroundColor: '#202020',
-                    //   color: 'white',
-                    //   padding: '2%',
-                    //   width: '6rem',
-                    //   height: '3rem',
-                    //   fontSize: 'smaller',
-                    // }}
-                    onClick={(event) => { 
-                      event.preventDefault();
-                      setOpenModal(true)
-                    }}
-                  >
-                    Delete <br></br> Account
-                  </button>
+                  <div className="flex justify-center gap-3  pt-5 pb-8 ">
+                    {!employee ? (
+                      <a
+                        className="flex justify-center items-center font-medium text-sm rounded-full"
+                        href="/subscriptions"
+                        style={{
+                          border: '2px solid gray',
+                          // backgroundColor: '#202020',
+                          color: 'white',
+                          padding: '5%',
+                          // width: '8rem',
+                          // height: '3rem',
+                          // fontSize: 'smaller',
+                        }}
+                      >
+                        Subscriptions
+                      </a>
+                    ) : (
+                      <div> </div>
+                    )}
+                    ;
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setChangePasswordOpen(true);
+                      }}
+                      style={{
+                        border: '2px solid gray',
+                        backgroundColor: '#202020',
+                        color: 'white',
+                        padding: '2%',
+                        width: '6rem',
+                        height: '3rem',
+                        fontSize: 'smaller',
+                      }}
+                    >
+                      Change <br></br> Password
+                    </button>
+                    {changePasswordOpen && (
+                      <ChangePasswordModal
+                        onClose={() => setChangePasswordOpen(false)}
+                      />
+                    )}
+                    <button
+                      to="/sign-up"
+                      style={{
+                        border: '2px solid gray',
+                        backgroundColor: '#202020',
+                        color: 'white',
+                        padding: '2%',
+                        width: '6rem',
+                        height: '3rem',
+                        fontSize: 'smaller',
+                      }}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setOpenModal(true);
+                      }}
+                    >
+                      Delete <br></br> Account
+                    </button>
                   </div>
                 </div>
               </form>

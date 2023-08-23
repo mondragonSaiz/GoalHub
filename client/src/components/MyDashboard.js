@@ -8,6 +8,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card';
 import { FaCalendar } from 'react-icons/fa';
 import { Checkbox } from './checkbox';
 import '../styles/dash.css';
+
 export default function MyDashboard({ tasks }) {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
@@ -79,7 +80,7 @@ export default function MyDashboard({ tasks }) {
 
   return (
     <div className=" mydash_main flex flex-col w-full font-poppins mb-10">
-      {/* <form>
+      <form>
         <div
           className="dashContainer border-2 rounded-2xl border-gray-500 py-5 px-7 text-xl overflow-auto"
           style={{ height: '32rem' }}
@@ -174,7 +175,7 @@ export default function MyDashboard({ tasks }) {
             </div>
           )}
         </div>
-      </form> */}
+      </form>
     </div>
   );
 }

@@ -52,13 +52,13 @@ GoalHub is also available in our deployed application. [Visit deployment](https:
 The following images demonstrate the functionality of the application.
 <div align="center">
         <h2>Homepage</h2>
-    <img src="" alt=""></img>
+    <img src="./client/src/img/readme/Homepage.png" alt="Homepage"></img>
         <h2>User Profiles</h2>
-    <img src="" alt=""></img>
+    <img src="./client/src/img/readme/Profile.png" alt="Employee Profile"></img>
         <h2>Dashboards</h2>
-    <img src="" alt=""></img>
-        <h2></h2>
-    <img src="" alt=""></img>
+    <img src="./client/src/img/readme/Dashboard.png" alt="Employee Dash"></img>
+        <h2>Settings</h2>
+    <img src="./client/src/img/readme/Settings.png" alt="Employee Settings"></img>
 </div>
 
 ## Credits

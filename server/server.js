@@ -5,9 +5,11 @@ const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const seeds = require('./seeders/seed')
+// const seeds = require('./seeders/seed')
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// const router = require("./routes/router");
 
 const server = new ApolloServer({
   typeDefs,
@@ -17,6 +19,7 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(router);
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {

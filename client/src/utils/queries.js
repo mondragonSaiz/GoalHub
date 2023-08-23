@@ -28,10 +28,12 @@ export const QUERY_ME = gql`
         name
         _id
       }
+      _id
       userIcon
       isEmployee
       firstName
       lastName
+      email
       tasks {
         _id
         isCompleted

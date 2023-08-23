@@ -8,6 +8,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card';
 import { FaCalendar } from 'react-icons/fa';
 import { Checkbox } from './checkbox';
 import '../styles/dash.css';
+
 export default function MyDashboard({ tasks }) {
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';

@@ -5,6 +5,7 @@ import memberTwo from '../img/avatar/avatar2.png';
 import memberThree from '../img/avatar/avatar3.png';
 import memberFour from '../img/avatar/avatar4.png';
 import memberFive from '../img/avatar/avatar5.png';
+
 export default function NewTask({
   users,
   _id,
@@ -146,7 +147,7 @@ export default function NewTask({
               <div className="flex p-6">
                 <a
                   onClick={(e) => handleSubmit(e, closeModal)}
-                  className="flex bg-gray-100 text-neutral-950 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
+                  className="flex bg-gray-100 text-neutral-950 py-2 px-20 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
                 >
                   Assign
                 </a>

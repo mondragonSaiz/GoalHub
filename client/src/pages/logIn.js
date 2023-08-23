@@ -80,6 +80,13 @@ export default function LogIn() {
                       value={formState.password}
                       className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
                       />
+                      {/* <Link to="/forgot-password">
+                        <div className="flex flex-row gap-4 justify-center ">
+                          <p className=" text-gray-200 text-sm text-center">
+                            Forgot Password?
+                          </p>
+                        </div>
+                      </Link> */}
                       <input
                         type="submit"
                         onClick={handleFormSubmit}

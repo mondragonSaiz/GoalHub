@@ -146,7 +146,7 @@ export default function ProfileSettings() {
                     Team
                   </label>
                   <input
-                    placeholder={memberTeam}
+                    placeholder={user.area.name}
                     type="text"
                     className="focus:text-slate-200 text-slate-200 lg:text-xl border-2 rounded-lg border-gray-500 text-left py-2 md:pr-56 pl-4 bg-zinc-900"
                   />

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
-import memberOne from '../img/avatar/avatar1.png';
-import memberTwo from '../img/avatar/avatar2.png';
-import memberThree from '../img/avatar/avatar3.png';
-import memberFour from '../img/avatar/avatar4.png';
-import memberFive from '../img/avatar/avatar5.png';
+
 
 export default function NewTask({
   users,
-  _id,
-  selectedUserId,
   setSelectedUserId,
   formData,
   handleInputChange,

@@ -1,10 +1,9 @@
 import React from 'react';
 import memberOne from '../img/avatar/avatar1.png';
-// import ProgressBar from '../components/progressBar';
 import { Progress } from './progress';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
-import { User } from 'lucide-react';
+
 
 export default function MembersOverview({ _id }) {
   const { loading, data } = useQuery(QUERY_AREA, { variables: { id: _id } });

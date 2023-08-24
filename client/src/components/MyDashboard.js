@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import memberOne from '../img/avatar/avatar1.png';
-// import ProgressBar from '../components/progressBar';
-// import { Checkbox } from '@radix-ui/react-checkbox';
 import { useMutation } from '@apollo/client';
 import { UPDATE_TASK } from '../utils/mutations';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card';
 import { FaCalendar } from 'react-icons/fa';
-import { Checkbox } from './checkbox';
 import '../styles/dash.css';
 
 export default function MyDashboard({ tasks }) {
@@ -64,13 +61,9 @@ export default function MyDashboard({ tasks }) {
       console.error('Error updating task:', error);
     }
   };
-  console.log(month + 1);
-  let date;
-  if (tasks.length !== 0) {
-    console.log(tasks);
-    const mes = new Date(tasks[0].createdAt);
-    console.log('TASK MONTH :', mes.getMonth() + 1);
+  
 
+  if (tasks.length !== 0) {
     const currentMonthTasks = tasks.filter((task) => {
       const createdAt = new Date(task.createdAt);
       const currentMonth = new Date().getMonth();

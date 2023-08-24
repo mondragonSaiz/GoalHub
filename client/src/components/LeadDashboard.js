@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../utils/mutations'
-import memberOne from '../img/avatar/avatar1.png';
-// import ProgressBar from '../components/progressBar';
-// import { Checkbox } from '@radix-ui/react-checkbox';
-import { Checkbox } from './checkbox';
-import { Link } from 'react-router-dom';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
 import NewTask from './NewTask'
@@ -75,7 +71,7 @@ export default function MyDashboard({_id}) {
           user: selectedUserId,
         },
       });
-      console.log(data)
+    
       
       setFormData({
         name: ' ', 
@@ -178,20 +174,6 @@ export default function MyDashboard({_id}) {
           )
         })}
        
-        {/* <div class="grid grid-cols-4 gap-1" style={{ fontSize: 'smaller' }}>
-          <div>
-            <div style={{ visibility: 'hidden' }}>check</div>
-            <div>
-              <Checkbox />
-            </div>
-            <div>
-              <Checkbox />
-            </div>
-          </div>
-          <div>Status</div>
-          <div>achievement</div>
-          <div> Hours</div>
-        </div> */}
       </div>
     </div>
   );

@@ -24,9 +24,7 @@ const Subscription = () => {
       }, [data]);
 
       function submitCheckout(pdata) {
-        console.log(pdata)
         const {__typename, ...rest} = pdata
-        console.log(rest)
         getCheckout({
           variables: { 
             products: [rest],

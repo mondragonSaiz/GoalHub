@@ -23,7 +23,7 @@ export default function MemberUpperDashboard({ firstName, lastName, _id, userIco
   let compTask = area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted).map(tas=>{ 
    let formatted = new Date(tas.createdAt)
     return formatted.getDay()}))
-  console.log(compTask)
+
   const memberImg = memberOne;
   const memberName = `${
     firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase()

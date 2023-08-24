@@ -10,9 +10,6 @@ export default function MonthLeader({compTask}) {
     let saturday = 0
     let sunday = 0
 
-    let birth = new Date ()
-    console.log(birth.getDay())
-
     flattened.map(task=>{
         switch (task){
             case 0: 

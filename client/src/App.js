@@ -2,7 +2,6 @@ import React from 'react';
 import Home from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import MemberDashboard from './pages/MemberDashboard';
-import LeaderDashboard from './pages/LeaderDashboard';
 import ForgotPassword from './components/ForgotPassword';
 import Susbscriptions from './pages/Subscriptions';
 import SignUp from './pages/signUp';
@@ -49,7 +48,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/member-dashboard" element={<MemberDashboard />} />
-            <Route path="/leader-dashboard" element={<LeaderDashboard />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/log-in" element={<LogIn />} />
             <Route path="/sign-up-form" element={<SignUpForm />} />

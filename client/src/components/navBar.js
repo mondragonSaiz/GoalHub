@@ -13,12 +13,6 @@ function getDate() {
 export default function Nav({ firstName, lastName }) {
   const [currentDate, setCurrentDate] = useState(getDate())
 
-  const location = window.location;
-  console.log('location', location);
-  console.log(
-    'islocation',
-    location === 'http://localhost:3000/member-dashboard'
-  );
   return (
     <nav className="flex justify-between pt-4">
       <a href="/dashboard">

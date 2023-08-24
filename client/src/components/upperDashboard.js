@@ -1,5 +1,4 @@
 import React from 'react';
-import memberOne from '../img/avatar/avatar1.png';
 import { Progress } from './progress';
 import Card from './Card';
 import { useQuery } from '@apollo/client';
@@ -7,12 +6,10 @@ import { QUERY_AREAS } from '../utils/queries';
 export default function UpperDashboard({
   firstName,
   lastName,
-  isEmployee,
   areaName,
-  userIcon,
-  id,
+  userIcon
 }) {
-  /*let allTask=area.users.reduce((acum, task)=>{
+  /*}let allTask=area.users.reduce((acum, task)=>{
     return acum+task.tasks.length},0 )
   let completedTask=area.users.map(user=>user.tasks.filter(comp=>comp.isCompleted)).reduce((acum,task)=>acum+task.length,0)*/
 
@@ -26,6 +23,20 @@ export default function UpperDashboard({
   }
 
   const areas = data?.areas;
+
+  let allAreas = areas.map(area => {
+    let allTask = area.users.reduce((acum, task) => {
+      return acum + task.tasks.length;
+    }, 0);
+
+    let completedTask = area.users
+      .map((user) => user.tasks.filter((comp) => comp.isCompleted))
+      .reduce((acum, task) => acum + task.length, 0)
+      return {allTask, completedTask}
+  })
+  let allAreaTask = allAreas.reduce((acum, tas)=>acum+=tas.allTask,0)
+  let allAreasCompletedTask = allAreas.reduce((acum, tas)=>acum+=tas.completedTask,0)
+
 
   return (
     <section>
@@ -64,7 +75,7 @@ export default function UpperDashboard({
                         <h2 className="text-slate-200 font-bold text-xl mb-2">
                           Achievements completed
                         </h2>
-                        <h1 className="text-slate-200 font-bold text-4xl mb-2">{`${completedTask}/${allTask}`}</h1>
+                        <h1 className="text-slate-200 font-bold text-4xl mb-2">{`${allAreasCompletedTask}/${allAreaTask}`}</h1>
                         <p className="text-gray-500">We are almost there!</p>
                       </Card>
                     </div>

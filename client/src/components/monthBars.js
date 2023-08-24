@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function monthBars({allCompletedTask}) {
-    console.log(allCompletedTask)
     let monday = 0
     let tuesday = 0
     let wednesday = 0
@@ -10,8 +9,6 @@ export default function monthBars({allCompletedTask}) {
     let saturday = 0
     let sunday = 0
 
-    let birth = new Date ()
-    console.log(birth.getDay())
 
     allCompletedTask.map(task=>{
         switch (task){
@@ -41,7 +38,7 @@ export default function monthBars({allCompletedTask}) {
         }
     })
 
-    console.log(monday,tuesday,wednesday,thursday,friday,saturday,sunday)
+    
 
 
     

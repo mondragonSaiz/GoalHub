@@ -7,9 +7,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
-import LeaderUpperDashboard from '../components/LeaderUpperDashboard';
-import MyTeamOverview from '../components/MyTeamOverview';
-import LeadDashboard from '../components/LeadDashboard';
+
 
 // ! TODO: Remove console logs
 

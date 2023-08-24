@@ -100,3 +100,27 @@ export const QUERY_CHECKOUT = gql`
       session
     }
   }`;
+  
+export const DEL_USER = gql`
+mutation removeUser($userId: ID!) {
+  removeUser(userId: $userId) {
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+`;
+
+export const CHANGE_PSWD = gql`
+mutation forgotPassword ($email: String!, $password: String!) {
+  forgotPassword (email: $email, password: $password) {
+    user {
+      _id 
+      firstName 
+      lastName
+      email
+    }
+    token
+  }
+}`

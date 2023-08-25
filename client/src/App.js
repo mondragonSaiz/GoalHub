@@ -21,6 +21,7 @@ import ProfileSettings from './pages/ProfileSettings';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+  cache: new InMemoryCache(),
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -44,19 +45,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/member-dashboard" element={<MemberDashboard />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/log-in" element={<LogIn />} />
-            <Route path="/sign-up-form" element={<SignUpForm />} />
-            {/* <Route path="/new-task" element={<NewTask />} /> */}
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            
-            <Route path="/settings" element={<ProfileSettings />} />
-            <Route path='/subscriptions' element={< Susbscriptions/>}/>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/member-dashboard" element={<MemberDashboard />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/log-in" element={<LogIn />} />
+          <Route path="/sign-up-form" element={<SignUpForm />} />
+          {/* <Route path="/new-task" element={<NewTask />} /> */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          <Route path="/settings" element={<ProfileSettings />} />
+          <Route path="/subscriptions" element={<Susbscriptions />} />
+        </Routes>
       </Router>
     </ApolloProvider>
   );

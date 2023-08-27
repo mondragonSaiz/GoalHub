@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import MemberDashboard from './pages/MemberDashboard';
-import ForgotPassword from './components/ForgotPassword';
+// import ForgotPassword from './components/ForgotPassword';
 import Susbscriptions from './pages/Subscriptions';
 import SignUp from './pages/signUp';
 import LogIn from './pages/logIn';
@@ -53,7 +53,7 @@ function App() {
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/sign-up-form" element={<SignUpForm />} />
           {/* <Route path="/new-task" element={<NewTask />} /> */}
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
 
           <Route path="/settings" element={<ProfileSettings />} />
           <Route path="/subscriptions" element={<Susbscriptions />} />

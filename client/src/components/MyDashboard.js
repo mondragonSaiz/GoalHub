@@ -4,9 +4,13 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_TASK } from '../utils/mutations';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from './hover-card';
 import { FaCalendar } from 'react-icons/fa';
+import CustomModal from './CustomModal';
 import '../styles/dash.css';
+import { Fragment } from 'react';
 
 export default function MyDashboard({ tasks }) {
+  const [showTaskModal, setShowTaskModal] = useState(false);
+  const [taskModalVisibility, setTaskModalVisibility] = useState({});
   const memberImg = memberOne;
   const memberName = 'Lalo P' + '.';
   const memberTeam = 'art team';
@@ -37,10 +41,13 @@ export default function MyDashboard({ tasks }) {
   useEffect(() => {
     // Initialize the checkbox status based on tasks' isCompleted values
     const initialStatus = {};
+    const initialVisibility = {};
     tasks.forEach((task) => {
       initialStatus[task._id] = task.isCompleted || false;
+      initialVisibility[task._id] = false;
     });
     setCheckboxStatus(initialStatus);
+    setTaskModalVisibility(initialVisibility);
   }, [tasks]);
 
   const handleCheckboxToggle = async (taskId) => {
@@ -61,7 +68,6 @@ export default function MyDashboard({ tasks }) {
       console.error('Error updating task:', error);
     }
   };
-  
 
   if (tasks.length !== 0) {
     const currentMonthTasks = tasks.filter((task) => {
@@ -118,45 +124,70 @@ export default function MyDashboard({ tasks }) {
                 })
                 .map((task, index) => {
                   return (
-                    <HoverCard>
-                      <div
-                        key={task._id}
-                        className="grid grid-cols-4 gap-4 overflow-auto"
-                        style={{ color: 'white' }}
-                      >
-                        <div className=" py-2 px-1 taskElement">
-                          <input
-                            type="checkbox"
-                            checked={checkboxStatus[task._id]}
-                            onChange={() => handleCheckboxToggle(task._id)}
-                          />
-                        </div>
-                        <HoverCardTrigger asChild>
-                          <div className="py-2 px-1 text-base overflow-auto">
-                            <p className="taskElement ">{task.name}</p>
+                    <Fragment key={task._id}>
+                      <HoverCard>
+                        <div
+                          key={task._id}
+                          className="grid grid-cols-4 gap-4 overflow-auto"
+                          style={{ color: 'white' }}
+                          id="wrapper"
+                        >
+                          <div className=" py-2 px-1 taskElement">
+                            <input
+                              type="checkbox"
+                              checked={checkboxStatus[task._id]}
+                              onChange={() => handleCheckboxToggle(task._id)}
+                            />
                           </div>
-                        </HoverCardTrigger>
-                        <HoverCardContent className="w-80">
-                          <p className="text-base">{task.taskDesc}</p>
-                          <div className="flex py-2">
-                            <p className=" text-sm taskElement createdAtElement px-1">
-                              assigned on: {task.createdAt}
+                          <HoverCardTrigger asChild>
+                            <div
+                              key={task._id}
+                              onClick={() =>
+                                setTaskModalVisibility((prevVisibility) => ({
+                                  ...prevVisibility,
+                                  [task._id]: true,
+                                }))
+                              }
+                              className="py-2 px-1 text-base overflow-auto"
+                            >
+                              <p className="taskElement ">{task.name}</p>
+                            </div>
+                          </HoverCardTrigger>
+                          <HoverCardContent className="w-80">
+                            <p className="text-base">{task.taskDesc}</p>
+                            <div className="flex py-2">
+                              <p className=" text-sm taskElement createdAtElement px-1">
+                                assigned on: {task.createdAt}
+                              </p>
+                              <FaCalendar className="icon" />
+                            </div>
+                          </HoverCardContent>
+                          <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                            <p className="taskElement_isCompleted">
+                              {task.isCompleted ? 'Completed' : 'Pending'}
                             </p>
-                            <FaCalendar className="icon" />
                           </div>
-                        </HoverCardContent>
-                        <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
-                          <p className="taskElement_isCompleted">
-                            {task.isCompleted ? 'Completed' : 'Pending'}
-                          </p>
+                          <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
+                            <p className="taskElement createdAtElement">
+                              {task.createdAt}
+                            </p>
+                          </div>
                         </div>
-                        <div className="py-2 px-1 text-sm font-thin text-gray-500 ">
-                          <p className="taskElement createdAtElement">
-                            {task.createdAt}
-                          </p>
-                        </div>
-                      </div>
-                    </HoverCard>
+                      </HoverCard>
+                      <CustomModal
+                        isVisible={taskModalVisibility[task._id]} // Use task-specific visibility
+                        onClose={() =>
+                          setTaskModalVisibility((prevVisibility) => ({
+                            ...prevVisibility,
+                            [task._id]: false,
+                          }))
+                        }
+                      >
+                        <p className="text-xl font-medium">{task.name}</p>
+                        <p className="text-base font-medium">{task.taskDesc}</p>
+                        <p className="text-sm font-medium">{task.createdAt}</p>
+                      </CustomModal>
+                    </Fragment>
                   );
                 })}
             </div>

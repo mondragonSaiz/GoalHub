@@ -127,7 +127,7 @@ export default function ProfileSettings() {
                 </div>
               </div>
 
-              <form
+              <div
                 action=""
                 className="flex flex-col justify-center items-center gap-4"
               >
@@ -215,7 +215,7 @@ export default function ProfileSettings() {
                     </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </section>

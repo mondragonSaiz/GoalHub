@@ -184,8 +184,19 @@ export default function MyDashboard({ tasks }) {
                         }
                       >
                         <p className="text-xl font-medium">{task.name}</p>
-                        <p className="text-base font-medium">{task.taskDesc}</p>
-                        <p className="text-sm font-medium">{task.createdAt}</p>
+                        <p className="text-base font-medium pt-1">
+                          <span className="underline decoration-pink-500 ">
+                            {' '}
+                            To do
+                          </span>{' '}
+                          : {task.taskDesc}
+                        </p>
+                        <p className="text-sm font-medium pt-2">
+                          Assigned on :{' '}
+                          <span className="text-gray-900 underline decoration-indigo-500">
+                            {task.createdAt}
+                          </span>
+                        </p>
                       </CustomModal>
                     </Fragment>
                   );

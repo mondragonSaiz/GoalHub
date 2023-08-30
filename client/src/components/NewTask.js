@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 export default function NewTask({
   users,
   setSelectedUserId,
@@ -12,10 +11,10 @@ export default function NewTask({
   let [SelectedUser, setSelectedUser] = useState(null);
 
   return (
-    <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10">
-      <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40">
-        <section className="flex pt-24 min-h-screen">
-          <div className="flex flex-col justify-center w-full items-center lg:-mt-20 mt-10 mb-10">
+    <div className="font-poppins fixed inset-0 bg-neutral-950 flex justify-center items-center z-10 ">
+      <main className="flex justify-center bg-neutral-950 px-10 md:px-20 lg:px-40 ">
+        <section className="flex pt-24 min-h-screen ">
+          <div className="flex flex-col justify-center w-full items-center lg:-mt-20 mt-10 mb-10 ">
             <div className="flex flex-row justify-between">
               <h1 className="  text-slate-200 text-2xl font-bold lg:text-4xl md:text-4xl sm:text-4xl mb-5 text-center">
                 New Task
@@ -93,11 +92,12 @@ export default function NewTask({
                   </div>
                 </div> */}
               </div>
-              <div className="flex lg:flex-row flex-wrap w-full justify-center ">
+              <div className="flex  lg:flex-row flex-wrap w-full justify-center overflow-auto h-[200px] max-[420px]:flex-row   max-[420px]:w-[200px] ">
                 {users.map((user) => {
                   return (
                     <div
-                      className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4"
+                      key={user._id}
+                      className="flex flex-col items-center w-full md:w-1/2 lg:w-1/4 md:pb-4 "
                       style={{ cursor: 'pointer' }}
                     >
                       <div
@@ -132,7 +132,7 @@ export default function NewTask({
               <div className="flex p-6">
                 <a
                   onClick={() => closeModal(false)}
-                  className="flex bg-red-800 text-gray-100 py-2 px-20 font-mediumfont-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
+                  className="flex bg-red-800 text-gray-100 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
                 >
                   Cancel
                 </a>
@@ -140,7 +140,7 @@ export default function NewTask({
               <div className="flex p-6">
                 <a
                   onClick={(e) => handleSubmit(e, closeModal)}
-                  className="flex bg-gray-100 text-neutral-950 py-2 px-20 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
+                  className="flex bg-gray-100 text-neutral-950 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default "
                 >
                   Assign
                 </a>

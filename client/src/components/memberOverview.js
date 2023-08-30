@@ -4,7 +4,6 @@ import { Progress } from './progress';
 import { useQuery } from '@apollo/client';
 import { QUERY_AREA } from '../utils/queries';
 
-
 export default function MembersOverview({ _id }) {
   const { loading, data } = useQuery(QUERY_AREA, { variables: { id: _id } });
   if (loading) {
@@ -66,19 +65,18 @@ export default function MembersOverview({ _id }) {
                 </div>
               ) : (
                 <div className="w-80">
-                <Progress
-                  value={
-                    (user.tasks.filter((task) => task.isCompleted).length /
-                      user.tasks.length) *
-                    100
-                  }
-                />
-                {/* <ProgressBar/> */}
-                <div className="flex justify-center mt-1">
-                    
-                    <p className="text-gray-500">No Task assigned</p>    
+                  <Progress
+                    value={
+                      (user.tasks.filter((task) => task.isCompleted).length /
+                        user.tasks.length) *
+                      100
+                    }
+                  />
+                  {/* <ProgressBar/> */}
+                  <div className="flex justify-center mt-1">
+                    <p className="text-gray-500">No Task assigned</p>
+                  </div>
                 </div>
-              </div>
               )}
             </div>
           );

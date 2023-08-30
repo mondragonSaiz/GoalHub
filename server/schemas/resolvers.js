@@ -1,7 +1,9 @@
 const { User, Area, Task, Product, Order } = require('../models');
-const { signToken } = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
-const stripe = require('stripe')('sk_test_51NgGzoKCT9DQWm9Okqjq45gPZysf1Gw6zEuW7Rw2EZRuTNBjcnPBOwEzPCW4L9zBZGD1L18i6OheH7eIqwI2lFA8001hS4GqMX');
+const { signToken, AuthenticationError } = require('../utils/auth');
+// const { AuthenticationError } = require('apollo-server-express');
+const stripe = require('stripe')(
+  'sk_test_51NgGzoKCT9DQWm9Okqjq45gPZysf1Gw6zEuW7Rw2EZRuTNBjcnPBOwEzPCW4L9zBZGD1L18i6OheH7eIqwI2lFA8001hS4GqMX'
+);
 
 const resolvers = {
   Query: {
@@ -36,7 +38,7 @@ const resolvers = {
         return Area.find()
           .populate('users')
           .populate('supervisor')
-          .populate({ path: 'users', populate: 'tasks' });;
+          .populate({ path: 'users', populate: 'tasks' });
       } catch (err) {
         console.log(err);
       }
@@ -74,8 +76,8 @@ const resolvers = {
           $regex: name,
         };
       }
-      const test =  await Product.find(params).populate('name');
-      console.log(test)
+      const test = await Product.find(params).populate('name');
+      console.log(test);
       return test;
     },
 
@@ -110,28 +112,22 @@ const resolvers = {
           quantity: 1,
         });
       }
-      console.log('*************', JSON.stringify(line_items))
-      
+      console.log('*************', JSON.stringify(line_items));
+
       try {
-        const session = 
-      await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`,
-      });
-      console.log({ session: session.id })
-      return { session: session.id };
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items,
+          mode: 'payment',
+          success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${url}/`,
+        });
+        console.log({ session: session.id });
+        return { session: session.id };
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-      
     },
-
-
-
-
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -193,16 +189,18 @@ const resolvers = {
         area,
         userIcon,
       });
-      if(user.isEmployee){
+      if (user.isEmployee) {
         areaUpdated = await Area.findOneAndUpdate(
           { _id: area },
           { $addToSet: { users: user._id } },
-          { new: true })
+          { new: true }
+        );
       } else {
-          areaUpdated = await Area.findOneAndUpdate(
-            { _id: area },
-            { supervisor: user._id },
-            { new: true })
+        areaUpdated = await Area.findOneAndUpdate(
+          { _id: area },
+          { supervisor: user._id },
+          { new: true }
+        );
       }
 
       const token = signToken(user);
@@ -211,14 +209,15 @@ const resolvers = {
     AddUserArea: async (parent, { user, area }) => {
       const userAreaUpdated = await User.findByIdAndUpdate(
         { _id: user },
-        { area: area  },
+        { area: area },
         { new: true }
       ).populate('area');
 
       areaUpdated = await Area.findOneAndUpdate(
         { _id: area },
         { $addToSet: { users: userAreaUpdated._id } },
-        { new: true })
+        { new: true }
+      );
 
       return userAreaUpdated;
     },

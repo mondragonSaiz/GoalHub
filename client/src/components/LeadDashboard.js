@@ -30,7 +30,7 @@ export default function MyDashboard({ _id }) {
             area: {
               ...area,
               users: area.users.map((user) =>
-                user._id === addTask.user._id // Assuming you're using user._id to identify users
+                user._id === addTask.user._id
                   ? { ...user, tasks: [...user.tasks, addTask] } // Update tasks array for the specific user
                   : user
               ),
@@ -185,12 +185,15 @@ export default function MyDashboard({ _id }) {
                     >
                       {user.firstName}
                     </p>
-                    <p
-                      className=" font-thin text-gray-500"
-                      style={{ paddingBottom: '0.8rem' }}
-                    >
-                      {task.name}
-                    </p>
+                    <div className="overflow-auto">
+                      <p
+                        className=" font-thin text-gray-500"
+                        style={{ paddingBottom: '0.8rem' }}
+                      >
+                        {task.name}
+                      </p>
+                    </div>
+
                     <p
                       className=" font-thin text-gray-500"
                       style={{ paddingBottom: '0.8rem' }}

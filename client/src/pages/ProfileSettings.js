@@ -60,7 +60,7 @@ export default function ProfileSettings() {
 
   return (
     <div className=" font-poppins">
-      <main className="flex justify-center bg-neutral-950">
+      <main className="flex justify-center  bg-neutral-950">
         <section className="flex min-h-screen">
           <div className="flex flex-col justify-center items-center lg:-mt-20">
             <div className="items-center md:w-full w-4/5 h-auto border-2 rounded-2xl border-slate-200 px-14 py-5 gap-8 bg-zinc-900">
@@ -153,39 +153,11 @@ export default function ProfileSettings() {
                 </div>
                 <div className="flex flex-row ">
                   <div className="flex justify-center gap-3  pt-5 pb-8 ">
-                    {!employee ? (
-                      <a
-                        className="flex justify-center items-center font-medium text-sm rounded-full"
-                        href="/subscriptions"
-                        style={{
-                          border: '2px solid gray',
-                          // backgroundColor: '#202020',
-                          color: 'white',
-                          padding: '5%',
-                          // width: '8rem',
-                          // height: '3rem',
-                          // fontSize: 'smaller',
-                        }}
-                      >
-                        Subscriptions
-                      </a>
-                    ) : (
-                      <div> </div>
-                    )}
-                    ;
                     <button
+                      className="border bg-gray-900 font-medium text-sm px-3 text-slate-200 hover:bg-blue-400 hover:text-gray-900 rounded-xl"
                       onClick={(event) => {
                         event.preventDefault();
                         setChangePasswordOpen(true);
-                      }}
-                      style={{
-                        border: '2px solid gray',
-                        backgroundColor: '#202020',
-                        color: 'white',
-                        padding: '2%',
-                        width: '6rem',
-                        height: '3rem',
-                        fontSize: 'smaller',
                       }}
                     >
                       Change <br></br> Password
@@ -197,15 +169,16 @@ export default function ProfileSettings() {
                     )}
                     <button
                       to="/sign-up"
-                      style={{
-                        border: '2px solid gray',
-                        backgroundColor: '#202020',
-                        color: 'white',
-                        padding: '2%',
-                        width: '6rem',
-                        height: '3rem',
-                        fontSize: 'smaller',
-                      }}
+                      className="border bg-gray-900 font-medium text-sm px-3 text-slate-200 hover:bg-red-400 hover:text-gray-900 rounded-xl"
+                      // style={{
+                      //   border: '2px solid gray',
+                      //   backgroundColor: '#202020',
+                      //   color: 'white',
+                      //   padding: '2%',
+                      //   width: '6rem',
+                      //   height: '3rem',
+                      //   fontSize: 'smaller',
+                      // }}
                       onClick={(event) => {
                         event.preventDefault();
                         setOpenModal(true);
@@ -213,8 +186,19 @@ export default function ProfileSettings() {
                     >
                       Delete <br></br> Account
                     </button>
+                    ;
                   </div>
                 </div>
+                {!employee ? (
+                  <div className="">
+                    <button className="border bg-gray-900 font-medium text-sm px-3 text-slate-200 hover:bg-green-400 hover:text-gray-900 rounded-sm">
+                      {' '}
+                      <Link href="/subscriptions">Subscriptions</Link>
+                    </button>
+                  </div>
+                ) : (
+                  <div> </div>
+                )}
               </div>
             </div>
           </div>

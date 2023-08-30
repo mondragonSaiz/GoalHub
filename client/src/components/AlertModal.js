@@ -18,9 +18,7 @@ export default function AlertModal({ isVisible, onClose, children, bgColor }) {
         >
           X
         </button>
-        <div className={`bg-${bgColor} p-2 rounded-md text-white`}>
-          {children}
-        </div>
+        <div className={`bg-red-500 p-2 rounded-md text-white`}>{children}</div>
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ export default function LogIn() {
   const [login, { error, data }] = useMutation(LOGIN_USER, {
     onError: (error) => {
       // Handle the error here
-      console.error('ERROR**', error);
 
       if (
         error.message.includes('No user found with this email address') ||

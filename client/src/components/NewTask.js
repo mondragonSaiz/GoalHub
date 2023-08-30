@@ -130,20 +130,20 @@ export default function NewTask({
             </div>
             <div className="flex flex-row xs:flex-col">
               <div className="flex p-6">
-                <a
+                <button
                   onClick={() => closeModal(false)}
-                  className="flex bg-red-800 text-gray-100 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default"
+                  className="flex bg-red-800 text-gray-100 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto  hover:bg-red-500"
                 >
                   Cancel
-                </a>
+                </button>
               </div>
               <div className="flex p-6">
-                <a
+                <button
                   onClick={(e) => handleSubmit(e, closeModal)}
-                  className="flex bg-gray-100 text-neutral-950 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto cursor-default "
+                  className="flex bg-green-500 text-neutral-950 py-2 px-10 font-medium font-poppins rounded-full lg:text-lg justify-center w-auto hover:bg-green-300 "
                 >
                   Assign
-                </a>
+                </button>
               </div>
             </div>
           </div>

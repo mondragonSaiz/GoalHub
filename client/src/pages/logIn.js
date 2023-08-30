@@ -3,13 +3,43 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import AlertModal from '../components/AlertModal';
 import { Navigate } from 'react-router-dom';
 
 // ! TODO: Remove console logs
 
 export default function LogIn() {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const [login, { error, data }] = useMutation(LOGIN_USER, {
+    onError: (error) => {
+      // Handle the error here
+
+      if (
+        error.message.includes('No user found with this email address') ||
+        error.message.includes('Incorrect credentials')
+      ) {
+        setAlertMessage('Incorrect email or password. Please try again.');
+        setShowAlert(true);
+      }
+
+      // if (error) {
+      //   setAlertMessage(
+      //     'Could not authenticate user. Please check your credentials.'
+      //   );
+      //   setShowAlert(true);
+      // }
+    },
+    onCompleted: (data) => {
+      // Handle successful login here
+      console.log(data);
+      if (data && data.login && data.login.token) {
+        Auth.login(data.login.token);
+      }
+    },
+  });
 
   if (Auth.loggedIn()) {
     return <Navigate to="/dashboard" />;
@@ -33,9 +63,10 @@ export default function LogIn() {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
+      return;
     }
 
     // clear form values
@@ -53,12 +84,11 @@ export default function LogIn() {
             <div className="flex flex-col items-center w-auto border-2 border-box rounded-2xl border-slate-200 px-8 py-10 sm:px-14 sm:py-14 md:px-16 md:py-16 lg:px-40 lg:py-20 gap-8">
               {data ? (
                 <p className="text-slate-200 font-bold text-3xl lg:text-4xl text-center">
-                  Successfully loged!{' '}<br></br>
+                  Successfully loged! <br></br>
                   <Link to="/dashboard">Taking you to your dashboard.</Link>
                 </p>
               ) : (
                 <div className="flex flex-col items-center w-full rounded-2xl border-slate-200 gap-8">
-                  
                   <form>
                     <h2 className="text-slate-200 font-bold text-2xl lg:text-4xl mb-8 lg:mb-8 text-center">
                       Log in to GoalHub
@@ -73,12 +103,12 @@ export default function LogIn() {
                         className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
                       />
                       <input
-                      onChange={handleChange}
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      value={formState.password}
-                      className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
+                        onChange={handleChange}
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        value={formState.password}
+                        className=" focus:text-slate-200 text-slate-200 bg-neutral-950 text-sm lg:text-lg border-2 rounded-lg border-gray-500 lg:text-left text-center py-2 pr-0 lg:pr-4 lg:pl-4"
                       />
                       {/* <Link to="/forgot-password">
                         <div className="flex flex-row gap-4 justify-center ">
@@ -103,7 +133,7 @@ export default function LogIn() {
                       </p>
                       <p className=" rotate-90 text-gray-500">|</p>
                     </div>
-                  </form>                  
+                  </form>
                   <Link
                     to="/sign-up"
                     className="flex text-slate-200 bg-neutral-950 border-2 rounded-lg border-gray-500 font-bold font-poppins justify-center text-center py-2 px-20"
@@ -112,6 +142,13 @@ export default function LogIn() {
                   </Link>
                 </div>
               )}
+              <AlertModal
+                isVisible={showAlert}
+                onClose={() => setShowAlert(false)}
+                bgColor="red-500"
+              >
+                <h1>{alertMessage}</h1>
+              </AlertModal>
             </div>
           </div>
         </section>

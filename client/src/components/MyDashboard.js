@@ -93,7 +93,7 @@ export default function MyDashboard({ tasks }) {
             </p>
             <button
               type="submit"
-              className={`border border-green-200 rounded-lg font-thin text-green-300 hover:text-gray-500 hover:border-green-400 hover:bg-green-400 px-2 ${
+              className={`border border-green-200 rounded-lg font-medium text-base text-green-300 hover:text-gray-500 hover:border-green-400 hover:bg-green-400 px-2 ${
                 tasks.length === 0
                   ? 'border border-gray-200 text-gray-300 disabled:opacity-50 hover:border-gray-400  hover:bg-gray-400 cursor-not-allowed'
                   : ''
@@ -101,7 +101,7 @@ export default function MyDashboard({ tasks }) {
               style={{ fontSize: 'smaller' }}
               disabled={tasks.length === 0}
             >
-              Save
+              Update
             </button>
           </div>
 
@@ -127,7 +127,6 @@ export default function MyDashboard({ tasks }) {
                     <Fragment key={task._id}>
                       <HoverCard>
                         <div
-                          key={task._id}
                           className="grid grid-cols-4 gap-4 overflow-auto"
                           style={{ color: 'white' }}
                           id="wrapper"
@@ -141,7 +140,6 @@ export default function MyDashboard({ tasks }) {
                           </div>
                           <HoverCardTrigger asChild>
                             <div
-                              key={task._id}
                               onClick={() =>
                                 setTaskModalVisibility((prevVisibility) => ({
                                   ...prevVisibility,

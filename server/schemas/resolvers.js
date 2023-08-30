@@ -146,6 +146,7 @@ const resolvers = {
         return { token, user };
       } catch (err) {
         console.log(err);
+        throw err;
       }
     },
     forgotPassword: async (parents, { email, password }) => {

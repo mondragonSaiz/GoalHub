@@ -3,13 +3,44 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import AlertModal from '../components/AlertModal';
 import { Navigate } from 'react-router-dom';
 
 // ! TODO: Remove console logs
 
 export default function LogIn() {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const [login, { error, data }] = useMutation(LOGIN_USER, {
+    onError: (error) => {
+      // Handle the error here
+      console.error('ERROR**', error);
+
+      if (
+        error.message.includes('No user found with this email address') ||
+        error.message.includes('Incorrect credentials')
+      ) {
+        setAlertMessage('Incorrect email or password. Please try again.');
+        setShowAlert(true);
+      }
+
+      // if (error) {
+      //   setAlertMessage(
+      //     'Could not authenticate user. Please check your credentials.'
+      //   );
+      //   setShowAlert(true);
+      // }
+    },
+    onCompleted: (data) => {
+      // Handle successful login here
+      console.log(data);
+      if (data && data.login && data.login.token) {
+        Auth.login(data.login.token);
+      }
+    },
+  });
 
   if (Auth.loggedIn()) {
     return <Navigate to="/dashboard" />;
@@ -33,7 +64,7 @@ export default function LogIn() {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
       return;
@@ -112,6 +143,13 @@ export default function LogIn() {
                   </Link>
                 </div>
               )}
+              <AlertModal
+                isVisible={showAlert}
+                onClose={() => setShowAlert(false)}
+                bgColor="red-500"
+              >
+                <h1>{alertMessage}</h1>
+              </AlertModal>
             </div>
           </div>
         </section>
